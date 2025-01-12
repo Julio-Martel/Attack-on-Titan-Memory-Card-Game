@@ -1,0 +1,1 @@
+let boton = document.getElementById();
