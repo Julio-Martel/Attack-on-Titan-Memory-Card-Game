@@ -3,19 +3,29 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="index.css">
 	<title>Memory Card Game</title>
 </head>
 <body>
 	<main class="contenido-principal">
-		<div class="fomulario-contenedor">
+	
+		<div class="fomulario-contenedor" id="ingreso-coordenadas">
+			<img src="images/logo.png" class="img-logo">
 			<form class="formulario">
-				<label for="nombre">Nombre: </label>
-				 <input type="text" id="nombre" name="nombre" required>
-				<label for="apellido">Apellido: </label>
-				 <input type="text" id="apellido" name="apellido" required>
+				<label for="coordenadaX" class="entrada">Seleccione la coordenada(EjeX): </label>
+				 <input type="number" min="0" max="5" id="coordenadaX" name="coordenadaX" placeholder = "Ingresar nro de coordenada" required>
+				<label for="coordenadaY" class="entrada" >Seleccione la coordenada(EjeY): </label>
+				 <input type="number" min="0" max="2" id="coordenadaY" name="coordenadaY" placeholder = "Ingresar nro de coordenada" required>
+				
 			</form>
-			<button class="boton" id="boton-formlario">Ingresar coordenadas</button>
+			<button type="button" class="boton" id="boton-formulario">Ingresar coordenadas</button>
 		</div>
+
+		<div class="cartas">
+			
+		</div>
+
+		<!--
 		
 		<section class="seccion-juego">
 			<div class="tablero">
@@ -30,7 +40,8 @@
 				</div>
 			</div>
 		</section>
-
+			-->
 	</main>
+	<script src="index.js" defer></script>
 </body>
 </html>
