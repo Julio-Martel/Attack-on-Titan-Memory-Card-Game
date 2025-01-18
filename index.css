@@ -22,7 +22,7 @@ body{
 	max-width: 2000px;
 	border: solid 1px grey;
 	border-radius: 5px;
-	gap: 5px;
+	gap: 10px;
 }
 
 .fomulario-contenedor {
@@ -58,3 +58,42 @@ body{
 	padding: 5px;
 }
 
+.cartel-seleccionado {
+	display: none;
+	justify-content: center;
+	padding: 10px;
+	color: #ffffff;
+}
+
+.cartas {
+	background-color: #000000;
+	padding: 5px;
+	display: none;
+	flex-direction: column;
+	gap: 5px;
+	border: solid 1px grey;
+	border-radius: 5px;
+}
+
+.seccion {
+	display: flex;
+	gap: 5px;
+}
+
+.encabezado-cartas {
+	background-color: goldenrod;
+	color: #ffffff;
+	padding: 5px;
+	border: solid 1px grey;
+	border-radius: 5px;
+}
+
+.carta {
+	width: 60px;
+	cursor: pointer;
+	transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.carta:hover {
+	filter: brightness(1.5);
+}
