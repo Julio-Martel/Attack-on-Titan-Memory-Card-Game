@@ -17,5 +17,7 @@ boton.addEventListener('click', () => {
 for(let carta of cartas) {
 	carta.addEventListener('click', () => {
 		carta.style.opacity = '0.5';
+		carta.style.filter = 'none';
+		carta.style.cursor = 'default';
 	});
 }
