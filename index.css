@@ -14,6 +14,7 @@ body{
 	display: flex;
 	justify-content: center;
 	align-content: center;
+	align-items: center;
 	background: rgba(0, 0, 0, 0.6);
 	margin: 50px auto;
 	padding: 50px;
@@ -25,8 +26,39 @@ body{
 	gap: 10px;
 }
 
-.fomulario-contenedor {
+.titulo {
+	background: url('images/fondoStart.jpg');
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	padding: 25px;
+	border: solid 1px grey;
+}
+
+.play-img {
+	width: 100%;
+}
+
+.boton {
 	background-color: #000000;
+	width: 200px;
+	height: 50px;
+	cursor: pointer;
+	color: #ffffff;
+	border: solid 1px grey;
+	transition: background 1s linear;
+}
+
+.boton:hover {
+	background: #ffffff;
+	color: #000000;
+}
+
+.fomulario-contenedor {
+	background: url('images/fondo2.png');
+	background-size: cover;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -40,6 +72,11 @@ body{
 
 .img-logo {
 	width: 100%;
+}
+
+.formularios {
+	display: flex;
+	gap: 10px;
 }
 
 .formulario {
@@ -68,7 +105,7 @@ body{
 .cartas {
 	background-color: #000000;
 	padding: 5px;
-	display: none;
+	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	border: solid 1px grey;
@@ -96,4 +133,17 @@ body{
 
 .carta:hover {
 	filter: brightness(1.5);
+}
+
+.contenedor-coordenadas-cartas {
+	display: flex;
+	gap: 5px;
+}
+
+.par-cargados {
+	width: 100%;
+}
+
+#nro-coordenada {
+	color: #ffffff;
 }
