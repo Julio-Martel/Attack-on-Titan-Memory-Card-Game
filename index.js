@@ -3,8 +3,6 @@ let contenidoPrincipal = document.getElementById('contenedor-principal');
 let sonidoCarta = new Audio('audios/button2.mp3');
 sonidoCarta.load();
 
-
-
 const avanzarAseleccionDeCoordenadas = () => {
 	contenidoPrincipal.innerHTML = `<div class="contenedor-coordenadas-cartas">
         			<div class="fomulario-contenedor" id="ingreso-coordenadas">
@@ -68,21 +66,32 @@ const avanzarAseleccionDeCoordenadas = () => {
     		  </div>`;
 
 	let botonIngresarCoordenadas = document.querySelector('#boton-formulario');
-	let displayNro = document.querySelector('#par-cargados');
-	let contenedorCartas = document.querySelector("#contenedor-cartas");
-	let ContenedorDeCartasActivo = true;
+	let coordenadaX1 = (document.getElementById('coordenadaX1')).value, coordenadaY1 = (document.getElementById('coordenadaY1')).value, coordenadaX2 = (document.getElementById('coordenadaX2')).value, coordenadaY2 = (document.getElementById('coordenadaY2')).value;
 
+	/*let displayNro = document.querySelector('#par-cargados');*/
+	/*let contenedorCartas = document.querySelector("#contenedor-cartas");
+	let ContenedorDeCartasActivo = true;*/
+	/*let contenedorIngresoCoordenadas = document.querySelector("#ingreso-coordenadas");*/
+
+/*
 	contenedorCartas.style.opacity = "0.5";
-	contenedorCartas.style.pointerEvents = "none";	
+	contenedorCartas.style.pointerEvents = "none";	*/
 
-	activarContenedorDeCartas = (verifCartasActivas) => {
+/*	activarContenedorDeCartas = (verifCartasActivas) => {
+		
+		let activo;
+
 		if (verifCartasActivas === true) {
 			contenedorCartas.style.opacity = "0.5";
 			contenedorCartas.style.pointerEvents = "none";	
+			activo = true;
 		} else {
 			contenedorCartas.style.opacity = "1";
 			contenedorCartas.style.pointerEvents = "pointer";				
+			activo = false;
 		}
+	
+		return activo;
 	}
 
 
@@ -90,16 +99,35 @@ const avanzarAseleccionDeCoordenadas = () => {
 		let activarCartas = false;
 		let nroDisplay = parseInt(displayNro.value);		
 			if (nroDisplay >= 0 && nroDisplay < 3) {
-				activarContenedorDeCartas(activarCartas);
+				let activo = activarContenedorDeCartas(activarCartas);
+				if (activo === false) {
+					contenedorIngresoCoordenadas.style.opacity = "0.5";
+					contenedorIngresoCoordenadas.style.pointerEvents = "none";
+				}
 				nroDisplay++;
 				displayNro.value = nroDisplay;
 			} 
 	};
 
 
-	botonIngresarCoordenadas.addEventListener('click', incrementarDisplay);
+	/*activarContenedorDeCartas(ContenedorDeCartasActivo);*/
 
-	activarContenedorDeCartas(ContenedorDeCartasActivo);
+
+	ingresarCoordenadas = () => {
+		if (coordenadaX1 === "" && coordenadaX2 === "") {
+			alert('Debe completar todos los campos');
+		} else if(coordenadaX1 === "" && coordenadaY1 === ""){
+			alert('Debe completar todos los campos');
+		} else if(coordenadaX1 === "" && coordenadaY2 === ""){
+			alert('Debe completar todos los campos');
+		} else if(coordenadaY1 === "" && coordenadaY2 === "") {
+			alert('Debe completar todos los campos');
+		} else {
+			alert('Debe completar todos los campos');
+		}
+	}
+
+	botonIngresarCoordenadas.addEventListener('click', ingresarCoordenadas);
 
 }
 
