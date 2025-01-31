@@ -1,19 +1,14 @@
 let botonStart = document.getElementById('play');
 let contenidoPrincipal = document.getElementById('contenedor-principal');
 let sonidoCarta = new Audio('audios/button2.mp3');
-
 sonidoCarta.load();
 
-botonStart.addEventListener('click', () => {
-    let tablero = [[0,0,0,0],
-				   [0,0,0,0]];
-  
-  	let contadorCoordenadas = 0;
 
-    for(let i = 0; i < 4; i++){
-    	  contenidoPrincipal.innerHTML = `
-   			 <div class="contenedor-coordenadas-cartas">
+
+const avanzarAseleccionDeCoordenadas = () => {
+	contenidoPrincipal.innerHTML = `<div class="contenedor-coordenadas-cartas">
         			<div class="fomulario-contenedor" id="ingreso-coordenadas">
+						<label for = "Nro de coordenada" id = "nro-coordenada">Nro de coordenada</label>
         				<div class = "display-coordenadas">
         					<input type="text" id="par-cargados" name="par-cargados" value = 0 readonly>
         				</div>
@@ -41,11 +36,11 @@ botonStart.addEventListener('click', () => {
             			</div>
         			</div>
 
-        			<div class="cartas" id = "contenedor-cartas">
-            			<div class="overlay"></div>
-            				<header class="encabezado-cartas">
+        			<div class="cartas" id = "contenedor-cartas"> 
+            				
+            			<header class="encabezado-cartas">
                 				<h3>Seleccione carta para colocar en el tablero</h3>
-            				</header>
+            			</header>
             
             			<div class="seccion">
                 			<img src="images/card1.jpg" class="carta" data-value="0">
@@ -68,38 +63,45 @@ botonStart.addEventListener('click', () => {
            				 <div class="seccion">
                 			<img src="images/card14.jpg" class="carta" data-value="12">
             			</div>
+
        				 </div>
     		  </div>`;
-  			
-  			let contadorCoordenadasCargadas = document.getElementById('par-cargados');
-			let contenedorCartas = document.getElementById('contenedor-cartas');
-			let botonIngresarCoordenadas = document.getElementById('boton-formulario');
-			let contendorCartasOculto = true;
 
-			if (contendorCartasOculto) {
-				contenedorCartas.style.opacity = "0.5";
-			}
+	let botonIngresarCoordenadas = document.querySelector('#boton-formulario');
+	let displayNro = document.querySelector('#par-cargados');
+	let contenedorCartas = document.querySelector("#contenedor-cartas");
+	let ContenedorDeCartasActivo = true;
 
-			botonIngresarCoordenadas.addEventListener('click', () => {
-				let coordX1 = document.getElementById('coordenadaX1').value;
-				let coordX2 = document.getElementById('coordenadaX2').value;
-				let coordY1 = document.getElementById('coordenadaY1').value;
-				let coordY2 = document.getElementById('coordenadaY2').value;
-			
-				contenedorCartas.style.opacity = "1";
+	contenedorCartas.style.opacity = "0.5";
+	contenedorCartas.style.pointerEvents = "none";	
 
-				contadorCoordenadas++;
-				contadorCoordenadasCargadas.value = contadorCoordenadas;
-			}); 
-
-    }
+	activarContenedorDeCartas = (verifCartasActivas) => {
+		if (verifCartasActivas === true) {
+			contenedorCartas.style.opacity = "0.5";
+			contenedorCartas.style.pointerEvents = "none";	
+		} else {
+			contenedorCartas.style.opacity = "1";
+			contenedorCartas.style.pointerEvents = "pointer";				
+		}
+	}
 
 
-    let cartas = document.querySelectorAll('.carta');
-    for (let carta of cartas) {
-        carta.addEventListener('mouseover', () => {
-            sonidoCarta.play();
-        });
-    }
-});
+	let incrementarDisplay = () => {
+		let activarCartas = false;
+		let nroDisplay = parseInt(displayNro.value);		
+			if (nroDisplay >= 0 && nroDisplay < 3) {
+				activarContenedorDeCartas(activarCartas);
+				nroDisplay++;
+				displayNro.value = nroDisplay;
+			} 
+	};
+
+
+	botonIngresarCoordenadas.addEventListener('click', incrementarDisplay);
+
+	activarContenedorDeCartas(ContenedorDeCartasActivo);
+
+}
+
+botonStart.addEventListener('click', avanzarAseleccionDeCoordenadas);
 
