@@ -67,9 +67,12 @@ const avanzarAseleccionDeCoordenadas = () => {
 
 	let botonIngresarCoordenadas = document.querySelector('#boton-formulario');
 	let displayNro = document.querySelector('#par-cargados');
+	let tableroNumericoCartas = [[0,1,2,3],
+								 [0,1,2,3]];
+    let contenedorCartas = document.querySelector("#contenedor-cartas");
 	
 	/**/
-	/*let contenedorCartas = document.querySelector("#contenedor-cartas");
+	/*
 	let ContenedorDeCartasActivo = true;*/
 	/*let contenedorIngresoCoordenadas = document.querySelector("#ingreso-coordenadas");*/
 
@@ -98,6 +101,10 @@ const avanzarAseleccionDeCoordenadas = () => {
 
 	/*activarContenedorDeCartas(ContenedorDeCartasActivo);*/
 
+	seleccionarCarta = () => {
+
+	}
+
 	let incrementarDisplay = () => {
 		let nroDisplay = parseInt(displayNro.value);		
 			if (nroDisplay >= 0 && nroDisplay < 3) {
@@ -106,7 +113,6 @@ const avanzarAseleccionDeCoordenadas = () => {
 			} 
 	};
 
-	botonIngresarCoordenadas.addEventListener('click', incrementarDisplay);
 
 	ingresarCoordenadas = () => {
 		let coordenadaX1 = (document.getElementById('coordenadaX1')).value, coordenadaY1 = (document.getElementById('coordenadaY1')).value, coordenadaX2 = (document.getElementById('coordenadaX2')).value, coordenadaY2 = (document.getElementById('coordenadaY2')).value;
@@ -119,6 +125,14 @@ const avanzarAseleccionDeCoordenadas = () => {
 			alert('Debe completar todos los campos');
 		} else if(coordenadaY1 === "" && coordenadaY2 === "") {
 			alert('Debe completar todos los campos');
+		} else {
+
+			let cartaSeleccionada = seleccionarCarta();
+
+			tableroNumericoCartas[coordenadaX1][coordenadaY1] =
+			tableroNumericoCartas[coordenadaX2][coordenadaY2] =
+
+			botonIngresarCoordenadas.addEventListener('click', incrementarDisplay);
 		}
 	}
 
