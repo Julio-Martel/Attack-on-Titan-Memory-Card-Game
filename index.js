@@ -66,9 +66,9 @@ const avanzarAseleccionDeCoordenadas = () => {
     		  </div>`;
 
 	let botonIngresarCoordenadas = document.querySelector('#boton-formulario');
-	let coordenadaX1 = (document.getElementById('coordenadaX1')).value, coordenadaY1 = (document.getElementById('coordenadaY1')).value, coordenadaX2 = (document.getElementById('coordenadaX2')).value, coordenadaY2 = (document.getElementById('coordenadaY2')).value;
-
-	/*let displayNro = document.querySelector('#par-cargados');*/
+	let displayNro = document.querySelector('#par-cargados');
+	
+	/**/
 	/*let contenedorCartas = document.querySelector("#contenedor-cartas");
 	let ContenedorDeCartasActivo = true;*/
 	/*let contenedorIngresoCoordenadas = document.querySelector("#ingreso-coordenadas");*/
@@ -95,25 +95,22 @@ const avanzarAseleccionDeCoordenadas = () => {
 	}
 
 
+
+	/*activarContenedorDeCartas(ContenedorDeCartasActivo);*/
+
 	let incrementarDisplay = () => {
-		let activarCartas = false;
 		let nroDisplay = parseInt(displayNro.value);		
 			if (nroDisplay >= 0 && nroDisplay < 3) {
-				let activo = activarContenedorDeCartas(activarCartas);
-				if (activo === false) {
-					contenedorIngresoCoordenadas.style.opacity = "0.5";
-					contenedorIngresoCoordenadas.style.pointerEvents = "none";
-				}
 				nroDisplay++;
 				displayNro.value = nroDisplay;
 			} 
 	};
 
-
-	/*activarContenedorDeCartas(ContenedorDeCartasActivo);*/
-
+	botonIngresarCoordenadas.addEventListener('click', incrementarDisplay);
 
 	ingresarCoordenadas = () => {
+		let coordenadaX1 = (document.getElementById('coordenadaX1')).value, coordenadaY1 = (document.getElementById('coordenadaY1')).value, coordenadaX2 = (document.getElementById('coordenadaX2')).value, coordenadaY2 = (document.getElementById('coordenadaY2')).value;
+		
 		if (coordenadaX1 === "" && coordenadaX2 === "") {
 			alert('Debe completar todos los campos');
 		} else if(coordenadaX1 === "" && coordenadaY1 === ""){
@@ -121,8 +118,6 @@ const avanzarAseleccionDeCoordenadas = () => {
 		} else if(coordenadaX1 === "" && coordenadaY2 === ""){
 			alert('Debe completar todos los campos');
 		} else if(coordenadaY1 === "" && coordenadaY2 === "") {
-			alert('Debe completar todos los campos');
-		} else {
 			alert('Debe completar todos los campos');
 		}
 	}
