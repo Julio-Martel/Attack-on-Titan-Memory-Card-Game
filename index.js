@@ -8,6 +8,7 @@ botonStart.addEventListener('click', async () => {
 
 	contenidoPrincipal.innerHTML = `<div class="contenedor-coordenadas-cartas">
 		<div class="fomulario-contenedor" id="ingreso-coordenadas">
+			<img src = "images/gettingStarted.jpg" class = "getting-started">
 			<input type = "number" name = "display" id = "display" value = "0" readonly>
 				<div class="formularios">
 					<form class="formulario">
@@ -54,13 +55,6 @@ botonStart.addEventListener('click', async () => {
 		</div>	
 	</div>`;
 
-		temporizadorCambiarEstiloBoton = () => {
-				botonIngresarCoordenadas.textContent = "Coordenada ingresada con exito!";
-				botonIngresarCoordenadas.style.filter = "none";
-				botonIngresarCoordenadas.style.pointerEvents = "none";
-		}
-
-
 		buscarCasilla = (coordenadaX, coordenadaY) => {
    		 	return new Promise((resolve) => {
         	 	if (tableroCartas[coordenadaY][coordenadaX] !== 0) {
@@ -85,6 +79,9 @@ botonStart.addEventListener('click', async () => {
 						quitarEfectosCarta.style.opacity = "0.5";
 						quitarEfectosCarta.style.filter = "none";
 						quitarEfectosCarta.style.pointerEvents = "none";
+						botonIngresarCoordenadas.textContent = "Ingresar coordenadas";
+						botonIngresarCoordenadas.style.filter = "auto";
+						botonIngresarCoordenadas.style.pointerEvents = "auto";	  
 						resolve(cartaValorNumerico);
 					});
 				}
@@ -122,10 +119,13 @@ botonStart.addEventListener('click', async () => {
 
       			if (tableroCartasVacio === 8) {
 
+      				botonIngresarCoordenadas.textContent = "Coordenada ingresada con exito!";
+					botonIngresarCoordenadas.style.filter = "none";
+					botonIngresarCoordenadas.style.pointerEvents = "none";	
+
             		let cartaSeleccionada = await seleccionarCarta();
             		tableroCartas[coordenadaY1][coordenadaX1] = cartaSeleccionada;
             		tableroCartas[coordenadaY2][coordenadaX2] = cartaSeleccionada;
-            		botonIngresarCoordenadasPorDefecto
 
         		} else {
            			let casillaLibre1 = await buscarCasilla(coordenadaX1, coordenadaY1);
@@ -136,16 +136,39 @@ botonStart.addEventListener('click', async () => {
                 		return;
             		}
 
+            		botonIngresarCoordenadas.textContent = "Coordenada ingresada con exito!";
+					botonIngresarCoordenadas.style.filter = "none";
+					botonIngresarCoordenadas.style.pointerEvents = "none";
+
            			let cartaSeleccionada = await seleccionarCarta();
             		tableroCartas[coordenadaY1][coordenadaX1] = cartaSeleccionada;
             		tableroCartas[coordenadaY2][coordenadaX2] = cartaSeleccionada;        
-        }
-        	display.value = displayNro + 1;
-        	contenedorDeCartas.style.opacity = "0.5";
-        	contenedorDeCartas.style.pointerEvents = "none";
-    	}	
-	});
+        		}
+     	
+        		display.value = displayNro + 1;
+        		contenedorDeCartas.style.opacity = "0.5";
+        		contenedorDeCartas.style.pointerEvents = "none";
+    	  	} 
+			
+			let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
+			if (avanzarAlJuego === 8) {
+				contenidoPrincipal.innerHTML = `<div class = "contenedor-tablero-estadisticas">
+					<div class = "tablero-cartas" id = "tabla">
+						
+					</div>
+
+					<div class = "estadisticas-vidas" id = "est-vid">
+						<div class = "display-vidas" id = "vidas">
+						</div>
+
+						<div class = "display-score" id = "score">
+						</div>
+
+					</div>
+				</div>`;
+			}
+		});
 });
 
 
