@@ -153,16 +153,28 @@ botonStart.addEventListener('click', async () => {
 			let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
 			if (avanzarAlJuego === 8) {
-				contenidoPrincipal.innerHTML = `<div class = "contenedor-tablero-estadisticas">
+				contenidoPrincipal.innerHTML = 
+				`<div class = "contenedor-tablero-estadisticas">
+					
 					<div class = "tablero-cartas" id = "tabla">
-						
+						<div class = "casilla" id = "casilla-0-0"></div>
+						<div class = "casilla" id = "casilla-0-1"></div>
+						<div class = "casilla" id = "casilla-0-2"></div>
+						<div class = "casilla" id = "casilla-0-3"></div>
+						<div class = "casilla" id = "casilla-1-0"></div>
+						<div class = "casilla" id = "casilla-1-1"></div>
+						<div class = "casilla" id = "casilla-1-2"></div>
+						<div class = "casilla" id = "casilla-1-3"></div>
 					</div>
 
 					<div class = "estadisticas-vidas" id = "est-vid">
+						
 						<div class = "display-vidas" id = "vidas">
+						
 						</div>
 
 						<div class = "display-score" id = "score">
+						
 						</div>
 
 					</div>
