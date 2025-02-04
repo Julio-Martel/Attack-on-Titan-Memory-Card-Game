@@ -3,6 +3,63 @@ let botonStart = document.getElementById('play');
 
 botonStart.addEventListener('click', async () => {
 
+
+				contenidoPrincipal.innerHTML = 
+				`<div class = "contenedor-tablero-estadisticas">
+					
+					<div class = "tablero-cartas" id = "tabla">
+						<div class = "casilla" id = "casilla-0-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-0-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-0-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-0-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+					</div>
+
+					<div class = "estadisticas-vidas" id = "est-vid">
+						
+						<div class = "display-vidas" id = "vidas">
+							<div class = "display-vidas-img" id = "vidas">
+								<label for="vidas" class="entrada-vidas">Vidas:</label>
+   					  			<div class = "vidas-img">
+								</div>
+							</div>
+						</div>
+
+						<div class = "display-score" id = "score">
+							<div class = "display-score-numbers">
+								<label for="scores" class="entrada-scores">Score:</label>
+								<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
+							</div>
+						</div>
+
+						<div class = "display-video" id = "video">
+
+						</div>
+
+					</div>
+				</div>`;
+
+
+/*
 	let tableroCartas = [[0,0,0,0],
 						 [0,0,0,0]];
 
@@ -157,30 +214,46 @@ botonStart.addEventListener('click', async () => {
 				`<div class = "contenedor-tablero-estadisticas">
 					
 					<div class = "tablero-cartas" id = "tabla">
-						<div class = "casilla" id = "casilla-0-0"></div>
-						<div class = "casilla" id = "casilla-0-1"></div>
-						<div class = "casilla" id = "casilla-0-2"></div>
-						<div class = "casilla" id = "casilla-0-3"></div>
-						<div class = "casilla" id = "casilla-1-0"></div>
-						<div class = "casilla" id = "casilla-1-1"></div>
-						<div class = "casilla" id = "casilla-1-2"></div>
-						<div class = "casilla" id = "casilla-1-3"></div>
+						<div class = "casilla" id = "casilla-0-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-0-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-0-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-0-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" id = "casilla-1-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
 					</div>
 
 					<div class = "estadisticas-vidas" id = "est-vid">
 						
 						<div class = "display-vidas" id = "vidas">
-						
+			
 						</div>
 
 						<div class = "display-score" id = "score">
-						
+							<input type="number" id="entrada-score" name="entrada-score" value = "0" required>
 						</div>
 
 					</div>
 				</div>`;
 			}
-		});
+		}); */
 });
 
 
