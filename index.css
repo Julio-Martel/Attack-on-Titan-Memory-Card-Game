@@ -1,3 +1,9 @@
+@font-face {
+	font-family: 'The Dark Titan Classic';
+	src: url('fonts/The Dark Titan Classic.ttf') format(TrueType);
+}
+
+
 *{
 	margin: 0;
 	padding: 0;
@@ -153,7 +159,7 @@ body{
 }
 
 input {
-  border: 2px solid #4CAF50; /* Borde de 2px de grosor, color verde */
+  border: 2px solid darkgrey; /* Borde de 2px de grosor, color verde */
   padding: 5px; /* Espaciado interno */
   border-radius: 5px; /* Bordes redondeados */
 }
@@ -170,16 +176,106 @@ input {
 
 
 .contenedor-tablero-estadisticas {
-	background-color: lawngreen;
+	background: url('images/fondo2.jpg');
+	background-size: cover;
 	width: 100%;
-	height: 100%;
 	display: flex;
 	gap: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	border: solid 1px darkgrey;
 }
 
 .tablero-cartas {
 	display: grid;
-	grid-template-rows: repeat(2, auto);
-	grid-template-columns: repeat(4, 1fr);
-	border: solid 1px grey;
+	width: 60%;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(2, auto);
+  gap: 5px;
+}
+
+.casilla {
+	display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.estadisticas-vidas {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	width: 40%;
+}
+
+.carta-reverso {
+	width: 100%;
+	border-radius: 5px;
+	border: solid 1px darkgrey;
+	cursor: pointer;
+}
+
+.display-vidas {
+	background: url('images/vidas.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	border-radius: 5px;
+	border: solid 1px darkgrey;
+}
+
+.display-video {
+	background: rgba(0, 0, 0, 0.6);
+	height: 100%;
+	border-radius: 5px;
+	border: solid 1px darkgrey;
+}
+
+.display-vidas-img {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: 5px;
+	width: 50%;
+}
+
+.entrada-vidas {
+	font-family: 'The Dark Titan Classic';
+	color: #ffffff;
+}
+.vidas-img {
+	background: #ffffff;
+	width: 100%;
+	height: 30px;
+	border: 2px solid darkgrey;
+	border-radius: 5px;
+}
+
+.display-score {
+	background: url('images/score.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 100px;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	border-radius: 5px;
+	border: solid 1px darkgrey;
+}
+
+.display-score-numbers {
+	display: flex;
+	flex-direction: column;
+	justify-content: right;
+	gap: 2px;
+	width: 50%;
+	padding: 5px;
+}
+
+.entrada-scores {
+	font-family: 'The Dark Titan Classic';
+	color: #ffffff;
 }
