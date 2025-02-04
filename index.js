@@ -2,34 +2,34 @@ let contenidoPrincipal = document.getElementById('contenedor-principal');
 let botonStart = document.getElementById('play');
 
 botonStart.addEventListener('click', async () => {
-
-
-				contenidoPrincipal.innerHTML = 
+let tableroCartas = [[1,4,2,3],
+					 [1,4,3,2]];
+	contenidoPrincipal.innerHTML = 
 				`<div class = "contenedor-tablero-estadisticas">
 					
 					<div class = "tablero-cartas" id = "tabla">
-						<div class = "casilla" id = "casilla-0-0">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-0-1">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "1" id = "0-1" data-coordenada = "0-1">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-0-2">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "2" id = "0-2" data-coordenada = "0-2">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-0-3">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-0">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-1">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-2">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "2" id = "1-2" data-coordenada = "1-2">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-3">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
 					</div>
@@ -57,6 +57,34 @@ botonStart.addEventListener('click', async () => {
 
 					</div>
 				</div>`;
+
+				let casillas = document.querySelectorAll('.casilla');
+
+				for(casilla of casillas) {					
+					let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+					let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));					
+					let cartaAColocar = casilla.getAttribute('data-coordenada');
+					let idCartaAColocar = document.getElementById(cartaAColocar);
+					let cartaReverso = casilla.querySelector('.carta-reverso');
+					casilla.addEventListener('click', async () => {
+						let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+						switch(valorDeLaCarta){
+							case 1:
+								let imagenNueva = `<img src = "images/1.jpg" class = "carta-reverso">`;
+								idCartaAColocar.appendChild(cartaReverso);
+								idCartaAColocar.innerHTML = imagenNueva;
+							break; 
+
+							case 2:
+								let imagenNueva2 = `<img src = "images/2.jpg" class = "carta-reverso">`;
+								idCartaAColocar.appendChild(cartaReverso);
+								idCartaAColocar.innerHTML = imagenNueva2;
+							break; 
+
+						}
+					});	
+				}
+});
 
 
 /*
@@ -91,20 +119,20 @@ botonStart.addEventListener('click', async () => {
 				<h3>Seleccione carta para colocar en el tablero</h3>
 			</header>
 		<div class="seccion">
-			<img src="images/card1.jpg" class="carta" data-value = "0" id = "0">
-			<img src="images/card2.jpg" class="carta" data-value = "1" id=  "1">
-			<img src="images/card3.jpg" class="carta" data-value = "2" id = "2">
-			<img src="images/card5.jpg" class="carta" data-value = "3" id = "3">
-			<img src="images/card6.jpg" class="carta" data-value = "4" id = "4">
-			<img src="images/card7.jpg" class="carta" data-value = "5" id = "5">	
+			<img src="images/1.jpg" class="carta" data-value = "1" id = "1">
+			<img src="images/2.jpg" class="carta" data-value = "2" id=  "2">
+			<img src="images/3.jpg" class="carta" data-value = "3" id = "3">
+			<img src="images/5.jpg" class="carta" data-value = "4" id = "4">
+			<img src="images/6.jpg" class="carta" data-value = "5" id = "5">
+			<img src="images/7.jpg" class="carta" data-value = "6" id = "6">	
 		</div>
 		<div class="seccion">
-			<img src="images/card8.jpg" class="carta" data-value = "6" id = "6">
-			<img src="images/card9.jpg" class="carta" data-value = "7" id = "7">
-			<img src="images/card10.jpg" class="carta" data-value = "8" id = "8">	
-			<img src="images/card11.jpg" class="carta" data-value = "9" id = "9">
-			<img src="images/card12.jpg" class="carta" data-value = "10" id = "10">
-			<img src="images/card13.jpg" class="carta" data-value = "11" id = "11">	
+			<img src="images/8.jpg" class="carta" data-value = "7" id = "7">
+			<img src="images/9.jpg" class="carta" data-value = "8" id = "8">
+			<img src="images/10.jpg" class="carta" data-value = "9" id = "9">	
+			<img src="images/11.jpg" class="carta" data-value = "10" id = "10">
+			<img src="images/12.jpg" class="carta" data-value = "11" id = "11">
+			<img src="images/13.jpg" class="carta" data-value = "12" id = "12">	
 		</div>	
 		<div class="seccion">
 			<img src="images/card14.jpg" class="carta" data-value = "12" id = "12">
@@ -214,28 +242,28 @@ botonStart.addEventListener('click', async () => {
 				`<div class = "contenedor-tablero-estadisticas">
 					
 					<div class = "tablero-cartas" id = "tabla">
-						<div class = "casilla" id = "casilla-0-0">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-0-1">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "1" id = "0-1" data-coordenada = "0-1">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-0-2">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "2" id = "0-2" data-coordenada = "0-2">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-0-3">
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-0">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-1">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-2">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "2" id = "1-2" data-coordenada = "1-2">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
-						<div class = "casilla" id = "casilla-1-3">
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
 					</div>
@@ -243,18 +271,166 @@ botonStart.addEventListener('click', async () => {
 					<div class = "estadisticas-vidas" id = "est-vid">
 						
 						<div class = "display-vidas" id = "vidas">
-			
+							<div class = "display-vidas-img" id = "vidas">
+								<label for="vidas" class="entrada-vidas">Vidas:</label>
+   					  			<div class = "vidas-img">
+								</div>
+							</div>
 						</div>
 
 						<div class = "display-score" id = "score">
-							<input type="number" id="entrada-score" name="entrada-score" value = "0" required>
+							<div class = "display-score-numbers">
+								<label for="scores" class="entrada-scores">Score:</label>
+								<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
+							</div>
+						</div>
+
+						<div class = "display-video" id = "video">
+
 						</div>
 
 					</div>
 				</div>`;
+
+				let cartasReverso = document.querySelectorAll('.carta-reverso');
+				let displayVidas = document.querySelector('.vidas-img');
+				let displayScore = document.getElementById('entrada-score');
+				let casillas = document.querySelectorAll('.casilla');
+				let tableroCartasId = document.getElementById('tabla');
+
+				for(casilla of casillas) {					
+					casilla.addEventListener('click', async () => {
+						let coordenada = casilla.getAttribute('coordenada');
+						let coordenadaId = document.getElementById(coordenada);
+						let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+						let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));
+						let valorDeLaCarta = tableroCartas[valorEjeY][valorEjeX];
+						switch(valorDeLaCarta){
+							case 1:
+								let imagenCarta1 = `<img src="images/1.jpg" class="carta-reverso">`;
+								const reversoCarta1 = coordenadaId.querySelector('img');
+								if (reversoCarta1) {
+  									coordenadaId.removeChild(reversoCarta1);	
+								}
+								coordenadaId.innerHTML = imagenCarta1;
+							break;
+
+							case 2:
+								let imagenCarta2 = `<img src="images/2.jpg" class="carta-reverso">`;
+								const reversoCarta2 = coordenadaId.querySelector('img');
+								if (reversoCarta2) {
+  									coordenadaId.removeChild(reversoCarta2);	
+								}
+								coordenadaId.innerHTML = imagenCarta2;
+							break;
+
+							case 3:
+								let imagenCarta3 = `<img src="images/3.jpg" class="carta-reverso">`;
+								const reversoCarta3 = coordenadaId.querySelector('img');
+								if (reversoCarta3) {
+  									coordenadaId.removeChild(reversoCarta3);	
+								}
+								coordenadaId.innerHTML = imagenCarta3;
+							break;
+
+							case 4:
+								let imagenCarta4 = `<img src="images/4.jpg" class="carta-reverso">`;
+								const reversoCarta4 = coordenadaId.querySelector('img');
+								if (reversoCarta4) {
+  									coordenadaId.removeChild(reversoCarta4);	
+								}
+								coordenadaId.innerHTML = imagenCarta4;
+							break;
+
+							case 5:
+								let imagenCarta5 = `<img src="images/5.jpg" class="carta-reverso">`;
+								const reversoCarta5 = coordenadaId.querySelector('img');
+								if (reversoCarta5) {
+  									coordenadaId.removeChild(reversoCarta5);	
+								}
+								coordenadaId.innerHTML = imagenCarta5;
+							break;
+
+							case 6:
+								let imagenCarta6 = `<img src="images/6.jpg" class="carta-reverso">`;
+								const reversoCarta6 = coordenadaId.querySelector('img');
+								if (reversoCarta6) {
+  									coordenadaId.removeChild(reversoCarta6);	
+								}
+								coordenadaId.innerHTML = imagenCarta6;
+							break;
+
+							case 7:
+								let imagenCarta7 = `<img src="images/7.jpg" class="carta-reverso">`;
+								const reversoCarta7 = coordenadaId.querySelector('img');
+								if (reversoCarta7) {
+  									coordenadaId.removeChild(reversoCarta7);	
+								}
+								coordenadaId.innerHTML = imagenCarta7;
+							break;
+
+							case 8:
+								let imagenCarta8 = `<img src="images/8.jpg" class="carta-reverso">`;
+								const reversoCarta8 = coordenadaId.querySelector('img');
+								if (reversoCarta8) {
+  									coordenadaId.removeChild(reversoCarta8);	
+								}
+								coordenadaId.innerHTML = imagenCarta8;
+							break;
+
+							case 9:
+								let imagenCarta9 = `<img src="images/9.jpg" class="carta-reverso">`;
+								const reversoCarta9 = coordenadaId.querySelector('img');
+								if (reversoCarta9) {
+  									coordenadaId.removeChild(reversoCarta9);	
+								}
+								coordenadaId.innerHTML = imagenCarta9;
+							break;
+
+							case 10:
+								let imagenCarta10 = `<img src="images/10.jpg" class="carta-reverso">`;
+								const reversoCarta10 = coordenadaId.querySelector('img');
+								if (reversoCarta10) {
+  									coordenadaId.removeChild(reversoCarta10);	
+								}
+								coordenadaId.innerHTML = imagenCarta10;
+							break;
+
+
+							case 11:
+								let imagenCarta11 = `<img src="images/11.jpg" class="carta-reverso">`;
+								const reversoCarta11 = coordenadaId.querySelector('img');
+								if (reversoCarta11) {
+  									coordenadaId.removeChild(reversoCarta11);	
+								}
+								coordenadaId.innerHTML = imagenCarta11;
+							break;
+
+							case 12:
+								let imagenCarta12 = `<img src="images/12.jpg" class="carta-reverso">`;
+								const reversoCarta12 = coordenadaId.querySelector('img');
+								if (reversoCarta12) {
+  									coordenadaId.removeChild(reversoCarta12);	
+								}
+								coordenadaId.innerHTML = imagenCarta12;
+							break;
+
+							case 13:
+								let imagenCarta13 = `<img src="images/13.jpg" class="carta-reverso">`;
+								const reversoCareversoCarta13rta = coordenadaId.querySelector('img');
+								if (reversoCarta13) {
+  									coordenadaId.removeChild(reversoCarta13);	
+								}
+								coordenadaId.innerHTML = imagenCarta13;
+							break;
+
+						}
+					});	
+				}
 			}
-		}); */
-});
+		}); 
+
+});*/
 
 
 
