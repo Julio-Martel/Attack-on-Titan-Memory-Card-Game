@@ -239,6 +239,7 @@ botonStart.addEventListener('click', async () => {
 					</div>
 				</div>`;
 
+				let displayScore = document.getElementById('entrada-score');
 				let casillas = document.querySelectorAll('.casilla');
 				let valorCartaSeleccionadaA, valorCartaSeleccionadaB;
 				let cartaProcesada = 1;
@@ -349,15 +350,23 @@ botonStart.addEventListener('click', async () => {
 									if (valorA === valorB) {
 										resolve(true);
 									} else {
-										reject(false);
-									}
+										resolve(false);
+									} 
 								});
 							}
 
 							async function comparar() {
 								try {
 									let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
+									if (resultadoComparativa) {
+										let displayNroScore = parseInt(displayScore.value);
+										displayScore.value = displayNroScore + 1000;
+										
 									
+									} else {
+											
+									}
+
 								} catch(error){
 									console.log(error);
 								}
