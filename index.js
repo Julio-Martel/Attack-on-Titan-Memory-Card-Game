@@ -4,6 +4,7 @@ let overCardSound = new Audio('audios/oversoundcard.mp3');
 overCardSound.load();
 
 botonStart.addEventListener('click', async () => {
+	
 	let tableroCartas = [[0,0,0,0],
 						 [0,0,0,0]];
 
@@ -389,7 +390,19 @@ botonStart.addEventListener('click', async () => {
 									}
 
 								} catch {
-									
+										let ventanaModalFail = document.querySelector('.ventana-modal');
+
+										// ACA QUEDAMOS, COMO HARIAMOS PARA HACER QUE SI CLIQUEO DOS CASILLAS, PARA QUE ESTAS NO TENGAN EFECTOS NUEVAMENTE
+
+										activarVentanaModal = () => {
+											ventanaModalFail.style.display = "flex";
+											ventanaModalFail.style.pointerEvents = "none";
+											setTimeout(() => {
+												ventanaModalFail.style.display = "none";
+											},1500);
+										}
+
+										activarVentanaModalFail();
 								}
 							}
 
