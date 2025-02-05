@@ -1,5 +1,7 @@
 let contenidoPrincipal = document.getElementById('contenedor-principal');
 let botonStart = document.getElementById('play');
+let overCardSound = new Audio('audios/oversoundcard.mp3');
+overCardSound.load();
 
 botonStart.addEventListener('click', async () => {
 	let tableroCartas = [[0,0,0,0],
@@ -7,26 +9,23 @@ botonStart.addEventListener('click', async () => {
 
 	contenidoPrincipal.innerHTML = `<div class="contenedor-coordenadas-cartas">
 		<div class="fomulario-contenedor" id="ingreso-coordenadas">
-			<img src = "images/gettingStarted.jpg" class = "getting-started">
+			<img src = "images/gettingStarted2.jpg" class = "getting-started">
 			<input type = "number" name = "display" id = "display" value = "0" readonly>
 				<div class="formularios">
 					<form class="formulario">
  				   		<label for="coordenadaX1" class="entrada">Seleccione la coordenada(EjeX1): </label>
    				  		<input type="number" min="0" max="3" id="coordenadaX1" name="coordenadaX1" placeholder="Ingresar nro de coordenada" required>
-    					<label for="coordenadaY1" class="entrada">Seleccione la coordenada(EjeY1): </label>
-   						<input type="number" min="0" max="1" id="coordenadaY1" name="coordenadaY1" placeholder="Ingresar nro de coordenada" required>
+    					<label for="coordenadaY1" class="entrada">Coordenada Y1 predeterminada  </label>
+   						<input type="number" value = "0" id="coordenadaY1" name="coordenadaY1" placeholder="Ingresar nro de coordenada" readonly>
 					</form>
 					<form class="formulario">
    						<label for="coordenadaX2" class="entrada">Seleccione la coordenada(EjeX2): </label>
    					    <input type="number" min="0" max="3" id="coordenadaX2" name="coordenadaX2" placeholder="Ingresar nro de coordenada" required>
-                        <label for="coordenadaY2" class="entrada">Seleccione la coordenada(EjeY2): </label>
-                       <input type="number" min="0" max="1" id="coordenadaY2" name="coordenadaY2" placeholder="Ingresar nro de coordenada" required>
+                        <label for="coordenadaY2" class="entrada">Coordenada Y2 predeterminada </label>
+                        <input type="number" value = "1" id="coordenadaY2" name="coordenadaY2" placeholder="Ingresar nro de coordenada" readonly>
                     </form>
 				</div>
 				<button type="button" class="boton" id="boton-formulario">Ingresar coordenadas</button>	
-				<div class="cartel-seleccionado">
-					<h2>Coordenada seleccionada!</h2>
-				</div>
 		</div>
 		<div class="cartas" id = "contenedor-cartas">
 			<header class="encabezado-cartas">
@@ -73,6 +72,11 @@ botonStart.addEventListener('click', async () => {
 				let cartas = document.querySelectorAll('.carta');
 				for(carta of cartas) {
 					let cartaDataValue = carta.getAttribute('data-value');
+					
+					carta.addEventListener('mouseover', () => {
+						overCardSound.play();
+					});
+
 					carta.addEventListener('click', () => {
 						let quitarEfectosCarta = document.getElementById(cartaDataValue);
 						let cartaValorNumerico = parseInt(cartaDataValue);
@@ -161,6 +165,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>
 						</div>
@@ -168,6 +173,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>
 						</div>
@@ -175,6 +181,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>				
 						</div>
@@ -182,6 +189,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -189,6 +197,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -196,6 +205,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -203,6 +213,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -210,6 +221,7 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
+									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -241,6 +253,7 @@ botonStart.addEventListener('click', async () => {
 
 				let displayScore = document.getElementById('entrada-score');
 				let casillas = document.querySelectorAll('.casilla');
+				let voltearCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`
 				let valorCartaSeleccionadaA, valorCartaSeleccionadaB;
 				let cartaProcesada = 1;
 
@@ -252,6 +265,7 @@ botonStart.addEventListener('click', async () => {
 					let cartaReverso = casilla.querySelector('.carta-reverso');
 
 					casilla.addEventListener('click', async () => {
+
 						let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 						switch(valorDeLaCarta){
 							case 1:
@@ -350,7 +364,7 @@ botonStart.addEventListener('click', async () => {
 									if (valorA === valorB) {
 										resolve(true);
 									} else {
-										resolve(false);
+										reject(false);
 									} 
 								});
 							}
@@ -360,15 +374,22 @@ botonStart.addEventListener('click', async () => {
 									let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
 									if (resultadoComparativa) {
 										let displayNroScore = parseInt(displayScore.value);
+										let ventanaModal = document.querySelector('.ventana-modal');
 										displayScore.value = displayNroScore + 1000;
 										
-									
-									} else {
-											
+										activarVentanaModal = () => {
+											ventanaModal.style.display = "flex";
+											ventanaModal.style.pointerEvents = "none";
+											setTimeout(() => {
+												ventanaModal.style.display = "none";
+											},1500);
+										}
+
+										activarVentanaModal();
 									}
 
-								} catch(error){
-									console.log(error);
+								} catch {
+									
 								}
 							}
 
