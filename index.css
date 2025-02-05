@@ -13,7 +13,7 @@ body{
 	background: url('images/img1.jpg');
 	background-size: cover;
 	background-position-y: 20%;
-	padding: 5%;
+	margin: 150px auto;
 }
 
 .contenido-principal {
@@ -22,7 +22,7 @@ body{
 	align-content: center;
 	align-items: center;
 	background: rgba(0, 0, 0, 0.6);
-	margin: 10px auto;
+	margin: 50px auto;
 	padding: 10px;
 	width: 80%;
 	height: 600px;
@@ -41,6 +41,7 @@ body{
 	align-items: center;
 	padding: 25px;
 	border: solid 1px grey;
+	width: 90%;
 }
 
 .play-img {
@@ -67,13 +68,12 @@ body{
 	background: url('images/fondo2.png');
 	background-size: cover;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
-	gap: 20px;
+	gap: 30px;
 	width: 100%;
-	padding: 5px;
+	padding: 10px;
 	align-items: center;
-	border: solid 1px grey;
+	border: solid 2px darkgrey;
 	border-radius: 5px;
 }
 
@@ -82,24 +82,35 @@ body{
 }
 
 .formularios {
+	background: rgba(0, 0, 0, 0.5);
+	padding: 15px;
 	display: flex;
 	gap: 10px;
+	border: solid 2px darkgrey;
+	border-radius: 5px;
 }
 
 .formulario {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 5px;
 	width: 100%;
 }
 
 .entrada {
 	color: #ffffff;
-	font-family: 'arial';
+	font-family: 'The Dark Titan Classic';
+	text-shadow: 	
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  font-size: 1rem;	
 }
 
 .boton {
 	padding: 5px;
+	border: solid 2px darkgrey;
 }
 
 .cartel-seleccionado {
@@ -116,7 +127,7 @@ body{
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	border: solid 1px grey;
+	border: solid 2px grey;
 	border-radius: 5px;
 }
 
@@ -126,14 +137,23 @@ body{
 }
 
 .encabezado-cartas {
-	background-color: goldenrod;
+	background: url('images/fondo3.jpg');
+	background-size: cover;
 	color: #ffffff;
-	padding: 5px;
-	border: solid 1px grey;
+	font-family: 'The Dark Titan Classic';
+	padding: 10px;
+	border: solid 2px grey;
 	border-radius: 5px;
+	text-shadow: 	
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
 }
 
 .carta {
+	border: solid 2px grey;
+	border-radius: 5px;
 	width: 100px;
 	cursor: pointer;
 	transition: transform 0.3s ease, filter 0.3s ease;
@@ -141,6 +161,7 @@ body{
 
 .carta:hover {
 	filter: brightness(1.5);
+	border-color: darksalmon;
 }
 
 .contenedor-coordenadas-cartas {
@@ -167,6 +188,7 @@ input {
 .getting-started {
 	width: 100%;
 	border-radius: 5px;
+	border: solid 2px darkgrey;
 }
 
 #contenedor-cartas {
