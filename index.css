@@ -290,10 +290,16 @@ input {
 	left: 0;
 	justify-content: center;
 	align-items: center;
+	position: fixed;
 }
 
 .contenido-modal {
 	display: flex;
-	width: 50%;
-	height: 20%;
+	justify-content: center;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.img-modal {
+		border: solid 1px darkgrey;
 }
