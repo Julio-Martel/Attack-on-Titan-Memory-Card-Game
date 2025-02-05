@@ -4,9 +4,9 @@ let overCardSound = new Audio('audios/oversoundcard.mp3');
 overCardSound.load();
 
 botonStart.addEventListener('click', async () => {
-	
+
 	let tableroCartas = [[0,0,0,0],
-	[0,0,0,0]];
+						 [0,0,0,0]];
 
 	contenidoPrincipal.innerHTML = `<div class="contenedor-coordenadas-cartas">
 		<div class="fomulario-contenedor" id="ingreso-coordenadas">
@@ -36,21 +36,21 @@ botonStart.addEventListener('click', async () => {
 			<img src="images/1.jpg" class="carta" data-value = "1" id = "1">
 			<img src="images/2.jpg" class="carta" data-value = "2" id=  "2">
 			<img src="images/3.jpg" class="carta" data-value = "3" id = "3">
-			<img src="images/5.jpg" class="carta" data-value = "4" id = "4">
-			<img src="images/6.jpg" class="carta" data-value = "5" id = "5">
-			<img src="images/7.jpg" class="carta" data-value = "6" id = "6">	
+			<img src="images/4.jpg" class="carta" data-value = "4" id = "4">
+			<img src="images/5.jpg" class="carta" data-value = "5" id = "5">
+			<img src="images/6.jpg" class="carta" data-value = "6" id = "6">
 		</div>
 		<div class="seccion">
-			<img src="images/8.jpg" class="carta" data-value = "7" id = "7">
-			<img src="images/9.jpg" class="carta" data-value = "8" id = "8">
-			<img src="images/10.jpg" class="carta" data-value = "9" id = "9">	
-			<img src="images/11.jpg" class="carta" data-value = "10" id = "10">
-			<img src="images/12.jpg" class="carta" data-value = "11" id = "11">
-			<img src="images/13.jpg" class="carta" data-value = "12" id = "12">	
+			<img src="images/7.jpg" class="carta" data-value = "7" id = "7">	
+			<img src="images/8.jpg" class="carta" data-value = "8" id = "8">
+			<img src="images/9.jpg" class="carta" data-value = "9" id = "9">
+			<img src="images/10.jpg" class="carta" data-value = "10" id = "10">	
+			<img src="images/11.jpg" class="carta" data-value = "11" id = "11">
+			<img src="images/12.jpg" class="carta" data-value = "12" id = "12">
 		</div>	
 		<div class="seccion">
-			<img src="images/14.jpg" class="carta" data-value = "13" id = "13">
-			<img src="images/4.jpg" class="carta" data-value = "14" id = "14">
+			<img src="images/13.jpg" class="carta" data-value = "13" id = "13">	
+			<img src="images/14.jpg" class="carta" data-value = "14" id = "14">
 		</div>				
 		</div>	
 	</div>`;
@@ -59,20 +59,22 @@ botonStart.addEventListener('click', async () => {
 		return new Promise((resolve) => {
 			if (tableroCartas[coordenadaY][coordenadaX] !== 0) {
 				resolve(false);
-			} else {
-				resolve(true);
-			}
-		});
+			} else { resolve(true);} }); 
 	};
 
 	seleccionarCarta = () => {
 		return new Promise((resolve) => {
 			let numeroCarta;
+			
 			contenedorDeCartas.style.opacity = "1";
 			contenedorDeCartas.style.pointerEvents = "auto";
+			
 			let cartas = document.querySelectorAll('.carta');
+		
 			for(carta of cartas) {
+				
 				let cartaDataValue = carta.getAttribute('data-value');
+				let cartaValorNumerico = parseInt(cartaDataValue);
 				
 				carta.addEventListener('mouseover', () => {
 					overCardSound.play();
@@ -80,15 +82,17 @@ botonStart.addEventListener('click', async () => {
 
 				carta.addEventListener('click', () => {
 					let quitarEfectosCarta = document.getElementById(cartaDataValue);
-					let cartaValorNumerico = parseInt(cartaDataValue);
+					
 					quitarEfectosCarta.style.opacity = "0.5";
 					quitarEfectosCarta.style.filter = "none";
 					quitarEfectosCarta.style.pointerEvents = "none";
+					
 					botonIngresarCoordenadas.textContent = "Ingresar coordenadas";
 					botonIngresarCoordenadas.style.filter = "auto";
-					botonIngresarCoordenadas.style.pointerEvents = "auto";	  
+					botonIngresarCoordenadas.style.pointerEvents = "auto"
 					resolve(cartaValorNumerico);
 				});
+			
 			}
 		});
 	}
@@ -158,6 +162,7 @@ botonStart.addEventListener('click', async () => {
 	let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
 	if (avanzarAlJuego === 8) {
+
 		contenidoPrincipal.innerHTML = 
 		`<div class = "contenedor-tablero-estadisticas">
 		
@@ -254,14 +259,14 @@ botonStart.addEventListener('click', async () => {
 
 		let displayScore = document.getElementById('entrada-score');
 		let casillas = document.querySelectorAll('.casilla');
-		let voltearCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`
-		let valorCartaSeleccionadaA, valorCartaSeleccionadaB;
 		let cartaProcesada = 1;
-		let cartaReverso = document.querySelector('.carta-reverso');
-		
+		let valorCartaSeleccionadaA, valorCartaSeleccionadaB;
+		let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
+
+
 		for(casilla of casillas) {					
 			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
-			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));					
+			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));				
 			let cartaAColocar = casilla.getAttribute('data-coordenada');
 			let idCartaAColocar = document.getElementById(cartaAColocar);
 
@@ -270,158 +275,150 @@ botonStart.addEventListener('click', async () => {
 				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 				
 				switch(valorDeLaCarta) {
-				case 1:
-					let imagenNueva = `<img src = "images/1.jpg" class = "carta-reverso"> id = "1"`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva;
+				
+					case 1:
+						let imagenNueva = `<img src = "images/1.jpg" class = "carta-reverso" id = "1"> `;
+						idCartaAColocar.innerHTML = imagenNueva;
 					break; 
 
-				case 2:
-					let imagenNueva2 = `<img src = "images/2.jpg" class = "carta-reverso" id = "2">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva2;
+					case 2:
+						let imagenNueva2 = `<img src = "images/2.jpg" class = "carta-reverso" id = "2">`;
+						idCartaAColocar.innerHTML = imagenNueva2;
 					break; 
 
-				case 3:
-					let imagenNueva3 = `<img src = "images/3.jpg" class = "carta-reverso" id = "3">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva3;
+					case 3:
+						let imagenNueva3 = `<img src = "images/3.jpg" class = "carta-reverso" id = "3">`;
+						idCartaAColocar.innerHTML = imagenNueva3;
 					break; 
 
-				case 4:
-					let imagenNueva4 = `<img src = "images/4.jpg" class = "carta-reverso" id = "4">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva4;
-					document.getElementById('4').style.pointerEvents = "none";
+					case 4:
+						let imagenNueva4 = `<img src = "images/4.jpg" class = "carta-reverso" id = "4">`;
+						idCartaAColocar.innerHTML = imagenNueva4;
 					break; 
 
-				case 5:
-					let imagenNueva5 = `<img src = "images/5.jpg" class = "carta-reverso" id = "5">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva5;
+					case 5:
+						let imagenNueva5 = `<img src = "images/5.jpg" class = "carta-reverso" id = "5">`;
+						idCartaAColocar.innerHTML = imagenNueva5;
 					break; 
 
-				case 6:
-					let imagenNueva6 = `<img src = "images/6.jpg" class = "carta-reverso" id = "6">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva6;
+					case 6:
+						let imagenNueva6 = `<img src = "images/6.jpg" class = "carta-reverso" id = "6">`;
+						idCartaAColocar.innerHTML = imagenNueva6;
 					break; 
 
-				case 7:
-					let imagenNueva7 = `<img src = "images/7.jpg" class = "carta-reverso" id = "7">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva7;
+					case 7:
+						let imagenNueva7 = `<img src = "images/7.jpg" class = "carta-reverso" id = "7">`;
+						idCartaAColocar.appendChild(cartaReverso);
+						idCartaAColocar.innerHTML = imagenNueva7;
 					break; 
 
-				case 8:
-					let imagenNueva8 = `<img src = "images/8.jpg" class = "carta-reverso" id = "8">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva8;
+					case 8:
+						let imagenNueva8 = `<img src = "images/8.jpg" class = "carta-reverso" id = "8">`;
+						idCartaAColocar.innerHTML = imagenNueva8;
 					break; 							
 					
-				case 9:
-					let imagenNueva9 = `<img src = "images/9.jpg" class = "carta-reverso" id = "9">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva9;
+					case 9:
+						let imagenNueva9 = `<img src = "images/9.jpg" class = "carta-reverso" id = "9">`;
+						idCartaAColocar.innerHTML = imagenNueva9;
 					break; 
 					
-				case 10:
-					let imagenNueva10 = `<img src = "images/10.jpg" class = "carta-reverso" id = "10">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva10;
+					case 10:
+						let imagenNueva10 = `<img src = "images/10.jpg" class = "carta-reverso" id = "10">`;
+						idCartaAColocar.innerHTML = imagenNueva10;
 					break; 	
 					
-				case 11:
-					let imagenNueva11 = `<img src = "images/11.jpg" class = "carta-reverso" id = "11">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva11;
+					case 11:
+						let imagenNueva11 = `<img src = "images/11.jpg" class = "carta-reverso" id = "11">`;
+						idCartaAColocar.innerHTML = imagenNueva11;
 					break; 	
 					
-				case 12:
-					let imagenNueva12 = `<img src = "images/12.jpg" class = "carta-reverso" id = "12">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva12;
+					case 12:
+						let imagenNueva12 = `<img src = "images/12.jpg" class = "carta-reverso" id = "12">`;
+						idCartaAColocar.innerHTML = imagenNueva12;
 					break; 	
 
-				case 13:
-					let imagenNueva13 = `<img src = "images/13.jpg" class = "carta-reverso" id = "13">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva13;
+					case 13:
+						let imagenNueva13 = `<img src = "images/13.jpg" class = "carta-reverso" id = "13">`;
+						idCartaAColocar.innerHTML = imagenNueva13;
 					break; 	
 
-				case 14:
-					let imagenNueva14 = `<img src = "images/14.jpg" class = "carta-reverso" id = "14">`;
-					idCartaAColocar.appendChild(cartaReverso);
-					idCartaAColocar.innerHTML = imagenNueva14;
+					case 14:
+						let imagenNueva14 = `<img src = "images/14.jpg" class = "carta-reverso" id = "14">`;
+						idCartaAColocar.innerHTML = imagenNueva14;
 					break; 	}
-
+								
 				if (cartaProcesada === 1) {
 					valorCartaSeleccionadaA = valorDeLaCarta;
 					cartaProcesada++;
+					
 					const idParentCasillaA = document.getElementById(cartaAColocar);
 					idParentCasillaA.style.pointerEvents = "none";
 
-				} else {
-					
+				} else {			
 					valorCartaSeleccionadaB = valorDeLaCarta;
 					cartaProcesada = 1;
-			
+					
 					const idParentCasillaB = document.getElementById(cartaAColocar);
-					idParentCasillaB.style.pointerEvents = "none";
-									
-					valorComparativaDeCartas = (valorA,valorB) => {
+					idParentCasillaB.style.pointerEvents = "none"; 
+				
+					const valorComparativaDeCartas = (valorA,valorB) => {
 						return new Promise((resolve,reject) => {
-							if (valorA === valorB) {
-								resolve(true);
-							} else {
-								reject(false);
-							} 
+							if (valorA === valorB) {resolve(true);} else {reject(false);} 
 						});
 					}
-
+			
 					async function comparar() {
+						
 						try {
-							let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
-							if (resultadoComparativa) {
-								let displayNroScore = parseInt(displayScore.value);
-								let ventanaModal = document.querySelector('.ventana-modal');
-								displayScore.value = displayNroScore + 1000;
+								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
+							
+								if (resultadoComparativa) {
+									let displayNroScore = parseInt(displayScore.value);
+									let ventanaModal = document.querySelector('.ventana-modal');
+							
+									displayScore.value = displayNroScore + 1000;
 								
-								activarVentanaModal = () => {
-									ventanaModal.style.display = "flex";
-									ventanaModal.style.pointerEvents = "none";
-									setTimeout(() => {
-										ventanaModal.style.display = "none";
-									},2000);
+									activarVentanaModal = () => {	
+										ventanaModal.style.display = "flex";
+										ventanaModal.style.pointerEvents = "none";
+									
+										setTimeout(() => {
+											ventanaModal.style.display = "none";
+										},2000);
+									}
+
+									activarVentanaModal();
 								}
 
-								activarVentanaModal();
-							}
+						} catch(error) {
+							
+							activarVentanaModalFail = (valorA,valorB) => {
+								let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
+								let ventanaModal = document.querySelector('.ventana-modal');
+								ventanaModal.innerHTML = imagenFail;
+								ventanaModal.style.display = "flex";
+								ventanaModal.style.pointerEvents = "none";
 
-						} catch {
-							let ventanaModalFail = document.querySelector('.ventana-modal');
-
-										// ACA QUEDAMOS, COMO HARIAMOS PARA HACER QUE SI CLIQUEO DOS CASILLAS, PARA QUE ESTAS NO TENGAN EFECTOS NUEVAMENTE
-
-							activarVentanaModal = () => {
-								ventanaModalFail.style.display = "flex";
-								ventanaModalFail.style.pointerEvents = "none";
 								setTimeout(() => {
-									ventanaModalFail.style.display = "none";
-								},1500);
+									ventanaModal.style.display = "none";
+								},2000);
 							}
-
-							activarVentanaModalFail();
+							
+							activarVentanaModalFail(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
 						}
 					}
 
-					comparar();	}
-						
+					comparar();
+
+				}
+
 			});	
 
-		} //aca termina el bucle for
+		} //aca termina el bucle for )}
 				
 			}
+
+
 		}); 
 
 });
