@@ -233,7 +233,12 @@ botonStart.addEventListener('click', async () => {
 						<div class = "display-vidas" id = "vidas">
 							<div class = "display-vidas-img" id = "vidas">
 								<label for="vidas" class="entrada-vidas">Vidas:</label>
-   					  			<div class = "vidas-img">
+   					  			<div class = "vidas-img" id = "vidas-img-contenedor">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida1">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida2">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida3">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida4">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida5">
 								</div>
 							</div>
 						</div>
@@ -396,12 +401,16 @@ botonStart.addEventListener('click', async () => {
 							const activarVentanaModalFail = (valorA,valorB) => {
 								let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
 								let ventanaModal = document.querySelector('.ventana-modal');
+								let contenedorVidas = document.getElementById('vidas-img-contenedor');
 
 								ventanaModal.innerHTML = imagenFail;
 								ventanaModal.style.display = "flex";
 								ventanaModal.style.pointerEvents = "none";
-								gameOver.play();
 								
+								contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+								
+								gameOver.play();
+
 								setTimeout(() => {
 									ventanaModal.style.display = "none";
 									valorA.innerHTML = imgReversoCarta;
