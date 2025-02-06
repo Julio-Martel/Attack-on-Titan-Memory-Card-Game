@@ -237,8 +237,6 @@ botonStart.addEventListener('click', async () => {
 									<img src = "images/vida1.png" class = "vida-img" id = "vida1">
 									<img src = "images/vida1.png" class = "vida-img" id = "vida2">
 									<img src = "images/vida1.png" class = "vida-img" id = "vida3">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida4">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida5">
 								</div>
 							</div>
 						</div>
@@ -262,7 +260,7 @@ botonStart.addEventListener('click', async () => {
 		let cartaProcesada = 1;
 		let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
 		let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
-
+		let contadorVidas = 3;
 
 		for(casilla of casillas) {					
 			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
@@ -408,6 +406,12 @@ botonStart.addEventListener('click', async () => {
 								ventanaModal.style.pointerEvents = "none";
 								
 								contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+
+								contadorVidas = contadorVidas - 1;
+
+								if (contadorVidas === 0) {
+									//funciona el if, ahora debemos ver el contenido
+								}
 								
 								gameOver.play();
 
