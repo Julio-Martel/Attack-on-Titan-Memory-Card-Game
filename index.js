@@ -1,7 +1,12 @@
 let contenidoPrincipal = document.getElementById('contenedor-principal');
 let botonStart = document.getElementById('play');
 let overCardSound = new Audio('audios/oversoundcard.mp3');
+let cardPut = new Audio('audios/cardmove.mp3');
+let gameOver = new Audio('audios/gameover.mp3');
+
 overCardSound.load();
+cardPut.load();
+gameOver.load();
 
 botonStart.addEventListener('click', async () => {
 
@@ -75,13 +80,11 @@ botonStart.addEventListener('click', async () => {
 				
 				let cartaDataValue = carta.getAttribute('data-value');
 				let cartaValorNumerico = parseInt(cartaDataValue);
-				
-				carta.addEventListener('mouseover', () => {
-					overCardSound.play();
-				});
 
 				carta.addEventListener('click', () => {
 					let quitarEfectosCarta = document.getElementById(cartaDataValue);
+					
+					overCardSound.play();
 					
 					quitarEfectosCarta.style.opacity = "0.5";
 					quitarEfectosCarta.style.filter = "none";
@@ -171,7 +174,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>
 						</div>
@@ -179,7 +181,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>
 						</div>
@@ -187,7 +188,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>				
 						</div>
@@ -195,7 +195,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -203,7 +202,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -211,7 +209,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -219,7 +216,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -227,7 +223,6 @@ botonStart.addEventListener('click', async () => {
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-									<img src = "images/nice.jpg" class = "img-modal">
 								</div>
 							</div>						
 						</div>
@@ -260,7 +255,7 @@ botonStart.addEventListener('click', async () => {
 		let displayScore = document.getElementById('entrada-score');
 		let casillas = document.querySelectorAll('.casilla');
 		let cartaProcesada = 1;
-		let valorCartaSeleccionadaA, valorCartaSeleccionadaB;
+		let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
 		let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
 
 
@@ -271,6 +266,8 @@ botonStart.addEventListener('click', async () => {
 			let idCartaAColocar = document.getElementById(cartaAColocar);
 
 			casilla.addEventListener('click', async () => {
+
+				cardPut.play();
 
 				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 				
@@ -349,6 +346,7 @@ botonStart.addEventListener('click', async () => {
 								
 				if (cartaProcesada === 1) {
 					valorCartaSeleccionadaA = valorDeLaCarta;
+					FailA = idCartaAColocar;
 					cartaProcesada++;
 					
 					const idParentCasillaA = document.getElementById(cartaAColocar);
@@ -356,6 +354,7 @@ botonStart.addEventListener('click', async () => {
 
 				} else {			
 					valorCartaSeleccionadaB = valorDeLaCarta;
+					FailB = idCartaAColocar;
 					cartaProcesada = 1;
 					
 					const idParentCasillaB = document.getElementById(cartaAColocar);
@@ -373,12 +372,14 @@ botonStart.addEventListener('click', async () => {
 								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
 							
 								if (resultadoComparativa) {
+									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
 									let displayNroScore = parseInt(displayScore.value);
 									let ventanaModal = document.querySelector('.ventana-modal');
 							
 									displayScore.value = displayNroScore + 1000;
 								
-									activarVentanaModal = () => {	
+									const activarVentanaModal = (valorA,valorB) => {	
+										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
 									
@@ -387,24 +388,32 @@ botonStart.addEventListener('click', async () => {
 										},2000);
 									}
 
-									activarVentanaModal();
-								}
+									activarVentanaModal(FailA,FailB);	
+								} 
 
 						} catch(error) {
-							
-							activarVentanaModalFail = (valorA,valorB) => {
+						
+							const activarVentanaModalFail = (valorA,valorB) => {
 								let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
 								let ventanaModal = document.querySelector('.ventana-modal');
+
 								ventanaModal.innerHTML = imagenFail;
 								ventanaModal.style.display = "flex";
 								ventanaModal.style.pointerEvents = "none";
-
+								gameOver.play();
+								
 								setTimeout(() => {
 									ventanaModal.style.display = "none";
-								},2000);
+									valorA.innerHTML = imgReversoCarta;
+									valorB.innerHTML = imgReversoCarta;
+									valorA.style.pointerEvents = "auto";
+									valorB.style.pointerEvents = "auto";							
+									cardPut.play();
+									
+								},5000);
 							}
 							
-							activarVentanaModalFail(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
+							activarVentanaModalFail(FailA,FailB);			
 						}
 					}
 
