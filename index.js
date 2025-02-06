@@ -8,8 +8,8 @@ overCardSound.load();
 cardPut.load();
 gameOver.load();
 
-botonStart.addEventListener('click', async () => {
-
+async function cargarContenido(){
+	
 	let tableroCartas = [[0,0,0,0],
 						 [0,0,0,0]];
 
@@ -409,12 +409,6 @@ botonStart.addEventListener('click', async () => {
 
 								contadorVidas = contadorVidas - 1;
 
-								if (contadorVidas === 0) {
-									//funciona el if, ahora debemos ver el contenido
-								}
-								
-								gameOver.play();
-
 								setTimeout(() => {
 									ventanaModal.style.display = "none";
 									valorA.innerHTML = imgReversoCarta;
@@ -424,6 +418,20 @@ botonStart.addEventListener('click', async () => {
 									cardPut.play();
 									
 								},5000);
+
+								if (contadorVidas === 0) {
+									contenidoPrincipal.innerHTML = `<div class="titulo">
+																		<img src="images/logo.png" class="play-img">
+																		<button class="boton" id="play">Play!</button>
+																	</div>`;
+									
+									let botonPlay = document.getElementById('play');
+
+									botonPlay.addEventListener('click', cargarContenido);
+
+								}
+								
+								gameOver.play();
 							}
 							
 							activarVentanaModalFail(FailA,FailB);			
@@ -441,9 +449,9 @@ botonStart.addEventListener('click', async () => {
 			}
 
 
-		}); 
+		}); }
 
-});
+botonStart.addEventListener('click', cargarContenido);
 
 
 
