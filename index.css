@@ -12,7 +12,7 @@
 body{
 	background: url('images/fondo4.jpg');
 	background-size: cover;
-	margin: 150px auto;
+	margin: 125px auto;
 }
 
 .contenido-principal {
@@ -21,13 +21,13 @@ body{
 	align-content: center;
 	align-items: center;
 	background: rgba(0, 0, 0, 0.6);
-	margin: 50px auto;
-	padding: 10px;
-	width: 80%;
+	margin: 10px auto;
+	padding: 5px;
+	width: 90%;
 	height: 600px;
-	max-width: 2000px;
+	max-width: 1000px;
 	border: solid 1px darkgrey;
-	border-radius: 5px;
+	border-radius: 10px;
 	gap: 10px;
 }
 
@@ -70,7 +70,7 @@ body{
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	width: 100%;
+	width: 50%;
 	padding: 10px;
 	align-items: center;
 	border: solid 2px darkgrey;
@@ -114,6 +114,7 @@ body{
 }
 
 .cartas {
+	width: 50%;
 	background-color: #000000;
 	padding: 5px;
 	display: flex;
@@ -124,6 +125,7 @@ body{
 }
 
 .seccion {
+	width: 100%;
 	display: flex;
 	gap: 5px;
 }
@@ -146,7 +148,7 @@ body{
 .carta {
 	border: solid 2px grey;
 	border-radius: 5px;
-	width: 100px;
+	width: 15%;
 	cursor: pointer;
 	transition: transform 0.3s ease, background-color 0.3s ease;
 }
@@ -194,8 +196,7 @@ input {
 .contenedor-tablero-estadisticas {
 	background: url('images/fondo2.jpg');
 	background-size: cover;
-	width: 100%;
-	height: 100%;
+	width: 85%;
 	display: flex;
 	gap: 5px;
 	padding: 5px;
@@ -209,19 +210,20 @@ input {
 	display: grid;
 	width: 60%;
 	height: 100%;
-  grid-template-columns: repeat(4, 1fr); 
-  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(4, auto); 
+  grid-template-rows: repeat(4, auto);
   align-items: center;
   border: solid 1px darkgrey;
+  border-radius: 5px;
+  grid-gap: 5px;
+  padding: 5px;
 }
 
 .casilla {
 	display: flex;
   justify-content: center;
-  width: 100%;
   cursor: pointer;
 }
-
 
 .estadisticas-vidas {
 	display: flex;
@@ -231,7 +233,7 @@ input {
 }
 
 .carta-reverso {
-	width: 90%;
+ 	width: 80%;
 	border-radius: 5px;
 	border: solid 1px darkgrey;
 }
@@ -240,6 +242,7 @@ input {
 .display-vidas {
 	background: url('images/vidas.jpg');
 	background-size: cover;
+	background-position-x: 90%;
 	width: 100%;
 	height: 100px;
 	display: flex;
@@ -268,6 +271,7 @@ input {
 	font-family: 'The Dark Titan Classic';
 	color: #ffffff;
 }
+
 .vidas-img {
 	background: #ffffff;
 	width: 100%;
@@ -276,7 +280,7 @@ input {
 	border-radius: 5px;
 	display: flex;
 	align-items: center;
-	margin-right: 3px;
+	margin-left: 5px;
 }
 
 .vida-img {
