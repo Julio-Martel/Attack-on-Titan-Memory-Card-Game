@@ -11,9 +11,10 @@ gameOver.load();
 async function cargarContenido(){
 	
 	let tableroCartas = [[0,0,0,0],
-						 [0,0,0,0]];
+	[0,0,0,0]];
 
-	contenidoPrincipal.innerHTML = `<div class="contenedor-coordenadas-cartas">
+	contenidoPrincipal.innerHTML = `
+	<div class="contenedor-coordenadas-cartas">
 		<div class="fomulario-contenedor" id="ingreso-coordenadas">
 			<img src = "images/gettingStarted2.jpg" class = "getting-started">
 			<input type = "number" name = "display" id = "display" value = "0" readonly>
@@ -58,7 +59,8 @@ async function cargarContenido(){
 			<img src="images/14.jpg" class="carta" data-value = "14" id = "14">
 		</div>				
 		</div>	
-	</div>`;
+	</div>
+	`;
 
 	buscarCasilla = (coordenadaX, coordenadaY) => {
 		return new Promise((resolve) => {
@@ -75,7 +77,7 @@ async function cargarContenido(){
 			contenedorDeCartas.style.pointerEvents = "auto";
 			
 			let cartas = document.querySelectorAll('.carta');
-		
+
 			for(carta of cartas) {
 				
 				let cartaDataValue = carta.getAttribute('data-value');
@@ -95,7 +97,7 @@ async function cargarContenido(){
 					botonIngresarCoordenadas.style.pointerEvents = "auto"
 					resolve(cartaValorNumerico);
 				});
-			
+
 			}
 		});
 	}
@@ -166,8 +168,8 @@ async function cargarContenido(){
 
 	if (avanzarAlJuego === 8) {
 
-		contenidoPrincipal.innerHTML = 
-		`<div class = "contenedor-tablero-estadisticas">	
+		contenidoPrincipal.innerHTML = `
+		<div class = "contenedor-tablero-estadisticas">	
 					<div class = "tablero-cartas" id = "tabla">
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
@@ -225,7 +227,8 @@ async function cargarContenido(){
 						</div>
 
 					</div>
-		</div>`;
+		</div>
+		`;
 
 		let displayScore = document.getElementById('entrada-score');
 		let casillas = document.querySelectorAll('.casilla');
@@ -233,6 +236,104 @@ async function cargarContenido(){
 		let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
 		let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
 		let contadorVidas = 3;
+
+		primerVistazoTablero = async () => {
+		 
+		  for (let casilla of casillas) {
+		    let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+		    let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));
+		    let cartaAColocar = casilla.getAttribute('data-coordenada');
+		    let idCartaAColocar = document.getElementById(cartaAColocar);
+		    let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+
+		    switch (valorDeLaCarta) {
+		      case 1:
+		        let imagenNueva = `<img src="images/1.jpg" class="carta-reverso" id="1">`;
+		        idCartaAColocar.innerHTML = imagenNueva;
+		        break;
+
+		      case 2:
+		        let imagenNueva2 = `<img src="images/2.jpg" class="carta-reverso" id="2">`;
+		        idCartaAColocar.innerHTML = imagenNueva2;
+		        break;
+
+		      case 3:
+		        let imagenNueva3 = `<img src="images/3.jpg" class="carta-reverso" id="3">`;
+		        idCartaAColocar.innerHTML = imagenNueva3;
+		        break;
+
+		      case 4:
+		        let imagenNueva4 = `<img src="images/4.jpg" class="carta-reverso" id="4">`;
+		        idCartaAColocar.innerHTML = imagenNueva4;
+		        break;
+
+		      case 5:
+		        let imagenNueva5 = `<img src="images/5.jpg" class="carta-reverso" id="5">`;
+		        idCartaAColocar.innerHTML = imagenNueva5;
+		        break;
+
+		      case 6:
+		        let imagenNueva6 = `<img src="images/6.jpg" class="carta-reverso" id="6">`;
+		        idCartaAColocar.innerHTML = imagenNueva6;
+		        break;
+
+		      case 7:
+		        let imagenNueva7 = `<img src="images/7.jpg" class="carta-reverso" id="7">`;
+		        idCartaAColocar.innerHTML = imagenNueva7;
+		        break;
+
+		      case 8:
+		        let imagenNueva8 = `<img src="images/8.jpg" class="carta-reverso" id="8">`;
+		        idCartaAColocar.innerHTML = imagenNueva8;
+		        break;
+
+		      case 9:
+		        let imagenNueva9 = `<img src="images/9.jpg" class="carta-reverso" id="9">`;
+		        idCartaAColocar.innerHTML = imagenNueva9;
+		        break;
+
+		      case 10:
+		        let imagenNueva10 = `<img src="images/10.jpg" class="carta-reverso" id="10">`;
+		        idCartaAColocar.innerHTML = imagenNueva10;
+		        break;
+
+		      case 11:
+		        let imagenNueva11 = `<img src="images/11.jpg" class="carta-reverso" id="11">`;
+		        idCartaAColocar.innerHTML = imagenNueva11;
+		        break;
+
+		      case 12:
+		        let imagenNueva12 = `<img src="images/12.jpg" class="carta-reverso" id="12">`;
+		        idCartaAColocar.innerHTML = imagenNueva12;
+		        break;
+
+		      case 13:
+		        let imagenNueva13 = `<img src="images/13.jpg" class="carta-reverso" id="13">`;
+		        idCartaAColocar.innerHTML = imagenNueva13;
+		        break;
+
+		      case 14:
+		        let imagenNueva14 = `<img src="images/14.jpg" class="carta-reverso" id="14">`;
+		        idCartaAColocar.innerHTML = imagenNueva14;
+		        break;}}
+
+		  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  		  for (let casilla of casillas) {
+   			 let cartaAColocar = casilla.getAttribute('data-coordenada');
+    		 let idCartaAColocar = document.getElementById(cartaAColocar);
+
+    		 await delay(500); 
+    		 
+    		 idCartaAColocar.innerHTML = imgReversoCarta;
+    		 cardPut.play();}
+
+		};
+
+		await primerVistazoTablero();
+
+
+
 
 		for(casilla of casillas) {					
 			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
@@ -247,110 +348,110 @@ async function cargarContenido(){
 				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 				
 				switch(valorDeLaCarta) {
-				
-					case 1:
-						let imagenNueva = `<img src = "images/1.jpg" class = "carta-reverso" id = "1"> `;
-						idCartaAColocar.innerHTML = imagenNueva;
+
+				case 1:
+					let imagenNueva = `<img src = "images/1.jpg" class = "carta-reverso" id = "1"> `;
+					idCartaAColocar.innerHTML = imagenNueva;
 					break; 
 
-					case 2:
-						let imagenNueva2 = `<img src = "images/2.jpg" class = "carta-reverso" id = "2">`;
-						idCartaAColocar.innerHTML = imagenNueva2;
+				case 2:
+					let imagenNueva2 = `<img src = "images/2.jpg" class = "carta-reverso" id = "2">`;
+					idCartaAColocar.innerHTML = imagenNueva2;
 					break; 
 
-					case 3:
-						let imagenNueva3 = `<img src = "images/3.jpg" class = "carta-reverso" id = "3">`;
-						idCartaAColocar.innerHTML = imagenNueva3;
+				case 3:
+					let imagenNueva3 = `<img src = "images/3.jpg" class = "carta-reverso" id = "3">`;
+					idCartaAColocar.innerHTML = imagenNueva3;
 					break; 
 
-					case 4:
-						let imagenNueva4 = `<img src = "images/4.jpg" class = "carta-reverso" id = "4">`;
-						idCartaAColocar.innerHTML = imagenNueva4;
+				case 4:
+					let imagenNueva4 = `<img src = "images/4.jpg" class = "carta-reverso" id = "4">`;
+					idCartaAColocar.innerHTML = imagenNueva4;
 					break; 
 
-					case 5:
-						let imagenNueva5 = `<img src = "images/5.jpg" class = "carta-reverso" id = "5">`;
-						idCartaAColocar.innerHTML = imagenNueva5;
+				case 5:
+					let imagenNueva5 = `<img src = "images/5.jpg" class = "carta-reverso" id = "5">`;
+					idCartaAColocar.innerHTML = imagenNueva5;
 					break; 
 
-					case 6:
-						let imagenNueva6 = `<img src = "images/6.jpg" class = "carta-reverso" id = "6">`;
-						idCartaAColocar.innerHTML = imagenNueva6;
+				case 6:
+					let imagenNueva6 = `<img src = "images/6.jpg" class = "carta-reverso" id = "6">`;
+					idCartaAColocar.innerHTML = imagenNueva6;
 					break; 
 
-					case 7:
-						let imagenNueva7 = `<img src = "images/7.jpg" class = "carta-reverso" id = "7">`;
-						idCartaAColocar.innerHTML = imagenNueva7;
+				case 7:
+					let imagenNueva7 = `<img src = "images/7.jpg" class = "carta-reverso" id = "7">`;
+					idCartaAColocar.innerHTML = imagenNueva7;
 					break; 
 
-					case 8:
-						let imagenNueva8 = `<img src = "images/8.jpg" class = "carta-reverso" id = "8">`;
-						idCartaAColocar.innerHTML = imagenNueva8;
+				case 8:
+					let imagenNueva8 = `<img src = "images/8.jpg" class = "carta-reverso" id = "8">`;
+					idCartaAColocar.innerHTML = imagenNueva8;
 					break; 							
 					
-					case 9:
-						let imagenNueva9 = `<img src = "images/9.jpg" class = "carta-reverso" id = "9">`;
-						idCartaAColocar.innerHTML = imagenNueva9;
+				case 9:
+					let imagenNueva9 = `<img src = "images/9.jpg" class = "carta-reverso" id = "9">`;
+					idCartaAColocar.innerHTML = imagenNueva9;
 					break; 
 					
-					case 10:
-						let imagenNueva10 = `<img src = "images/10.jpg" class = "carta-reverso" id = "10">`;
-						idCartaAColocar.innerHTML = imagenNueva10;
+				case 10:
+					let imagenNueva10 = `<img src = "images/10.jpg" class = "carta-reverso" id = "10">`;
+					idCartaAColocar.innerHTML = imagenNueva10;
 					break; 	
 					
-					case 11:
-						let imagenNueva11 = `<img src = "images/11.jpg" class = "carta-reverso" id = "11">`;
-						idCartaAColocar.innerHTML = imagenNueva11;
+				case 11:
+					let imagenNueva11 = `<img src = "images/11.jpg" class = "carta-reverso" id = "11">`;
+					idCartaAColocar.innerHTML = imagenNueva11;
 					break; 	
 					
-					case 12:
-						let imagenNueva12 = `<img src = "images/12.jpg" class = "carta-reverso" id = "12">`;
-						idCartaAColocar.innerHTML = imagenNueva12;
+				case 12:
+					let imagenNueva12 = `<img src = "images/12.jpg" class = "carta-reverso" id = "12">`;
+					idCartaAColocar.innerHTML = imagenNueva12;
 					break; 	
 
-					case 13:
-						let imagenNueva13 = `<img src = "images/13.jpg" class = "carta-reverso" id = "13">`;
-						idCartaAColocar.innerHTML = imagenNueva13;
+				case 13:
+					let imagenNueva13 = `<img src = "images/13.jpg" class = "carta-reverso" id = "13">`;
+					idCartaAColocar.innerHTML = imagenNueva13;
 					break; 	
 
-					case 14:
-						let imagenNueva14 = `<img src = "images/14.jpg" class = "carta-reverso" id = "14">`;
-						idCartaAColocar.innerHTML = imagenNueva14;
+				case 14:
+					let imagenNueva14 = `<img src = "images/14.jpg" class = "carta-reverso" id = "14">`;
+					idCartaAColocar.innerHTML = imagenNueva14;
 					break; 	}
-								
-				if (cartaProcesada === 1) {
-					valorCartaSeleccionadaA = valorDeLaCarta;
-					FailA = idCartaAColocar;
-					cartaProcesada++;
-					
-					const idParentCasillaA = document.getElementById(cartaAColocar);
-					idParentCasillaA.style.pointerEvents = "none";
 
-				} else {			
-					valorCartaSeleccionadaB = valorDeLaCarta;
-					FailB = idCartaAColocar;
-					cartaProcesada = 1;
-					
-					const idParentCasillaB = document.getElementById(cartaAColocar);
-					idParentCasillaB.style.pointerEvents = "none"; 
-				
-					const valorComparativaDeCartas = (valorA,valorB) => {
-						return new Promise((resolve,reject) => {
-							if (valorA === valorB) {
-								console.log('Resuelto: true');
-								resolve(true);
-							} else {
-								console.log('Rechazado: false');
-								reject(false);
-							} 
-						});
-					}
-			
-					async function comparar() {
-						
-						try {
+					if (cartaProcesada === 1) {
+						valorCartaSeleccionadaA = valorDeLaCarta;
+						FailA = idCartaAColocar;
+						cartaProcesada++;
+
+						const idParentCasillaA = document.getElementById(cartaAColocar);
+						idParentCasillaA.style.pointerEvents = "none";
+
+					} else {			
+						valorCartaSeleccionadaB = valorDeLaCarta;
+						FailB = idCartaAColocar;
+						cartaProcesada = 1;
+
+						const idParentCasillaB = document.getElementById(cartaAColocar);
+						idParentCasillaB.style.pointerEvents = "none"; 
+
+						const valorComparativaDeCartas = (valorA,valorB) => {
+							return new Promise((resolve,reject) => {
+								if (valorA === valorB) {
+									console.log('Resuelto: true');
+									resolve(true);
+								} else {
+									console.log('Rechazado: false');
+									reject(false);
+								} 
+							});
+						}
+
+						async function comparar() {
+
+							try {
 								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
-							
+
 								console.log(resultadoComparativa);
 
 								if (resultadoComparativa) {
@@ -361,12 +462,12 @@ async function cargarContenido(){
 									console.log(ventanaModal);
 
 									displayScore.value = displayNroScore + 1000;
-								
+
 									const activarVentanaModal = (valorA,valorB) => {	
 										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
-									
+
 										setTimeout(() => {
 											ventanaModal.style.display = "none";
 										},2000);
@@ -375,62 +476,59 @@ async function cargarContenido(){
 									activarVentanaModal(FailA,FailB);	
 								} 
 
-						} catch(error) {
+							} catch(error) {
 
-							console.log(error);
+								console.log(error);
 
-							const activarVentanaModalFail = (valorA,valorB) => {
-								let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
-								let ventanaModal = document.querySelector('.ventana-modal');
-								let contenedorVidas = document.getElementById('vidas-img-contenedor');
+								const activarVentanaModalFail = (valorA,valorB) => {
+									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
+									let ventanaModal = document.querySelector('.ventana-modal');
+									let contenedorVidas = document.getElementById('vidas-img-contenedor');
 
-								ventanaModal.innerHTML = imagenFail;
-								ventanaModal.style.display = "flex";
-								ventanaModal.style.pointerEvents = "none";
-								
-								contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+									ventanaModal.innerHTML = imagenFail;
+									ventanaModal.style.display = "flex";
+									ventanaModal.style.pointerEvents = "none";
 
-								contadorVidas = contadorVidas - 1;
+									contenedorVidas.removeChild(contenedorVidas.lastElementChild);
 
-								setTimeout(() => {
-									ventanaModal.style.display = "none";
-									valorA.innerHTML = imgReversoCarta;
-									valorB.innerHTML = imgReversoCarta;
-									valorA.style.pointerEvents = "auto";
-									valorB.style.pointerEvents = "auto";							
-									cardPut.play();
-								},5000);
+									contadorVidas = contadorVidas - 1;
 
-								gameOver.play();
-	
-								if (contadorVidas === 0) {
-								  setTimeout(() => {
-									contenidoPrincipal.innerHTML = `<div class="titulo">
-																		<img src="images/logo.png" class="play-img">
-																		<button class="boton" id="play">Play!</button>
-																	</div>`;	
-									let botonPlay = document.getElementById('play');
-									botonPlay.addEventListener('click', cargarContenido);
-								  },1000);
+									setTimeout(() => {
+										ventanaModal.style.display = "none";
+										valorA.innerHTML = imgReversoCarta;
+										valorB.innerHTML = imgReversoCarta;
+										valorA.style.pointerEvents = "auto";
+										valorB.style.pointerEvents = "auto";							
+										cardPut.play();
+									},5000);
+
+									gameOver.play();
+
+									if (contadorVidas === 0) {
+										setTimeout(() => {
+											contenidoPrincipal.innerHTML = `
+											<div class="titulo">
+												<img src="images/logo.png" class="play-img">
+												<button class="boton" id="play">Play!</button>
+											</div>
+											`;	
+											let botonPlay = document.getElementById('play');
+											botonPlay.addEventListener('click', cargarContenido);
+										}, 1000);
+									}
 								}
+
+								activarVentanaModalFail(FailA,FailB);			
 							}
-							
-							activarVentanaModalFail(FailA,FailB);			
 						}
+
+						comparar();
 					}
 
-					comparar();
+				});	} //aca termina el bucle for )
+	}
 
-				}
-
-			});	
-
-		} //aca termina el bucle for )}
-				
-			}
-
-
-		}); }
+}); }
 
 botonStart.addEventListener('click', cargarContenido);
 
