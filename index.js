@@ -167,66 +167,38 @@ async function cargarContenido(){
 	if (avanzarAlJuego === 8) {
 
 		contenidoPrincipal.innerHTML = 
-		`<div class = "contenedor-tablero-estadisticas">
-		
+		`<div class = "contenedor-tablero-estadisticas">	
 					<div class = "tablero-cartas" id = "tabla">
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>
 						</div>
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "1" id = "0-1" data-coordenada = "0-1">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>
 						</div>
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "2" id = "0-2" data-coordenada = "0-2">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>				
 						</div>
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>						
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
 						</div>
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>						
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
 						</div>
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>						
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
 						</div>
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "2" id = "1-2" data-coordenada = "1-2">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>						
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
 						</div>
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-							<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-							</div>						
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
 						</div>
 					</div>
+
+						<div class = "ventana-modal">
+								<div class = "contenido-modal">
+								</div>
+						</div>	
 
 					<div class = "estadisticas-vidas" id = "est-vid">
 		
@@ -308,7 +280,6 @@ async function cargarContenido(){
 
 					case 7:
 						let imagenNueva7 = `<img src = "images/7.jpg" class = "carta-reverso" id = "7">`;
-						idCartaAColocar.appendChild(cartaReverso);
 						idCartaAColocar.innerHTML = imagenNueva7;
 					break; 
 
@@ -365,7 +336,13 @@ async function cargarContenido(){
 				
 					const valorComparativaDeCartas = (valorA,valorB) => {
 						return new Promise((resolve,reject) => {
-							if (valorA === valorB) {resolve(true);} else {reject(false);} 
+							if (valorA === valorB) {
+								console.log('Resuelto: true');
+								resolve(true);
+							} else {
+								console.log('Rechazado: false');
+								reject(false);
+							} 
 						});
 					}
 			
@@ -374,11 +351,15 @@ async function cargarContenido(){
 						try {
 								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
 							
+								console.log(resultadoComparativa);
+
 								if (resultadoComparativa) {
 									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
 									let displayNroScore = parseInt(displayScore.value);
 									let ventanaModal = document.querySelector('.ventana-modal');
-							
+									
+									console.log(ventanaModal);
+
 									displayScore.value = displayNroScore + 1000;
 								
 									const activarVentanaModal = (valorA,valorB) => {	
@@ -395,7 +376,9 @@ async function cargarContenido(){
 								} 
 
 						} catch(error) {
-						
+
+							console.log(error);
+
 							const activarVentanaModalFail = (valorA,valorB) => {
 								let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
 								let ventanaModal = document.querySelector('.ventana-modal');
@@ -416,22 +399,20 @@ async function cargarContenido(){
 									valorA.style.pointerEvents = "auto";
 									valorB.style.pointerEvents = "auto";							
 									cardPut.play();
-									
 								},5000);
 
+								gameOver.play();
+	
 								if (contadorVidas === 0) {
+								  setTimeout(() => {
 									contenidoPrincipal.innerHTML = `<div class="titulo">
 																		<img src="images/logo.png" class="play-img">
 																		<button class="boton" id="play">Play!</button>
-																	</div>`;
-									
+																	</div>`;	
 									let botonPlay = document.getElementById('play');
-
 									botonPlay.addEventListener('click', cargarContenido);
-
+								  },1000);
 								}
-								
-								gameOver.play();
 							}
 							
 							activarVentanaModalFail(FailA,FailB);			
