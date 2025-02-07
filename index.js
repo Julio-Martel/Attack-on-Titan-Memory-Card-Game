@@ -11,7 +11,9 @@ gameOver.load();
 async function cargarContenido(){
 	
 	let tableroCartas = [[0,0,0,0],
-	[0,0,0,0]];
+						 [0,0,0,0],
+						 [0,0,0,0],
+						 [0,0,0,0]];
 
 	contenidoPrincipal.innerHTML = `
 	<div class="contenedor-coordenadas-cartas">
@@ -23,13 +25,13 @@ async function cargarContenido(){
  				   		<label for="coordenadaX1" class="entrada">Seleccione la coordenada(EjeX1): </label>
    				  		<input type="number" min="0" max="3" id="coordenadaX1" name="coordenadaX1" placeholder="Ingresar nro de coordenada" required>
     					<label for="coordenadaY1" class="entrada">Coordenada Y1 predeterminada  </label>
-   						<input type="number" value = "0" id="coordenadaY1" name="coordenadaY1" placeholder="Ingresar nro de coordenada" readonly>
+   						<input type="number" min="0" max="3" id="coordenadaY1" name="coordenadaY1" placeholder="Ingresar nro de coordenada" required>
 					</form>
 					<form class="formulario">
    						<label for="coordenadaX2" class="entrada">Seleccione la coordenada(EjeX2): </label>
    					    <input type="number" min="0" max="3" id="coordenadaX2" name="coordenadaX2" placeholder="Ingresar nro de coordenada" required>
                         <label for="coordenadaY2" class="entrada">Coordenada Y2 predeterminada </label>
-                        <input type="number" value = "1" id="coordenadaY2" name="coordenadaY2" placeholder="Ingresar nro de coordenada" readonly>
+                        <input type="number" min="0" max="3" id="coordenadaY2" name="coordenadaY2" placeholder="Ingresar nro de coordenada" required>
                     </form>
 				</div>
 				<button type="button" class="boton" id="boton-formulario">Ingresar coordenadas</button>	
@@ -57,6 +59,10 @@ async function cargarContenido(){
 		<div class="seccion">
 			<img src="images/13.jpg" class="carta" data-value = "13" id = "13">	
 			<img src="images/14.jpg" class="carta" data-value = "14" id = "14">
+			<img src="images/15.jpg" class="carta" data-value = "15" id = "15">
+			<img src="images/16.jpg" class="carta" data-value = "16" id = "16">
+			<img src="images/17.jpg" class="carta" data-value = "17" id = "17">
+			<img src="images/18.jpg" class="carta" data-value = "18" id = "18">
 		</div>				
 		</div>	
 	</div>
@@ -120,7 +126,7 @@ async function cargarContenido(){
 		}
 		
 		if (coordenadaX1 < 0 || coordenadaX1 > 3 || coordenadaX2 < 0 || coordenadaX2 > 3 ||
-			coordenadaY1 < 0 || coordenadaY1 > 1 || coordenadaY2 < 0 || coordenadaY2 > 1) {
+			coordenadaY1 < 0 || coordenadaY1 > 3 || coordenadaY2 < 0 || coordenadaY2 > 3) {
 			alert('Las coordenadas están fuera del rango permitido.');
 		return;
 	}
@@ -128,10 +134,10 @@ async function cargarContenido(){
 	let display = document.getElementById('display');
 	let displayNro = parseInt(display.value);
 
-	if (displayNro >= 0 && displayNro <= 3) {
+	if (displayNro >= 0 && displayNro <= 8) {
 		let tableroCartasVacio = tableroCartas.flat().filter(unCero => unCero === 0).length;
 
-		if (tableroCartasVacio === 8) {
+		if (tableroCartasVacio === 16) {
 
 			botonIngresarCoordenadas.textContent = "Coordenada ingresada con exito!";
 			botonIngresarCoordenadas.style.filter = "none";
@@ -166,11 +172,12 @@ async function cargarContenido(){
 	
 	let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
-	if (avanzarAlJuego === 8) {
+	if (avanzarAlJuego === 16) {
 
 		contenidoPrincipal.innerHTML = `
 		<div class = "contenedor-tablero-estadisticas">	
 					<div class = "tablero-cartas" id = "tabla">
+						
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
 						</div>
@@ -183,9 +190,10 @@ async function cargarContenido(){
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
 						</div>
+						
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
+						</div>						
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
 						</div>
@@ -195,6 +203,33 @@ async function cargarContenido(){
 						<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
 						</div>
+
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "0" id = "2-0" data-coordenada = "2-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>						
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "1" id = "2-1" data-coordenada = "2-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "2" id = "2-2" data-coordenada = "2-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "3" id = "2-3" data-coordenada = "2-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+						</div>						
+						
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "0" id = "3-0" data-coordenada = "3-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>						
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "1" id = "3-1" data-coordenada = "3-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "2" id = "3-2" data-coordenada = "3-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "3" id = "3-3" data-coordenada = "3-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+						</div>						
+
 					</div>
 
 						<div class = "ventana-modal">
@@ -315,9 +350,29 @@ async function cargarContenido(){
 		      case 14:
 		        let imagenNueva14 = `<img src="images/14.jpg" class="carta-reverso" id="14">`;
 		        idCartaAColocar.innerHTML = imagenNueva14;
-		        break;}}
+		        break;
+			
+			  case 15:
+					let imagenNueva15 = `<img src = "images/15.jpg" class = "carta-reverso" id = "15">`;
+					idCartaAColocar.innerHTML = imagenNueva15;
+					break;
 
-		  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+				case 16:
+					let imagenNueva16 = `<img src = "images/16.jpg" class = "carta-reverso" id = "16">`;
+					idCartaAColocar.innerHTML = imagenNueva16;
+					break;
+				case 17:
+					let imagenNueva17 = `<img src = "images/17.jpg" class = "carta-reverso" id = "17">`;
+					idCartaAColocar.innerHTML = imagenNueva17;
+					break;
+				case 18:
+					let imagenNueva18 = `<img src = "images/18.jpg" class = "carta-reverso" id = "18">`;
+					idCartaAColocar.innerHTML = imagenNueva18;
+					break;}
+		   }
+
+
+		 	 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   		  for (let casilla of casillas) {
    			 let cartaAColocar = casilla.getAttribute('data-coordenada');
@@ -331,9 +386,6 @@ async function cargarContenido(){
 		};
 
 		await primerVistazoTablero();
-
-
-
 
 		for(casilla of casillas) {					
 			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
@@ -417,7 +469,25 @@ async function cargarContenido(){
 				case 14:
 					let imagenNueva14 = `<img src = "images/14.jpg" class = "carta-reverso" id = "14">`;
 					idCartaAColocar.innerHTML = imagenNueva14;
-					break; 	}
+					break;
+
+				case 15:
+					let imagenNueva15 = `<img src = "images/15.jpg" class = "carta-reverso" id = "15">`;
+					idCartaAColocar.innerHTML = imagenNueva15;
+					break;
+
+				case 16:
+					let imagenNueva16 = `<img src = "images/16.jpg" class = "carta-reverso" id = "16">`;
+					idCartaAColocar.innerHTML = imagenNueva16;
+					break;
+				case 17:
+					let imagenNueva17 = `<img src = "images/17.jpg" class = "carta-reverso" id = "17">`;
+					idCartaAColocar.innerHTML = imagenNueva17;
+					break;
+				case 18:
+					let imagenNueva18 = `<img src = "images/18.jpg" class = "carta-reverso" id = "18">`;
+					idCartaAColocar.innerHTML = imagenNueva18;
+					break;}
 
 					if (cartaProcesada === 1) {
 						valorCartaSeleccionadaA = valorDeLaCarta;
@@ -530,7 +600,10 @@ async function cargarContenido(){
 
 }); }
 
+
 botonStart.addEventListener('click', cargarContenido);
+
+
 
 
 
