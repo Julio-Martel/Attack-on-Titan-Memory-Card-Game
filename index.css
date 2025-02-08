@@ -202,7 +202,7 @@ input {
 }
 
 .tablero-cartas {
-	background: url('images/fondoTablero.jpg');
+	background: url('images/fondo5.png');
 	background-size: cover;
 	display: grid;
 	width: 60%;
@@ -210,7 +210,7 @@ input {
   grid-template-rows: repeat(4,auto);
   border: solid 1px darkgrey;
   border-radius: 5px;
-  grid-gap: 3px;
+  grid-gap: 5px;
   padding: 5px;
 }
 
@@ -230,8 +230,13 @@ input {
 .carta-reverso {
  	width: 90%;
  	max-width: 150px;
-	border-radius: 5px;
+	border-radius: 20px;
 	border: solid 1px darkgrey;
+	transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.carta-reverso:hover {
+	filter: brightness(1.5);
 }
 
 .display-vidas {
@@ -248,7 +253,9 @@ input {
 }
 
 .display-video {
-	background: rgba(0, 0, 0, 0.6);
+	background: url('images/movie2.jpg');
+	background-size: cover;
+	background-position-y: 30%;
 	height: 100%;
 	border-radius: 5px;
 	border: solid 1px darkgrey;
@@ -329,5 +336,6 @@ input {
 }
 
 .img-modal {
+		border-radius: 50px;
 		border: solid 1px darkgrey;
 }
