@@ -70,7 +70,7 @@ async function cargarContenido(){
 
 	buscarCasilla = (coordenadaX, coordenadaY) => {
 		return new Promise((resolve) => {
-			if (tableroCartas[coordenadaY][coordenadaX] !== 0) {
+			if (tableroCartas[coordenadaX][coordenadaY] !== 0) {
 				resolve(false);
 			} else { resolve(true);} }); 
 	};
@@ -144,8 +144,9 @@ async function cargarContenido(){
 			botonIngresarCoordenadas.style.pointerEvents = "none";	
 
 			let cartaSeleccionada = await seleccionarCarta();
-			tableroCartas[coordenadaY1][coordenadaX1] = cartaSeleccionada;
-			tableroCartas[coordenadaY2][coordenadaX2] = cartaSeleccionada;
+		
+			tableroCartas[coordenadaX1][coordenadaY1] = cartaSeleccionada;
+			tableroCartas[coordenadaX2][coordenadaY2] = cartaSeleccionada;
 
 		} else {
 			let casillaLibre1 = await buscarCasilla(coordenadaX1, coordenadaY1);
@@ -161,15 +162,16 @@ async function cargarContenido(){
 			botonIngresarCoordenadas.style.pointerEvents = "none";
 
 			let cartaSeleccionada = await seleccionarCarta();
-			tableroCartas[coordenadaY1][coordenadaX1] = cartaSeleccionada;
-			tableroCartas[coordenadaY2][coordenadaX2] = cartaSeleccionada;        
+			tableroCartas[coordenadaX1][coordenadaY1] = cartaSeleccionada;
+			tableroCartas[coordenadaX2][coordenadaY2] = cartaSeleccionada;        
 		}
 		
 		display.value = displayNro + 1;
 		contenedorDeCartas.style.opacity = "0.5";
 		contenedorDeCartas.style.pointerEvents = "none";
 	} 
-	
+
+
 	let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
 	if (avanzarAlJuego === 16) {
