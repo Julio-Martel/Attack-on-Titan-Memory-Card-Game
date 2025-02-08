@@ -23,12 +23,25 @@ body{
 	background: rgba(0, 0, 0, 0.6);
 	margin: 10px auto;
 	padding: 5px;
-	width: 90%;
+	width: 100%;
 	height: 600px;
-	max-width: 1000px;
+	max-width: 1500px;
 	border: solid 1px darkgrey;
 	border-radius: 10px;
 	gap: 10px;
+}
+
+
+.banner {
+	background-color: salmon;
+	width: 40%;
+		border: solid 1px darkred;
+	border-radius: 5px;
+}
+
+.img-banner {
+	width: 100%;
+	height: 100%;
 }
 
 .titulo {
