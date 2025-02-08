@@ -3,7 +3,6 @@
 	src: url('fonts/The Dark Titan Classic.ttf') format(TrueType);
 }
 
-
 *{
 	margin: 0;
 	padding: 0;
@@ -12,7 +11,7 @@
 body{
 	background: url('images/fondo4.jpg');
 	background-size: cover;
-	margin: 125px auto;
+	margin: 10px auto;
 }
 
 .contenido-principal {
@@ -21,27 +20,15 @@ body{
 	align-content: center;
 	align-items: center;
 	background: rgba(0, 0, 0, 0.6);
-	margin: 10px auto;
+	margin: 25px auto;
 	padding: 5px;
 	width: 100%;
-	height: 600px;
-	max-width: 1500px;
+	height: 100%;
+	max-width: 1600px;
+	height: 900px;
 	border: solid 1px darkgrey;
 	border-radius: 10px;
 	gap: 10px;
-}
-
-
-.banner {
-	background-color: salmon;
-	width: 40%;
-		border: solid 1px darkred;
-	border-radius: 5px;
-}
-
-.img-banner {
-	width: 100%;
-	height: 100%;
 }
 
 .titulo {
@@ -58,6 +45,7 @@ body{
 
 .play-img {
 	width: 100%;
+	height: 100%;
 }
 
 .boton {
@@ -83,10 +71,10 @@ body{
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	width: 50%;
+	width: 100%;
 	padding: 10px;
 	align-items: center;
-	border: solid 2px darkgrey;
+	border: solid 1px darkgrey;
 	border-radius: 5px;
 }
 
@@ -127,19 +115,19 @@ body{
 }
 
 .cartas {
-	width: 50%;
+	width: 70%;
 	background-color: #000000;
-	padding: 5px;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	border: solid 2px grey;
+	border: solid 1px darkgrey;
 	border-radius: 5px;
 }
 
 .seccion {
 	width: 100%;
 	display: flex;
+	justify-content: center;
 	gap: 5px;
 }
 
@@ -170,8 +158,6 @@ body{
 	transform: scale(1.1);
   background-color: #2ecc71;
 }
-
-
 
 .contenedor-coordenadas-cartas {
 	display: flex;
@@ -207,14 +193,12 @@ input {
 }
 
 .contenedor-tablero-estadisticas {
-	background: url('images/fondo2.jpg');
 	background-size: cover;
-	width: 85%;
+	width: 100%;
+	height: 100%;
 	display: flex;
-	gap: 5px;
+	gap: 10px;
 	padding: 5px;
-	border-radius: 5px;
-	border: solid 1px darkgrey;
 }
 
 .tablero-cartas {
@@ -222,13 +206,11 @@ input {
 	background-size: cover;
 	display: grid;
 	width: 60%;
-	height: 100%;
   grid-template-columns: repeat(4, auto); 
-  grid-template-rows: repeat(4, auto);
-  align-items: center;
+  grid-template-rows: repeat(4,auto);
   border: solid 1px darkgrey;
   border-radius: 5px;
-  grid-gap: 5px;
+  grid-gap: 3px;
   padding: 5px;
 }
 
@@ -246,11 +228,11 @@ input {
 }
 
 .carta-reverso {
- 	width: 80%;
+ 	width: 90%;
+ 	max-width: 150px;
 	border-radius: 5px;
 	border: solid 1px darkgrey;
 }
-
 
 .display-vidas {
 	background: url('images/vidas.jpg');
