@@ -113,8 +113,7 @@ async function cargarContenido() {
 		let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
 		let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
 		let contadorVidas = 5;
-		const tabla = document.getElementById('tabla');
-
+		let tabla = document.getElementById('tabla');
 
 		primerVistazoTablero = async () => {
 		 
@@ -216,14 +215,18 @@ async function cargarContenido() {
 		   }
 
 
-		 	 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+		 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 
   		  for (let casilla of casillas) {
    			 let cartaAColocar = casilla.getAttribute('data-coordenada');
     		 let idCartaAColocar = document.getElementById(cartaAColocar);
 
+    		  tabla.style.pointerEvents = "none";
+
     		 await delay(500); 
     		 
+    		 tabla.style.pointerEvents = "auto";
     		 idCartaAColocar.innerHTML = imgReversoCarta;
     		 cardPut.play();}
 
@@ -373,8 +376,6 @@ async function cargarContenido() {
 									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
 									let displayNroScore = parseInt(displayScore.value);
 									let ventanaModal = document.querySelector('.ventana-modal');
-									
-									console.log(ventanaModal);
 
 									displayScore.value = displayNroScore + 1000;
 
@@ -382,18 +383,20 @@ async function cargarContenido() {
 										
 										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
 										
+
+										console.log(valorA);
+										console.log(valorB);
+
 										await esperarVentana(1000);
 
 										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
-										ventanaModal.style.pointerEvents = "none";	
-										tabla.style.pointerEvents = "none";
+										ventanaModal.style.pointerEvents = "none";
+										contenidoPrincipal.style.pointerEvents = "none";
 
 										await esperarVentana(3000);
 
-										tabla.style.pointerEvents = "auto";
 										ventanaModal.style.display = "none";
-					
 									}
 
 									activarVentanaModal(FailA,FailB);	
@@ -401,16 +404,13 @@ async function cargarContenido() {
 
 							} catch(error) {
 
-								console.log(error);
-
 								const activarVentanaModalFail = (valorA,valorB) => {
 									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
 									let ventanaModal = document.querySelector('.ventana-modal');
 									let contenedorVidas = document.getElementById('vidas-img-contenedor');
 
-
-
 									async function activarVentanaModalFail(valorA,valorB) {
+										
 										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
 
 										contenedorVidas.removeChild(contenedorVidas.lastElementChild);
@@ -422,19 +422,18 @@ async function cargarContenido() {
 										ventanaModal.innerHTML = imagenFail;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
-										tabla.style.pointerEvents = "none";
 
-										await esperarVentana(5000);		
-										tabla.style.pointerEvents = "auto";
+										await esperarVentana(5000);
+
 										ventanaModal.style.display = "none";
 										valorA.innerHTML = imgReversoCarta;
 										valorB.innerHTML = imgReversoCarta;
 										valorA.style.pointerEvents = "auto";
-										valorB.style.pointerEvents = "auto";							
+										valorB.style.pointerEvents = "auto";						
 										cardPut.play();
-									
+										
 										irALaPantallaPrincipal();
-									}
+									}								
 
 
 									activarVentanaModalFail(FailA,FailB);
@@ -461,12 +460,9 @@ async function cargarContenido() {
 									}
 								}
 
-								activarVentanaModalFail(FailA,FailB);			
-							}
-						}
+								activarVentanaModalFail(FailA,FailB);			}}
 
-						comparar();
-					}
+						comparar();}
 
 				});	} //aca termina el bucle for )
 								
@@ -1012,12 +1008,11 @@ async function cargarContenido(){
 										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
-										tabla.style.pointerEvents = "none";	
 										
 										await esperarVentana(1000);
 
 										ventanaModal.style.display = "none";
-										tabla.style.pointerEvents = "auto";
+
 					
 									}
 
@@ -1047,11 +1042,9 @@ async function cargarContenido(){
 										ventanaModal.innerHTML = imagenFail;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
-										tabla.style.pointerEvents = "none";
 
 										await esperarVentana(5000);										
 
-										tabla.style.pointerEvents = "auto";
 										ventanaModal.style.display = "none";
 										valorA.innerHTML = imgReversoCarta;
 										valorB.innerHTML = imgReversoCarta;
