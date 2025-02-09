@@ -3,6 +3,7 @@ let botonStart = document.getElementById('play');
 let overCardSound = new Audio('audios/oversoundcard.mp3');
 let cardPut = new Audio('audios/cardmove.mp3');
 let gameOver = new Audio('audios/gameover.mp3');
+let selectCharacter = new Audio('audios/selectCharacter.mp3');
 
 overCardSound.load();
 cardPut.load();
@@ -68,44 +69,51 @@ async function cargarContenido(){
 	</div>	
 	`;
 
+	selectCharacter.play();
+
 	buscarCasilla = (coordenadaX, coordenadaY) => {
-		return new Promise((resolve) => {
-			if (tableroCartas[coordenadaX][coordenadaY] !== 0) {
-				resolve(false);
-			} else { resolve(true);} }); 
+	    return new Promise((resolve) => {
+	        if (tableroCartas[coordenadaX][coordenadaY] !== 0) {
+	            resolve(false);
+	        } else {
+	            resolve(true);
+	        }
+	    });
 	};
 
 	seleccionarCarta = () => {
-		return new Promise((resolve) => {
-			let numeroCarta;
-			
-			contenedorDeCartas.style.opacity = "1";
-			contenedorDeCartas.style.pointerEvents = "auto";
-			
-			let cartas = document.querySelectorAll('.carta');
+	    return new Promise((resolve) => {
+	        let numeroCarta;
 
-			for(carta of cartas) {
-				
-				let cartaDataValue = carta.getAttribute('data-value');
-				let cartaValorNumerico = parseInt(cartaDataValue);
+	        contenedorDeCartas.style.opacity = "1";
+	        contenedorDeCartas.style.pointerEvents = "auto";
 
-				carta.addEventListener('click', () => {
-					let quitarEfectosCarta = document.getElementById(cartaDataValue);
-					
-					overCardSound.play();
-					
-					quitarEfectosCarta.style.opacity = "0.5";
-					quitarEfectosCarta.style.filter = "none";
-					quitarEfectosCarta.style.pointerEvents = "none";
-					
-					botonIngresarCoordenadas.textContent = "Ingresar coordenadas";
-					botonIngresarCoordenadas.style.filter = "auto";
-					botonIngresarCoordenadas.style.pointerEvents = "auto"
-					resolve(cartaValorNumerico);
-				});
+	        let cartas = document.querySelectorAll('.carta');
 
-			}});
-	}
+	        for (carta of cartas) {
+
+	            let cartaDataValue = carta.getAttribute('data-value');
+	            let cartaValorNumerico = parseInt(cartaDataValue);
+
+	            carta.addEventListener('click', () => {
+	                let quitarEfectosCarta = document.getElementById(cartaDataValue);
+
+	                overCardSound.play();
+
+	                quitarEfectosCarta.style.opacity = "0.5";
+	                quitarEfectosCarta.style.filter = "none";
+	                quitarEfectosCarta.style.pointerEvents = "none";
+
+	                botonIngresarCoordenadas.textContent = "Ingresar coordenadas";
+	                botonIngresarCoordenadas.style.filter = "auto";
+	                botonIngresarCoordenadas.style.pointerEvents = "auto";
+	                resolve(cartaValorNumerico);
+	            });
+
+	        }
+	    });
+	};
+
 
 	let contenedorDeCartas = document.querySelector('.cartas');
 	let botonIngresarCoordenadas = document.getElementById('boton-formulario');
@@ -174,6 +182,8 @@ async function cargarContenido(){
 	let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
 	if (avanzarAlJuego === 16) {
+			
+		selectCharacter.stop();
 
 		contenidoPrincipal.innerHTML = `
 		<div class = "contenedor-tablero-estadisticas">	
@@ -326,7 +336,7 @@ async function cargarContenido(){
         		 	idCartaAColocar.innerHTML = imagenNueva;
     		 	}	
 
-					if (cartaProcesada === 1) { 
+					if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
 						valorCartaSeleccionadaA = valorDeLaCarta;
 						FailA = idCartaAColocar;
 						cartaProcesada++;
@@ -334,7 +344,7 @@ async function cargarContenido(){
 						const idParentCasillaA = document.getElementById(cartaAColocar);
 						idParentCasillaA.style.pointerEvents = "none";
 
-					} else { 
+					} else { // CASO EN EL QUE EL PAR NO COINCIDE	
 					
 						valorCartaSeleccionadaB = valorDeLaCarta;
 						FailB = idCartaAColocar;
@@ -471,13 +481,12 @@ async function cargarContenido(){
 
 						}
 
-				});	
+				});	}
 
-			} //aca termina el bucle for )
-	
 	}
 
-	}); } 
+	
+	});  }
 
 botonStart.addEventListener('click', cargarContenido);
 
