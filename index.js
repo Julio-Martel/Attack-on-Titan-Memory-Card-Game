@@ -120,6 +120,7 @@ async function cargarContenido() {
 		let tabla = document.getElementById('tabla');
 		let casillasBloqueadas = [];
 		let casillasDesbloqueadas = [];
+		let contadorAciertos = 0;
 
 		primerVistazoTablero = async () => {
 		  for (let casilla of casillas) {
@@ -211,7 +212,9 @@ async function cargarContenido() {
 									let displayNroScore = parseInt(displayScore.value);
 									let ventanaModal = document.querySelector('.ventana-modal');
 
+									contadorAciertos++;
 									displayScore.value = displayNroScore + 1000;
+									console.log(contadorAciertos);
 
 									async function activarVentanaModal(valorA,valorB){	
 										
@@ -225,7 +228,7 @@ async function cargarContenido() {
 											casilla.style.pointerEvents = "none";
 										});
 
-										cardPut.play();
+										
 										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
@@ -242,6 +245,38 @@ async function cargarContenido() {
 									    		casilla.style.pointerEvents = "auto";
 									    	}
 									    });
+
+										async function irALaPantallaPrincipalWin(){
+											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+											const todasLasCasillas = document.querySelectorAll('.casilla');
+												
+											if (contadorAciertos === 8) {
+												let imagenWin = `<img src = "images/youWin.jpg" class = "img-modal">`;
+												let ventanaModal = document.querySelector('.ventana-modal');
+													
+												ventanaModal.innerHTML = imagenWin;
+												ventanaModal.style.display = "flex";
+												ventanaModal.style.pointerEvents = "none";
+									
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
+
+												await delay(10000);
+
+												contenidoPrincipal.innerHTML = `
+											    <div class="titulo">
+													<img src="images/logo.png" class="play-img">
+													<button class="boton" id="play">Play!</button>
+												</div>
+												`;	
+														
+												let botonPlay = document.getElementById('play');
+												botonPlay.addEventListener('click', cargarContenido);
+												} 									
+										}
+
+									    irALaPantallaPrincipalWin();
 
 									}
 
@@ -291,36 +326,46 @@ async function cargarContenido() {
 										
 										});										
 		
+										async function irALaPantallaPrincipal() {
+											
+											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+											const todasLasCasillas = document.querySelectorAll('.casilla');
+
+											if (contadorVidas === 0) {
+												let imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
+												let ventanaModal = document.querySelector('.ventana-modal');
+											
+												ventanaModal.innerHTML = imagenFail;
+												ventanaModal.style.display = "flex";
+												ventanaModal.style.pointerEvents = "none";
+												
+												const todasLasCasillas = document.querySelectorAll('.casilla');
+
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
+
+												await delay(10000);
+
+												contenidoPrincipal.innerHTML = `
+												<div class="titulo">
+													<img src="images/logo.png" class="play-img">
+													<button class="boton" id="play">Play!</button>
+												</div>
+												`;	
+												
+												let botonPlay = document.getElementById('play');
+												botonPlay.addEventListener('click', cargarContenido);
+											}
+										}		
+
 										irALaPantallaPrincipal();
 									}								
 
-
 									activarVentanaModalFail(FailA,FailB);
-
-
-									async function irALaPantallaPrincipal() {
-										
-										const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-
-										if (contadorVidas === 0) {
-
-											await delay(2000);
-
-											contenidoPrincipal.innerHTML = `
-											<div class="titulo">
-												<img src="images/logo.png" class="play-img">
-												<button class="boton" id="play">Play!</button>
-											</div>
-											`;	
-										
-											let botonPlay = document.getElementById('play');
-											botonPlay.addEventListener('click', cargarContenido);
-										}
-									}
 								}
 
 								activarVentanaModalFail(FailA,FailB);			}
-
 							}
 
 						comparar();
