@@ -4,10 +4,12 @@ let overCardSound = new Audio('audios/oversoundcard.mp3');
 let cardPut = new Audio('audios/cardmove.mp3');
 let gameOver = new Audio('audios/gameover.mp3');
 let selectCharacter = new Audio('audios/selectCharacter.mp3');
+let rightAnswer = new Audio('audios/rightAnswer.mp3');
 
 overCardSound.load();
 cardPut.load();
 gameOver.load();
+rightAnswer.load();
 
 
 async function cargarContenido() {
@@ -117,6 +119,7 @@ async function cargarContenido() {
 		let contadorVidas = 5;
 		let tabla = document.getElementById('tabla');
 		let casillasBloqueadas = [];
+		let casillasDesbloqueadas = [];
 
 		primerVistazoTablero = async () => {
 		  for (let casilla of casillas) {
@@ -222,10 +225,12 @@ async function cargarContenido() {
 											casilla.style.pointerEvents = "none";
 										});
 
+										cardPut.play();
 										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
-
+										rightAnswer.play();
+										
 										await esperarVentana(3000);
 
 										ventanaModal.style.display = "none";
@@ -244,7 +249,6 @@ async function cargarContenido() {
 								} 
 
 							} catch(error) {
-
 								const activarVentanaModalFail = (valorA,valorB) => {
 									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
 									let ventanaModal = document.querySelector('.ventana-modal');
@@ -253,6 +257,7 @@ async function cargarContenido() {
 									async function activarVentanaModalFail(valorA,valorB) {
 										
 										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+										const todasLasCasillas = document.querySelectorAll(".casilla");
 
 										contenedorVidas.removeChild(contenedorVidas.lastElementChild);
 										contadorVidas--;
@@ -264,14 +269,27 @@ async function cargarContenido() {
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
 										
+										todasLasCasillas.forEach(casilla => {
+											casilla.style.pointerEvents = "none";
+										});
+										
 										await esperarVentana(5000);
 
 										cardPut.play();
 										ventanaModal.style.display = "none";
 										valorA.innerHTML = imgReversoCarta;
 										valorB.innerHTML = imgReversoCarta;
-										valorA.style.pointerEvents = "auto";
-										valorB.style.pointerEvents = "auto";	
+										
+										todasLasCasillas.forEach(casilla => {
+											if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
+												casillasDesbloqueadas.push(casilla);
+											} else if(casillasDesbloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											}
+										
+										});										
 		
 										irALaPantallaPrincipal();
 									}								
@@ -310,7 +328,7 @@ async function cargarContenido() {
 					}
 
 				});	}
-}
+} 
 
 
 /*
@@ -585,6 +603,9 @@ async function cargarContenido(){
 		let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
 		let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
 		let contadorVidas = 5;
+		let tabla = document.getElementById('tabla');
+		let casillasBloqueadas = [];
+		let casillasDesbloqueadas = [];
 
 		primerVistazoTablero = async () => {
 		  for (let casilla of casillas) {
@@ -627,7 +648,6 @@ async function cargarContenido(){
 			let idCartaAColocar = document.getElementById(cartaAColocar);
 
 			casilla.addEventListener('click', async () => {
-
 				cardPut.play();
 
 				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
@@ -669,9 +689,8 @@ async function cargarContenido(){
 						async function comparar() {
 
 							try {
+								
 								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
-
-								console.log(resultadoComparativa);
 
 								if (resultadoComparativa) {
 									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
@@ -684,34 +703,37 @@ async function cargarContenido(){
 										
 										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
 
+										const todasLasCasillas = document.querySelectorAll(".casilla");
+
 										await esperarVentana(1000);
+
+										todasLasCasillas.forEach(casilla => {
+											casilla.style.pointerEvents = "none";
+										});
 
 										ventanaModal.innerHTML = imagenNice;
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
-
-										const todasLasCasillas = document.querySelectorAll(".casilla");
-  										
-  										todasLasCasillas.forEach(casilla => {
-   												casilla.style.pointerEvents = "none"; // Desbloquear el evento de clic
-  										});
+										rightAnswer.play();
 
 										await esperarVentana(3000);
 
-  										todasLasCasillas.forEach(casilla => {
-   												casilla.style.pointerEvents = "auto"; // Desbloquear el evento de clic
-  										});
-
 										ventanaModal.style.display = "none";
-										valorA.style.pointerEvents = "none";
-										valorB.style.pointerEvents = "none";
+
+									    todasLasCasillas.forEach(casilla => {								    	
+									    	if (valorA === casilla || valorB === casilla) {
+									    		casillasBloqueadas.push(casilla);
+									    	} else if(!casillasBloqueadas.includes(casilla)){
+									    		casilla.style.pointerEvents = "auto";
+									    	}
+									    });
+
 									}
 
 									activarVentanaModal(FailA,FailB);	
 								} 
 
 							} catch(error) {
-
 								const activarVentanaModalFail = (valorA,valorB) => {
 									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
 									let ventanaModal = document.querySelector('.ventana-modal');
@@ -720,9 +742,10 @@ async function cargarContenido(){
 									async function activarVentanaModalFail(valorA,valorB) {
 										
 										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+										const todasLasCasillas = document.querySelectorAll(".casilla");
 
 										contenedorVidas.removeChild(contenedorVidas.lastElementChild);
-										contadorVidas = contadorVidas - 1;
+										contadorVidas--;
 
 										await esperarVentana(1000);
 
@@ -731,31 +754,32 @@ async function cargarContenido(){
 										ventanaModal.style.display = "flex";
 										ventanaModal.style.pointerEvents = "none";
 										
-										const todasLasCartas = document.querySelectorAll(".casilla");
-  										
-  										todasLasCartas.forEach(carta => {
-   												carta.style.pointerEvents = "none"; // Desbloquear el evento de clic
-  										});
-
+										todasLasCasillas.forEach(casilla => {
+											casilla.style.pointerEvents = "none";
+										});
+										
 										await esperarVentana(5000);
 
 										cardPut.play();
 										ventanaModal.style.display = "none";
 										valorA.innerHTML = imgReversoCarta;
 										valorB.innerHTML = imgReversoCarta;
-										valorA.style.pointerEvents = "auto";
-										valorB.style.pointerEvents = "auto";
-
-  										todasLasCartas.forEach(carta => {
-   												carta.style.pointerEvents = "auto"; // Desbloquear el evento de clic
-  										});			
-
+										
+										todasLasCasillas.forEach(casilla => {
+											if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
+												casillasDesbloqueadas.push(casilla);
+											} else if(casillasDesbloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											}
+										
+										});										
+		
 										irALaPantallaPrincipal();
 									}								
 
-
 									activarVentanaModalFail(FailA,FailB);
-
 
 									async function irALaPantallaPrincipal() {
 										
@@ -778,11 +802,13 @@ async function cargarContenido(){
 									}
 								}
 
-								activarVentanaModalFail(FailA,FailB);			}}
+								activarVentanaModalFail(FailA,FailB);			}
+
+							}
 
 						comparar();
 
-						}
+					}
 
 				});	}
 
