@@ -11,7 +11,6 @@
 body{
 	background: url('images/fondo4.jpg');
 	background-size: cover;
-	margin: 10px auto;
 }
 
 .contenido-principal {
@@ -19,33 +18,29 @@ body{
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	background: rgba(0, 0, 0, 0.6);
+	background: url('images/fondo7.jpg');
+	background-size: cover;
 	margin: 25px auto;
 	padding: 5px;
-	width: 100%;
-	height: 100%;
+	width: 95%;
+	height: 95%;
 	max-width: 1600px;
 	height: 900px;
-	border: solid 1px darkgrey;
+	border: solid 1px #000000;
 	border-radius: 10px;
 	gap: 10px;
 }
 
 .titulo {
-	background: url('images/fondoStart.jpg');
-	background-size: cover;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
 	align-items: center;
-	padding: 25px;
-	border: solid 1px darkgrey;
 	width: 90%;
 }
 
 .play-img {
-	width: 100%;
-	height: 100%;
+	width: 50%;
+	height: 60%;
 }
 
 .boton {
@@ -56,7 +51,6 @@ body{
 	color: #ffffff;
 	border: solid 1px grey;
 	border-radius: 5px;
-	transition: background 1s linear;
 	font-family: 'The Dark Titan Classic';
 }
 
@@ -87,7 +81,7 @@ body{
 	padding: 15px;
 	display: flex;
 	gap: 10px;
-	border: solid 2px darkgrey;
+	border: solid 1px darkgrey;
 	border-radius: 5px;
 }
 
@@ -111,7 +105,7 @@ body{
 
 .boton {
 	padding: 5px;
-	border: solid 2px darkgrey;
+	border: solid 1px darkgrey;
 }
 
 .cartas {
@@ -137,7 +131,7 @@ body{
 	color: #ffffff;
 	font-family: 'The Dark Titan Classic';
 	padding: 10px;
-	border: solid 2px grey;
+	border: solid 1px grey;
 	border-radius: 5px;
 	text-shadow: 	
     -1px -1px 0 #000,  
@@ -158,6 +152,7 @@ body{
 	transform: scale(1.1);
   background-color: #2ecc71;
 }
+
 
 .contenedor-coordenadas-cartas {
 	display: flex;
@@ -184,7 +179,7 @@ input {
 .getting-started {
 	width: 100%;
 	border-radius: 5px;
-	border: solid 2px darkgrey;
+	border: solid 1px darkgrey;
 }
 
 #contenedor-cartas {
@@ -338,4 +333,37 @@ input {
 .img-modal {
 		border-radius: 50px;
 		border: solid 1px darkgrey;
+}
+
+#ventana-continuar {
+	display: none;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+}
+
+.contenedor-opciones {
+	background: yellow;
+	width: 60%;
+	height: 500px;
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+
+.opcion {
+	background: yellow;
+	width: 20%;
+	height: 50%;
+	display: flex;
+	justify-content: center;
+	border: solid 1px #000000;
+	border-radius: 5px;
 }
