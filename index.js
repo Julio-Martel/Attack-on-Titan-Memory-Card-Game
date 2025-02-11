@@ -1,12 +1,12 @@
-let contenidoPrincipal = document.getElementById('contenedor-principal');
-let botonStart = document.getElementById('play');
-let overCardSound = new Audio('audios/oversoundcard.mp3');
-let cardPut = new Audio('audios/cardmove.mp3');
-let gameOver = new Audio('audios/gameover.mp3');
-let selectCharacter = new Audio('audios/selectCharacter.mp3');
-let rightAnswer = new Audio('audios/rightAnswer.mp3');
-let youWin = new Audio('audios/youWin.mp3');
-let gameOver1 = new Audio('audios/gameOver1.mp3');
+const contenidoPrincipal = document.getElementById('contenedor-principal');
+const botonStart = document.getElementById('play');
+const overCardSound = new Audio('audios/oversoundcard.mp3');
+const cardPut = new Audio('audios/cardmove.mp3');
+const gameOver = new Audio('audios/gameover.mp3');
+const selectCharacter = new Audio('audios/selectCharacter.mp3');
+const rightAnswer = new Audio('audios/rightAnswer.mp3');
+const youWin = new Audio('audios/youWin.mp3');
+const gameOver1 = new Audio('audios/gameOver1.mp3');
 
 overCardSound.load();
 cardPut.load();
@@ -16,7 +16,7 @@ youWin.load();
 gameOver1.load();
 
 /*
-async function cargarContenido() {
+async function cargarJuego() {
 	let tableroCartas = [[9,3,1,8],
 	[8,5,7,2],
 	[1,2,7,10],
@@ -85,6 +85,21 @@ async function cargarContenido() {
 								</div>
 						</div>	
 
+						<div class = ventanaModal" id = "ventana-continuar">
+							<div class = "contenedor-opciones">
+								<div class = "opcion" id = "reiniciar-partida">
+									<button class = "boton" id = "boton-reiniciar-partida">
+										Play again!	
+									</button>
+								</div>
+								<div class = "opcion" id = "reiniciar-juego">
+									<button class = "boton" id = "boton-reiniciar-juego">
+										Restart game!
+									</button>
+								</div>
+							</div>
+						</div>
+
 					<div class = "estadisticas-vidas" id = "est-vid">
 		
 						<div class = "display-vidas" id = "vidas">
@@ -134,7 +149,7 @@ async function cargarContenido() {
 			let idCartaAColocar = document.getElementById(cartaAColocar);
 			let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 
-			if (valorDeLaCarta >= 1 && valorDeLaCarta <= 15) {
+			if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
 				let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
 				idCartaAColocar.innerHTML = imagenNueva;
 			}		   
@@ -152,11 +167,9 @@ async function cargarContenido() {
 
 			tabla.style.pointerEvents = "auto";
 			idCartaAColocar.innerHTML = imgReversoCarta;
-			cardPut.play();}
+			cardPut.play();}};
 
-		};
-
-		await primerVistazoTablero();
+	await primerVistazoTablero();
 
 		for(casilla of casillas) {					
 			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
@@ -169,39 +182,38 @@ async function cargarContenido() {
 
 				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 				
-				if (valorDeLaCarta >= 1 && valorDeLaCarta <= 15) {
+				if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
 					let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
 					idCartaAColocar.innerHTML = imagenNueva;
 				}	
 
-					if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
-						valorCartaSeleccionadaA = valorDeLaCarta;
-						FailA = idCartaAColocar;
-						cartaProcesada++;
+				if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
+					valorCartaSeleccionadaA = valorDeLaCarta;
+					FailA = idCartaAColocar;
+					cartaProcesada++;
 
-						const idParentCasillaA = document.getElementById(cartaAColocar);
-						idParentCasillaA.style.pointerEvents = "none";
+					const idParentCasillaA = document.getElementById(cartaAColocar);
+					idParentCasillaA.style.pointerEvents = "none";
 
-					} else { // CASO EN EL QUE EL PAR NO COINCIDE
+				} else { // CASO EN EL QUE EL PAR NO COINCIDE
 
-						valorCartaSeleccionadaB = valorDeLaCarta;
-						FailB = idCartaAColocar;
-						cartaProcesada = 1;
+					valorCartaSeleccionadaB = valorDeLaCarta;
+					FailB = idCartaAColocar;
+					cartaProcesada = 1;
 
-						const idParentCasillaB = document.getElementById(cartaAColocar);
-						idParentCasillaB.style.pointerEvents = "none"; 
+					const idParentCasillaB = document.getElementById(cartaAColocar);
+					idParentCasillaB.style.pointerEvents = "none"; 
 
-						const valorComparativaDeCartas = (valorA,valorB) => {
-							return new Promise((resolve,reject) => {
-								if (valorA === valorB) {
-									console.log('Resuelto: true');
-									resolve(true);
-								} else {
-									console.log('Rechazado: false');
-									reject(false);
-								} 
-							});
-						}
+					const valorComparativaDeCartas = (valorA,valorB) => {
+						return new Promise((resolve,reject) => {
+							if (valorA === valorB) {
+								console.log('Resuelto: true');
+								resolve(true);
+							} else {
+								console.log('Rechazado: false');
+								reject(false);
+							} 
+						});}
 
 						async function comparar() {
 
@@ -265,17 +277,30 @@ async function cargarContenido() {
 												});
 
 												youWin.play();
-												await delay(9000);
+												await delay(3000);
+												
+											    ventanaModal.style.display = "none";
+												await delay(1000);
 
-												contenidoPrincipal.innerHTML = `
-											    <div class="titulo">
-													<img src="images/logo.png" class="play-img">
-													<button class="boton" id="play">Play!</button>
-												</div>
-												`;	
+												let ventanaModalFinal = document.getElementById('ventana-continuar');
+												ventanaModalFinal.style.display = "flex";
 
-												let botonPlay = document.getElementById('play');
-												botonPlay.addEventListener('click', cargarContenido);
+												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
+												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
+
+												botonReiniciarPartida.addEventListener('click', cargarContenido);
+
+												botonReiniciarJuego.addEventListener('click',() => {
+													contenidoPrincipal.innerHTML = `
+													<div class="titulo">
+														<img src="images/logo.png" class="play-img">
+														<button class="boton" id="play">Play!</button>
+													</div>
+													`;	
+													
+													let botonPlay = document.getElementById('play');
+													botonPlay.addEventListener('click', cargarContenido);
+												});
 											} 									
 										}
 
@@ -347,19 +372,31 @@ async function cargarContenido() {
 												todasLasCasillas.forEach(casilla => {
 													casilla.style.pointerEvents = "none";
 												});
-
+												
 												gameOver1.play();
 												await delay(10000);
+												ventanaModal.style.display = "none";
+												await delay(1000);
 
-												contenidoPrincipal.innerHTML = `
-												<div class="titulo">
-													<img src="images/logo.png" class="play-img">
-													<button class="boton" id="play">Play!</button>
-												</div>
-												`;	
-												
-												let botonPlay = document.getElementById('play');
-												botonPlay.addEventListener('click', cargarContenido);
+												let ventanaModalFinal = document.getElementById('ventana-continuar');
+												ventanaModalFinal.style.display = "flex";
+
+												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
+												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
+
+												botonReiniciarPartida.addEventListener('click', cargarContenido);
+
+												botonReiniciarJuego.addEventListener('click',() => {
+													contenidoPrincipal.innerHTML = `
+													<div class="titulo">
+														<img src="images/logo.png" class="play-img">
+														<button class="boton" id="play">Play!</button>
+													</div>
+													`;	
+													
+													let botonPlay = document.getElementById('play');
+													botonPlay.addEventListener('click', cargarContenido);
+												});
 											}
 										}		
 
@@ -376,10 +413,8 @@ async function cargarContenido() {
 
 						}
 
-					});	}
-} 
+					});	}} 
 */
-
 
 async function cargarContenido(){
 	
@@ -560,7 +595,8 @@ async function cargarContenido(){
 	let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
 	if (avanzarAlJuego === 16) {
-			
+	
+
 	contenidoPrincipal.innerHTML = `
 		<div class = "contenedor-tablero-estadisticas">	
 					<div class = "tablero-cartas" id = "tabla">
@@ -623,6 +659,21 @@ async function cargarContenido(){
 								<div class = "contenido-modal">
 								</div>
 						</div>	
+
+						<div class = ventanaModal" id = "ventana-continuar">
+							<div class = "contenedor-opciones">
+								<div class = "opcion" id = "reiniciar-partida">
+									<button class = "boton" id = "boton-reiniciar-partida">
+										Play again!	
+									</button>
+								</div>
+								<div class = "opcion" id = "reiniciar-juego">
+									<button class = "boton" id = "boton-reiniciar-juego">
+										Restart game!
+									</button>
+								</div>
+							</div>
+						</div>
 
 					<div class = "estadisticas-vidas" id = "est-vid">
 		
@@ -806,13 +857,14 @@ async function cargarContenido(){
 												youWin.play();
 												await delay(9000);
 
+
 												contenidoPrincipal.innerHTML = `
-											    <div class="titulo">
+												<div class="titulo">
 													<img src="images/logo.png" class="play-img">
 													<button class="boton" id="play">Play!</button>
 												</div>
 												`;	
-
+													
 												let botonPlay = document.getElementById('play');
 												botonPlay.addEventListener('click', cargarContenido);
 											} 									
@@ -896,7 +948,7 @@ async function cargarContenido(){
 													<button class="boton" id="play">Play!</button>
 												</div>
 												`;	
-												
+													
 												let botonPlay = document.getElementById('play');
 												botonPlay.addEventListener('click', cargarContenido);
 											}
@@ -915,7 +967,7 @@ async function cargarContenido(){
 
 						}
 
-					});	}
+					});	} 
 
 	}
 
