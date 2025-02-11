@@ -7,13 +7,7 @@ const selectCharacter = new Audio('audios/selectCharacter.mp3');
 const rightAnswer = new Audio('audios/rightAnswer.mp3');
 const youWin = new Audio('audios/youWin.mp3');
 const gameOver1 = new Audio('audios/gameOver1.mp3');
-
-overCardSound.load();
-cardPut.load();
-gameOver.load();
-rightAnswer.load();
-youWin.load();
-gameOver1.load();
+const buttonPlay = new Audio('audios/buttonPlay.mp3');
 
 /*
 async function cargarJuego() {
@@ -534,6 +528,8 @@ async function cargarContenido(){
 	contenedorDeCartas.style.opacity = "0.5";
 	contenedorDeCartas.style.pointerEvents = "none";
 
+	botonIngresarCoordenadas.addEventListener('mouseover', () => buttonPlay.play())
+
 	botonIngresarCoordenadas.addEventListener('click', async () => {
 		let coordenadaX1 = parseInt(document.getElementById('coordenadaX1').value);
 		let coordenadaX2 = parseInt(document.getElementById('coordenadaX2').value);
@@ -867,6 +863,10 @@ async function cargarContenido(){
 													
 												let botonPlay = document.getElementById('play');
 												botonPlay.addEventListener('click', cargarContenido);
+										
+												botonPlay.addEventListener('mouseover', () => {
+													buttonPlay.play();
+												});
 											} 									
 										}
 
@@ -951,6 +951,10 @@ async function cargarContenido(){
 													
 												let botonPlay = document.getElementById('play');
 												botonPlay.addEventListener('click', cargarContenido);
+											
+												botonPlay.addEventListener('mouseover', () => {
+													buttonPlay.play();
+												});
 											}
 										}		
 
@@ -975,3 +979,7 @@ async function cargarContenido(){
 	});  }
 
 botonStart.addEventListener('click', cargarContenido);
+
+botonStart.addEventListener('mouseover', () => buttonPlay.play());
+
+// ARREGLAR TEMA DEL SONIDO, FUNCIONA EN LA SIGUIENTE PARTE PERO ESTA NO
