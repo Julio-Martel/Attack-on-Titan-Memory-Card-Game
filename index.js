@@ -426,13 +426,13 @@ async function cargarContenido(){
 					<form class="formulario">
  				   		<label for="coordenadaX1" class="entrada">Seleccione la coordenada(EjeX1): </label>
    				  		<input type="number" min="0" max="3" id="coordenadaX1" name="coordenadaX1" placeholder="Ingresar numero" required>
-    					<label for="coordenadaY1" class="entrada">Coordenada Y1 predeterminada  </label>
+    					<label for="coordenadaY1" class="entrada">Seleccione la coordenada(EjeY1):  </label>
    						<input type="number" min="0" max="3" id="coordenadaY1" name="coordenadaY1" placeholder="Ingresar numero" required>
 					</form>
 					<form class="formulario">
    						<label for="coordenadaX2" class="entrada">Seleccione la coordenada(EjeX2): </label>
    					    <input type="number" min="0" max="3" id="coordenadaX2" name="coordenadaX2" placeholder="Ingresar numero" required>
-                        <label for="coordenadaY2" class="entrada">Coordenada Y2 predeterminada </label>
+                        <label for="coordenadaY2" class="entrada">Seleccione la coordenada(EjeY2):</label>
                         <input type="number" min="0" max="3" id="coordenadaY2" name="coordenadaY2" placeholder="Ingresar numero" required>
                     </form>
 				</div>
