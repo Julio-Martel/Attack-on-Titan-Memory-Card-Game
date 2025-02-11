@@ -4,5 +4,6 @@
 <p align="center">
   <img src="imgLogo/imgLogo2.png" alt="Mi Logo" />
 </p>
-
+<p align="center">
 Un juego de memoria de Attack on Titan
+</p>
