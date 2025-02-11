@@ -591,7 +591,6 @@ async function cargarContenido(){
 	let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 
 	if (avanzarAlJuego === 16) {
-	
 
 	contenidoPrincipal.innerHTML = `
 		<div class = "contenedor-tablero-estadisticas">	
@@ -981,5 +980,3 @@ async function cargarContenido(){
 botonStart.addEventListener('click', cargarContenido);
 
 botonStart.addEventListener('mouseover', () => buttonPlay.play());
-
-// ARREGLAR TEMA DEL SONIDO, FUNCIONA EN LA SIGUIENTE PARTE PERO ESTA NO
