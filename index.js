@@ -8,409 +8,9 @@ const rightAnswer = new Audio('audios/rightAnswer.mp3');
 const youWin = new Audio('audios/youWin.mp3');
 const gameOver1 = new Audio('audios/gameOver1.mp3');
 const buttonPlay = new Audio('audios/buttonPlay.mp3');
+const boardGame = new Audio('audios/boardGame.mp3');
 
-/*
-async function cargarJuego() {
-	let tableroCartas = [[9,3,1,8],
-	[8,5,7,2],
-	[1,2,7,10],
-	[3,5,10,9]];	
-
-	contenidoPrincipal.innerHTML = `
-		<div class = "contenedor-tablero-estadisticas">	
-					<div class = "tablero-cartas" id = "tabla">
-
-						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-						</div>
-						<div class = "casilla" data-ejeX = "0" data-ejeY = "1" id = "0-1" data-coordenada = "0-1">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-						</div>
-						<div class = "casilla" data-ejeX = "0" data-ejeY = "2" id = "0-2" data-coordenada = "0-2">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
-						</div>
-						<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-
-						<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>						
-						<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-						<div class = "casilla" data-ejeX = "1" data-ejeY = "2" id = "1-2" data-coordenada = "1-2">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-						<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
-						</div>
-
-						<div class = "casilla" data-ejeX = "2" data-ejeY = "0" id = "2-0" data-coordenada = "2-0">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>						
-						<div class = "casilla" data-ejeX = "2" data-ejeY = "1" id = "2-1" data-coordenada = "2-1">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-						<div class = "casilla" data-ejeX = "2" data-ejeY = "2" id = "2-2" data-coordenada = "2-2">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-						<div class = "casilla" data-ejeX = "2" data-ejeY = "3" id = "2-3" data-coordenada = "2-3">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
-						</div>						
-
-						<div class = "casilla" data-ejeX = "3" data-ejeY = "0" id = "3-0" data-coordenada = "3-0">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>						
-						<div class = "casilla" data-ejeX = "3" data-ejeY = "1" id = "3-1" data-coordenada = "3-1">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-						<div class = "casilla" data-ejeX = "3" data-ejeY = "2" id = "3-2" data-coordenada = "3-2">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
-						</div>
-						<div class = "casilla" data-ejeX = "3" data-ejeY = "3" id = "3-3" data-coordenada = "3-3">
-							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
-						</div>						
-
-					</div>
-
-						<div class = "ventana-modal">
-								<div class = "contenido-modal">
-								</div>
-						</div>	
-
-						<div class = ventanaModal" id = "ventana-continuar">
-							<div class = "contenedor-opciones">
-								<div class = "opcion" id = "reiniciar-partida">
-									<button class = "boton" id = "boton-reiniciar-partida">
-										Play again!	
-									</button>
-								</div>
-								<div class = "opcion" id = "reiniciar-juego">
-									<button class = "boton" id = "boton-reiniciar-juego">
-										Restart game!
-									</button>
-								</div>
-							</div>
-						</div>
-
-					<div class = "estadisticas-vidas" id = "est-vid">
-		
-						<div class = "display-vidas" id = "vidas">
-							<div class = "display-vidas-img" id = "vidas">
-								<label for="vidas" class="entrada-vidas">Vidas:</label>
-   					  			<div class = "vidas-img" id = "vidas-img-contenedor">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida1">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida2">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida3">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida4">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida5">
-								</div>
-							</div>
-						</div>
-
-						<div class = "display-score" id = "score">
-							<div class = "display-score-numbers">
-								<label for="scores" class="entrada-scores">Score:</label>
-								<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
-							</div>
-						</div>
-
-						<div class = "display-video" id = "video">
-
-						</div>
-
-					</div>
-		</div>
-	`;
-
-	let displayScore = document.getElementById('entrada-score');
-	let casillas = document.querySelectorAll('.casilla');
-	let cartaProcesada = 1;
-	let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
-	let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
-	let contadorVidas = 5;
-	let tabla = document.getElementById('tabla');
-	let casillasBloqueadas = [];
-	let casillasDesbloqueadas = [];
-	let contadorAciertos = 0;
-
-	primerVistazoTablero = async () => {
-		for (let casilla of casillas) {
-			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
-			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));
-			let cartaAColocar = casilla.getAttribute('data-coordenada');
-			let idCartaAColocar = document.getElementById(cartaAColocar);
-			let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
-
-			if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
-				let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
-				idCartaAColocar.innerHTML = imagenNueva;
-			}		   
-		}
-
-		const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-		for (let casilla of casillas) {
-			let cartaAColocar = casilla.getAttribute('data-coordenada');
-			let idCartaAColocar = document.getElementById(cartaAColocar);
-
-			tabla.style.pointerEvents = "none";
-
-			await delay(500);
-
-			tabla.style.pointerEvents = "auto";
-			idCartaAColocar.innerHTML = imgReversoCarta;
-			cardPut.play();}};
-
-	await primerVistazoTablero();
-
-		for(casilla of casillas) {					
-			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
-			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));				
-			let cartaAColocar = casilla.getAttribute('data-coordenada');
-			let idCartaAColocar = document.getElementById(cartaAColocar);
-
-			casilla.addEventListener('click', async () => {
-				cardPut.play();
-
-				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
-				
-				if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
-					let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
-					idCartaAColocar.innerHTML = imagenNueva;
-				}	
-
-				if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
-					valorCartaSeleccionadaA = valorDeLaCarta;
-					FailA = idCartaAColocar;
-					cartaProcesada++;
-
-					const idParentCasillaA = document.getElementById(cartaAColocar);
-					idParentCasillaA.style.pointerEvents = "none";
-
-				} else { // CASO EN EL QUE EL PAR NO COINCIDE
-
-					valorCartaSeleccionadaB = valorDeLaCarta;
-					FailB = idCartaAColocar;
-					cartaProcesada = 1;
-
-					const idParentCasillaB = document.getElementById(cartaAColocar);
-					idParentCasillaB.style.pointerEvents = "none"; 
-
-					const valorComparativaDeCartas = (valorA,valorB) => {
-						return new Promise((resolve,reject) => {
-							if (valorA === valorB) {
-								console.log('Resuelto: true');
-								resolve(true);
-							} else {
-								console.log('Rechazado: false');
-								reject(false);
-							} 
-						});}
-
-						async function comparar() {
-
-							try {
-								
-								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
-
-								if (resultadoComparativa) {
-									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
-									let displayNroScore = parseInt(displayScore.value);
-									let ventanaModal = document.querySelector('.ventana-modal');
-
-									contadorAciertos++;
-									displayScore.value = displayNroScore + 1000;
-									console.log(contadorAciertos);
-
-									async function activarVentanaModal(valorA,valorB){	
-										
-										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
-
-										const todasLasCasillas = document.querySelectorAll(".casilla");
-
-										await esperarVentana(1000);
-
-										todasLasCasillas.forEach(casilla => {
-											casilla.style.pointerEvents = "none";
-										});
-
-										
-										ventanaModal.innerHTML = imagenNice;
-										ventanaModal.style.display = "flex";
-										ventanaModal.style.pointerEvents = "none";
-										rightAnswer.play();
-										
-										await esperarVentana(3000);
-
-										ventanaModal.style.display = "none";
-
-										todasLasCasillas.forEach(casilla => {								    	
-											if (valorA === casilla || valorB === casilla) {
-												casillasBloqueadas.push(casilla);
-											} else if(!casillasBloqueadas.includes(casilla)){
-												casilla.style.pointerEvents = "auto";
-											}
-										});
-
-										async function irALaPantallaPrincipalWin(){
-											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-											const todasLasCasillas = document.querySelectorAll('.casilla');
-
-											if (contadorAciertos === 8) {
-												let imagenWin = `<img src = "images/youWin.jpg" class = "img-modal">`;
-												let ventanaModal = document.querySelector('.ventana-modal');
-
-												ventanaModal.innerHTML = imagenWin;
-												ventanaModal.style.display = "flex";
-												ventanaModal.style.pointerEvents = "none";
-
-												todasLasCasillas.forEach(casilla => {
-													casilla.style.pointerEvents = "none";
-												});
-
-												youWin.play();
-												await delay(3000);
-												
-											    ventanaModal.style.display = "none";
-												await delay(1000);
-
-												let ventanaModalFinal = document.getElementById('ventana-continuar');
-												ventanaModalFinal.style.display = "flex";
-
-												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
-												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
-
-												botonReiniciarPartida.addEventListener('click', cargarContenido);
-
-												botonReiniciarJuego.addEventListener('click',() => {
-													contenidoPrincipal.innerHTML = `
-													<div class="titulo">
-														<img src="images/logo.png" class="play-img">
-														<button class="boton" id="play">Play!</button>
-													</div>
-													`;	
-													
-													let botonPlay = document.getElementById('play');
-													botonPlay.addEventListener('click', cargarContenido);
-												});
-											} 									
-										}
-
-										irALaPantallaPrincipalWin();
-
-									}
-
-									activarVentanaModal(FailA,FailB);	
-								} 
-
-							} catch(error) {
-								const activarVentanaModalFail = (valorA,valorB) => {
-									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
-									let ventanaModal = document.querySelector('.ventana-modal');
-									let contenedorVidas = document.getElementById('vidas-img-contenedor');
-
-									async function activarVentanaModalFail(valorA,valorB) {
-										
-										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-										const todasLasCasillas = document.querySelectorAll(".casilla");
-
-										contenedorVidas.removeChild(contenedorVidas.lastElementChild);
-										contadorVidas--;
-
-										await esperarVentana(1000);
-
-										gameOver.play();
-										ventanaModal.innerHTML = imagenFail;
-										ventanaModal.style.display = "flex";
-										ventanaModal.style.pointerEvents = "none";
-										
-										todasLasCasillas.forEach(casilla => {
-											casilla.style.pointerEvents = "none";
-										});
-										
-										await esperarVentana(5000);
-
-										cardPut.play();
-										ventanaModal.style.display = "none";
-										valorA.innerHTML = imgReversoCarta;
-										valorB.innerHTML = imgReversoCarta;
-										
-										todasLasCasillas.forEach(casilla => {
-											if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
-												casillasDesbloqueadas.push(casilla);
-											} else if(casillasDesbloqueadas.includes(casilla)){
-												casilla.style.pointerEvents = "auto";
-											} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
-												casilla.style.pointerEvents = "auto";
-											}
-
-										});										
-
-										async function irALaPantallaPrincipal() {
-											
-											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-											const todasLasCasillas = document.querySelectorAll('.casilla');
-
-											if (contadorVidas === 0) {
-												let imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
-												let ventanaModal = document.querySelector('.ventana-modal');
-
-												ventanaModal.innerHTML = imagenFail;
-												ventanaModal.style.display = "flex";
-												ventanaModal.style.pointerEvents = "none";
-												
-												const todasLasCasillas = document.querySelectorAll('.casilla');
-
-												todasLasCasillas.forEach(casilla => {
-													casilla.style.pointerEvents = "none";
-												});
-												
-												gameOver1.play();
-												await delay(10000);
-												ventanaModal.style.display = "none";
-												await delay(1000);
-
-												let ventanaModalFinal = document.getElementById('ventana-continuar');
-												ventanaModalFinal.style.display = "flex";
-
-												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
-												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
-
-												botonReiniciarPartida.addEventListener('click', cargarContenido);
-
-												botonReiniciarJuego.addEventListener('click',() => {
-													contenidoPrincipal.innerHTML = `
-													<div class="titulo">
-														<img src="images/logo.png" class="play-img">
-														<button class="boton" id="play">Play!</button>
-													</div>
-													`;	
-													
-													let botonPlay = document.getElementById('play');
-													botonPlay.addEventListener('click', cargarContenido);
-												});
-											}
-										}		
-
-										irALaPantallaPrincipal();
-									}								
-
-									activarVentanaModalFail(FailA,FailB);
-								}
-
-								activarVentanaModalFail(FailA,FailB);			}
-							}
-
-							comparar();
-
-						}
-
-					});	}} 
-*/
-
-async function cargarContenido(){
+/* async function cargarContenido(){
 	
 	let tableroCartas = [[0,0,0,0],
 						 [0,0,0,0],
@@ -759,36 +359,36 @@ async function cargarContenido(){
 					idCartaAColocar.innerHTML = imagenNueva;
 				}	
 
-					if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
-						valorCartaSeleccionadaA = valorDeLaCarta;
-						FailA = idCartaAColocar;
-						cartaProcesada++;
+				if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
+					valorCartaSeleccionadaA = valorDeLaCarta;
+					FailA = idCartaAColocar;
+					cartaProcesada++;
 
-						const idParentCasillaA = document.getElementById(cartaAColocar);
-						idParentCasillaA.style.pointerEvents = "none";
+					const idParentCasillaA = document.getElementById(cartaAColocar);
+					idParentCasillaA.style.pointerEvents = "none";
 
-					} else { // CASO EN EL QUE EL PAR NO COINCIDE
+				} else { // CASO EN EL QUE EL PAR NO COINCIDE
 
-						valorCartaSeleccionadaB = valorDeLaCarta;
-						FailB = idCartaAColocar;
-						cartaProcesada = 1;
+					valorCartaSeleccionadaB = valorDeLaCarta;
+					FailB = idCartaAColocar;
+					cartaProcesada = 1;
 
-						const idParentCasillaB = document.getElementById(cartaAColocar);
-						idParentCasillaB.style.pointerEvents = "none"; 
+					const idParentCasillaB = document.getElementById(cartaAColocar);
+					idParentCasillaB.style.pointerEvents = "none"; 
 
-						const valorComparativaDeCartas = (valorA,valorB) => {
-							return new Promise((resolve,reject) => {
-								if (valorA === valorB) {
-									console.log('Resuelto: true');
-									resolve(true);
-								} else {
-									console.log('Rechazado: false');
-									reject(false);
-								} 
-							});
-						}
+					const valorComparativaDeCartas = (valorA,valorB) => {
+						return new Promise((resolve,reject) => {
+							if (valorA === valorB) {
+								console.log('Resuelto: true');
+								resolve(true);
+							} else {
+								console.log('Rechazado: false');
+								reject(false);
+							} 
+						});
+					}
 
-						async function comparar() {
+					async function comparar() {
 
 							try {
 								
@@ -808,6 +408,7 @@ async function cargarContenido(){
 										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
 
 										const todasLasCasillas = document.querySelectorAll(".casilla");
+
 
 										await esperarVentana(1000);
 
@@ -863,7 +464,8 @@ async function cargarContenido(){
 												let botonPlay = document.getElementById('play');
 												botonPlay.addEventListener('click', cargarContenido);
 										
-												botonPlay.addEventListener('mouseover', () => {
+												botonPlay.addEventListe
+												ner('mouseover', () => {
 													buttonPlay.play();
 												});
 											} 									
@@ -963,6 +565,434 @@ async function cargarContenido(){
 									activarVentanaModalFail(FailA,FailB);
 								}
 
+								activarVentanaModalFail(FailA,FailB);			}}
+
+					comparar();
+
+				}
+
+					});	} 
+
+	}
+
+	
+	});  } */
+
+async function cargarContenido() {
+	let tableroCartas = [[9,16,1,8],
+	[8,18,7,24],
+	[1,24,7,10],
+	[16,18,10,9]];	
+
+	contenidoPrincipal.innerHTML = `
+		<div class = "contenedor-tablero-estadisticas">	
+					<div class = "tablero-cartas" id = "tabla">
+
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "1" id = "0-1" data-coordenada = "0-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "2" id = "0-2" data-coordenada = "0-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+						</div>
+						<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>						
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "2" id = "1-2" data-coordenada = "1-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+						</div>
+
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "0" id = "2-0" data-coordenada = "2-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>						
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "1" id = "2-1" data-coordenada = "2-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "2" id = "2-2" data-coordenada = "2-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "2" data-ejeY = "3" id = "2-3" data-coordenada = "2-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+						</div>						
+
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "0" id = "3-0" data-coordenada = "3-0">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>						
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "1" id = "3-1" data-coordenada = "3-1">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "2" id = "3-2" data-coordenada = "3-2">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+						</div>
+						<div class = "casilla" data-ejeX = "3" data-ejeY = "3" id = "3-3" data-coordenada = "3-3">
+							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+						</div>						
+
+					</div>
+
+						<div class = "ventana-modal">
+								<div class = "contenido-modal">
+								</div>
+						</div>	
+
+						<div class = ventanaModal" id = "ventana-continuar">
+							<div class = "contenedor-opciones">
+								<div class = "opcion" id = "reiniciar-partida">
+									<button class = "boton" id = "boton-reiniciar-partida">
+										Play again!	
+									</button>
+								</div>
+								<div class = "opcion" id = "reiniciar-juego">
+									<button class = "boton" id = "boton-reiniciar-juego">
+										Restart game!
+									</button>
+								</div>
+							</div>
+						</div>
+
+					<div class = "estadisticas-vidas" id = "est-vid">
+
+						<div class = "display-vidas" id = "vidas">
+							<div class = "display-vidas-img" id = "vidas">
+								<label for="vidas" class="entrada-vidas">Vidas:</label>
+   					  			<div class = "vidas-img" id = "vidas-img-contenedor">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida1">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida2">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida3">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida4">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida5">
+								</div>
+							</div>
+						</div>
+
+						<div class = "display-score" id = "score">
+							<div class = "display-score-numbers">
+								<label for="scores" class="entrada-scores">Score:</label>
+								<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
+							</div>
+						</div>
+
+						<div class = "display-video" id = "video">
+
+						</div>
+
+					</div>
+					
+					<div class = "pausar-musica">
+						<div class = "musica-icon">
+							<img src = "images/eren.png" class = "ico-character" id = "icon-eren">
+							<img src = "images/mikasa.png" class = "ico-character" id = "icon-mikasa">
+							<img src = "images/armin.png" class = "ico-character" id = "icon-armin">
+							<img src = "images/levi.png" class = "ico-character" id = "icon-levi">
+							<img src = "images/soundIco.png" class = "ico-sound">
+						</div>
+					</div>
+		</div>
+	`;
+
+	boardGame.play();
+	boardGame.loop = true;
+
+	const displayScore = document.getElementById('entrada-score');
+	const casillas = document.querySelectorAll('.casilla');
+	let cartaProcesada = 1;
+	let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
+	let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
+	let contadorVidas = 5;
+	let tabla = document.getElementById('tabla');
+	let casillasBloqueadas = [];
+	let casillasDesbloqueadas = [];
+	let contadorAciertos = 0;
+	const botonActivarDesactivarSonido = document.querySelector('.pausar-musica');
+	let musicaPause = true;
+
+	botonActivarDesactivarSonido.addEventListener('click', () => {
+		if (musicaPause) {
+			boardGame.pause();
+			musicaPause = false;
+		} else {
+			boardGame.play();
+			musicaPause = true;
+		}
+	});
+
+	primerVistazoTablero = async () => {
+		for (let casilla of casillas) {
+			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));
+			let cartaAColocar = casilla.getAttribute('data-coordenada');
+			let idCartaAColocar = document.getElementById(cartaAColocar);
+			let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+
+			if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
+				let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
+				idCartaAColocar.innerHTML = imagenNueva;
+			}		   
+		}
+
+		const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+		for (let casilla of casillas) {
+			let cartaAColocar = casilla.getAttribute('data-coordenada');
+			let idCartaAColocar = document.getElementById(cartaAColocar);
+
+			tabla.style.pointerEvents = "none";
+
+			await delay(500);
+
+			tabla.style.pointerEvents = "auto";
+			idCartaAColocar.innerHTML = imgReversoCarta;
+			cardPut.play();}};
+
+	await primerVistazoTablero();
+
+		for(casilla of casillas) {					
+			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));				
+			let cartaAColocar = casilla.getAttribute('data-coordenada');
+			let idCartaAColocar = document.getElementById(cartaAColocar);
+
+			casilla.addEventListener('click', async () => {
+				cardPut.play();
+
+				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+				
+				if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
+					let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
+					idCartaAColocar.innerHTML = imagenNueva;
+				}	
+
+				if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
+					valorCartaSeleccionadaA = valorDeLaCarta;
+					FailA = idCartaAColocar;
+					cartaProcesada++;
+
+					const idParentCasillaA = document.getElementById(cartaAColocar);
+					idParentCasillaA.style.pointerEvents = "none";
+
+				} else { // CASO EN EL QUE EL PAR NO COINCIDE
+
+					valorCartaSeleccionadaB = valorDeLaCarta;
+					FailB = idCartaAColocar;
+					cartaProcesada = 1;
+
+					const idParentCasillaB = document.getElementById(cartaAColocar);
+					idParentCasillaB.style.pointerEvents = "none"; 
+
+					const valorComparativaDeCartas = (valorA,valorB) => {
+						return new Promise((resolve,reject) => {
+							if (valorA === valorB) {
+								console.log('Resuelto: true');
+								resolve(true);
+							} else {
+								console.log('Rechazado: false');
+								reject(false);
+							} 
+						});}
+
+						async function comparar() {
+
+							try {
+								
+								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
+
+								if (resultadoComparativa) {
+									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
+									let displayNroScore = parseInt(displayScore.value);
+									let ventanaModal = document.querySelector('.ventana-modal');
+
+									contadorAciertos++;
+									displayScore.value = displayNroScore + 1000;
+									console.log(contadorAciertos);
+
+									async function activarVentanaModal(valorA,valorB){	
+										
+										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
+
+										const todasLasCasillas = document.querySelectorAll(".casilla");
+
+										await esperarVentana(1000);
+
+										todasLasCasillas.forEach(casilla => {
+											casilla.style.pointerEvents = "none";
+										});
+
+										
+										ventanaModal.innerHTML = imagenNice;
+										ventanaModal.style.display = "flex";
+										ventanaModal.style.pointerEvents = "none";
+										rightAnswer.play();
+										
+										await esperarVentana(3000);
+
+										ventanaModal.style.display = "none";
+
+										todasLasCasillas.forEach(casilla => {								    	
+											if (valorA === casilla || valorB === casilla) {
+												casillasBloqueadas.push(casilla);
+											} else if(!casillasBloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											}
+										});
+
+										async function irALaPantallaPrincipalWin(){
+											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+											const todasLasCasillas = document.querySelectorAll('.casilla');
+
+											if (contadorAciertos === 8) {
+												let imagenWin = `<img src = "images/youWin.jpg" class = "img-modal">`;
+												let ventanaModal = document.querySelector('.ventana-modal');
+
+												ventanaModal.innerHTML = imagenWin;
+												ventanaModal.style.display = "flex";
+												ventanaModal.style.pointerEvents = "none";
+
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
+
+												youWin.play();
+												await delay(3000);
+												
+											    ventanaModal.style.display = "none";
+												await delay(1000);
+
+												let ventanaModalFinal = document.getElementById('ventana-continuar');
+												ventanaModalFinal.style.display = "flex";
+
+												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
+												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
+
+												botonReiniciarPartida.addEventListener('click', cargarContenido);
+
+												botonReiniciarJuego.addEventListener('click',() => {
+													contenidoPrincipal.innerHTML = `
+													<div class="titulo">
+														<img src="images/imgLogo.png.png" class="play-img">
+														<button class="boton" id="play">Play!</button>
+													</div>
+													`;	
+													
+													let botonPlay = document.getElementById('play');
+													botonPlay.addEventListener('click', cargarContenido);
+												});
+											} 									
+										}
+
+										irALaPantallaPrincipalWin();
+
+									}
+
+									activarVentanaModal(FailA,FailB);	
+								} 
+
+							} catch(error) {
+								const activarVentanaModalFail = (valorA,valorB) => {
+									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
+									let ventanaModal = document.querySelector('.ventana-modal');
+									let contenedorVidas = document.getElementById('vidas-img-contenedor');
+
+									async function activarVentanaModalFail(valorA,valorB) {
+										
+										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+										const todasLasCasillas = document.querySelectorAll(".casilla");
+
+										contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+										contadorVidas--;
+
+										await esperarVentana(1000);
+
+										gameOver.play();
+										ventanaModal.innerHTML = imagenFail;
+										ventanaModal.style.display = "flex";
+										ventanaModal.style.pointerEvents = "none";
+										
+										todasLasCasillas.forEach(casilla => {
+											casilla.style.pointerEvents = "none";
+										});
+										
+										await esperarVentana(5000);
+
+										cardPut.play();
+										ventanaModal.style.display = "none";
+										valorA.innerHTML = imgReversoCarta;
+										valorB.innerHTML = imgReversoCarta;
+										
+										todasLasCasillas.forEach(casilla => {
+											if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
+												casillasDesbloqueadas.push(casilla);
+											} else if(casillasDesbloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
+												casilla.style.pointerEvents = "auto";
+											}
+
+										});										
+
+										async function irALaPantallaPrincipal() {
+											
+											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+											const todasLasCasillas = document.querySelectorAll('.casilla');
+
+											if (contadorVidas === 0) {
+												let imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
+												let ventanaModal = document.querySelector('.ventana-modal');
+
+												ventanaModal.innerHTML = imagenFail;
+												ventanaModal.style.display = "flex";
+												ventanaModal.style.pointerEvents = "none";
+												
+												const todasLasCasillas = document.querySelectorAll('.casilla');
+
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
+												
+												gameOver1.play();
+												await delay(10000);
+												ventanaModal.style.display = "none";
+												await delay(1000);
+
+												let ventanaModalFinal = document.getElementById('ventana-continuar');
+												ventanaModalFinal.style.display = "flex";
+
+												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
+												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
+
+												botonReiniciarPartida.addEventListener('click', cargarContenido);
+
+												botonReiniciarJuego.addEventListener('click',() => {
+													contenidoPrincipal.innerHTML = `
+													<div class="titulo">
+														<img src="images/imgLogo.png.png" class="play-img">
+														<button class="boton" id="play">Play!</button>
+													</div>
+													`;	
+													
+													let botonPlay = document.getElementById('play');
+													botonPlay.addEventListener('click', cargarContenido);
+												});
+											}
+										}		
+
+										irALaPantallaPrincipal();
+									}								
+
+									activarVentanaModalFail(FailA,FailB);
+								}
+
 								activarVentanaModalFail(FailA,FailB);			}
 							}
 
@@ -970,12 +1000,7 @@ async function cargarContenido(){
 
 						}
 
-					});	} 
-
-	}
-
-	
-	});  }
+					});	}} 
 
 botonStart.addEventListener('click', cargarContenido);
 
