@@ -691,13 +691,7 @@ async function cargarContenido() {
 					</div>
 					
 					<div class = "pausar-musica">
-						<div class = "musica-icon">
-							<img src = "images/eren.png" class = "ico-character" id = "icon-eren">
-							<img src = "images/mikasa.png" class = "ico-character" id = "icon-mikasa">
-							<img src = "images/armin.png" class = "ico-character" id = "icon-armin">
-							<img src = "images/levi.png" class = "ico-character" id = "icon-levi">
-							<img src = "images/soundIco.png" class = "ico-sound">
-						</div>
+						<img src = "images/soundIco.png" class = "ico-sound">
 					</div>
 		</div>
 	`;
@@ -717,14 +711,17 @@ async function cargarContenido() {
 	let contadorAciertos = 0;
 	const botonActivarDesactivarSonido = document.querySelector('.pausar-musica');
 	let musicaPause = true;
+	const icoSound = document.querySelector('.ico-sound');
 
 	botonActivarDesactivarSonido.addEventListener('click', () => {
 		if (musicaPause) {
 			boardGame.pause();
 			musicaPause = false;
+			icoSound.style.opacity = "0.5";
 		} else {
 			boardGame.play();
 			musicaPause = true;
+			icoSound.style.opacity = "1";
 		}
 	});
 
