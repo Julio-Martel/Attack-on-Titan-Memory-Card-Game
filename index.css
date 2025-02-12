@@ -242,8 +242,11 @@ input {
 	justify-content: center;
 	width: 30%;
 	max-width: 50px;
+	height: 5%;
+	max-height: 50px;
 	border: solid 1px darkgrey;
   border-radius: 5px;
+  align-items: center;
 }
 
 .ico-sound {
