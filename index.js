@@ -12,9 +12,9 @@ const boardGame = new Audio('audios/boardGame.mp3');
 
 async function cargarContenido() {
 	let tableroCartas = [[9,16,1,8],
-	[8,18,7,24],
-	[1,24,7,10],
-	[16,18,10,9]];	
+						 [8,18,7,24],
+						 [1,24,7,10],
+						 [16,18,10,9]];	
 
 	contenidoPrincipal.innerHTML = `
 		<div class = "contenedor-tablero-estadisticas">	
@@ -135,9 +135,9 @@ async function cargarContenido() {
 	const casillas = document.querySelectorAll('.casilla');
 	let cartaProcesada = 1;
 	let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
-	let imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
+	const imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
 	let contadorVidas = 5;
-	let tabla = document.getElementById('tabla');
+	const tabla = document.getElementById('tabla');
 	let casillasBloqueadas = [];
 	let casillasDesbloqueadas = [];
 	let contadorAciertos = 0;
@@ -183,210 +183,208 @@ async function cargarContenido() {
 
 			tabla.style.pointerEvents = "auto";
 			idCartaAColocar.innerHTML = imgReversoCarta;
-			cardPut.play();}};
+			cardPut.play();
+		}
+	};
 
 	await primerVistazoTablero();
 
-		for(casilla of casillas) {					
-			let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
-			let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));				
-			let cartaAColocar = casilla.getAttribute('data-coordenada');
-			let idCartaAColocar = document.getElementById(cartaAColocar);
+	for(casilla of casillas) {					
+		let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+		let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));				
+		let cartaAColocar = casilla.getAttribute('data-coordenada');
+		let idCartaAColocar = document.getElementById(cartaAColocar);
 
-			casilla.addEventListener('click', async () => {
-				cardPut.play();
+		casilla.addEventListener('click', async () => {
+			cardPut.play();
 
-				let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+			let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 				
-				if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
-					let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
-					idCartaAColocar.innerHTML = imagenNueva;
-				}	
+			if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
+				let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
+				idCartaAColocar.innerHTML = imagenNueva;
+			}	
 
-				if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
-					valorCartaSeleccionadaA = valorDeLaCarta;
-					FailA = idCartaAColocar;
-					cartaProcesada++;
+			if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
+				valorCartaSeleccionadaA = valorDeLaCarta;
+				FailA = idCartaAColocar;
+				cartaProcesada++;
 
-					const idParentCasillaA = document.getElementById(cartaAColocar);
-					idParentCasillaA.style.pointerEvents = "none";
+				const idParentCasillaA = document.getElementById(cartaAColocar);
+				idParentCasillaA.style.pointerEvents = "none";
 
-				} else { // CASO EN EL QUE EL PAR NO COINCIDE
+			} else { // CASO EN EL QUE EL PAR NO COINCIDE
 
-					valorCartaSeleccionadaB = valorDeLaCarta;
-					FailB = idCartaAColocar;
-					cartaProcesada = 1;
+				valorCartaSeleccionadaB = valorDeLaCarta;
+				FailB = idCartaAColocar;
+				cartaProcesada = 1;
 
-					const idParentCasillaB = document.getElementById(cartaAColocar);
-					idParentCasillaB.style.pointerEvents = "none"; 
+				const idParentCasillaB = document.getElementById(cartaAColocar);
+				idParentCasillaB.style.pointerEvents = "none"; 
 
-					const valorComparativaDeCartas = (valorA,valorB) => {
-						return new Promise((resolve,reject) => {
-							if (valorA === valorB) {
-								console.log('Resuelto: true');
-								resolve(true);
-							} else {
-								console.log('Rechazado: false');
-								reject(false);
-							} 
-						});}
+				const valorComparativaDeCartas = (valorA,valorB) => {
+					return new Promise((resolve,reject) => {
+						if (valorA === valorB) {
+							console.log('Resuelto: true');
+							resolve(true);
+						} else {
+							console.log('Rechazado: false');
+							reject(false);
+						} 
+					});
+				}
 
-						async function comparar() {
-
-							try {
+				async function comparar() {
+					try {
 								
-								let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
+						let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
 
-								if (resultadoComparativa) {
-									let imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
-									let displayNroScore = parseInt(displayScore.value);
-									let ventanaModal = document.querySelector('.ventana-modal');
+						if (resultadoComparativa) {
+							const imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
+							let displayNroScore = parseInt(displayScore.value);
+							const ventanaModal = document.querySelector('.ventana-modal');
 
-									contadorAciertos++;
-									displayScore.value = displayNroScore + 1000;
-									console.log(contadorAciertos);
+							contadorAciertos++;
+							displayScore.value = displayNroScore + 1000;
 
-									async function activarVentanaModal(valorA,valorB){	
+							async function activarVentanaModal(valorA,valorB){			
+								const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
+								const todasLasCasillas = document.querySelectorAll(".casilla");
+
+								await esperarVentana(1000);
+
+								todasLasCasillas.forEach(casilla => {
+									casilla.style.pointerEvents = "none";
+								});
+
+								/*
+								ventanaModal.innerHTML = imagenNice;
+								ventanaModal.style.display = "flex";
+								ventanaModal.style.pointerEvents = "none";
+								rightAnswer.play();
 										
-										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
+								await esperarVentana(3000);
 
-										const todasLasCasillas = document.querySelectorAll(".casilla");
+								ventanaModal.style.display = "none";
 
-										await esperarVentana(1000);
+								*/
+
+								todasLasCasillas.forEach(casilla => {								    	
+									if (valorA === casilla || valorB === casilla) {
+										casillasBloqueadas.push(casilla);
+									} else if(!casillasBloqueadas.includes(casilla)){
+										casilla.style.pointerEvents = "auto";
+									}
+								});
+
+								async function irALaPantallaPrincipalWin(){
+									const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+									const todasLasCasillas = document.querySelectorAll('.casilla');
+
+									if (contadorAciertos === 8) {
+										let imagenWin = `<img src = "images/youWin.jpg" class = "img-modal">`;
+										let ventanaModal = document.querySelector('.ventana-modal');
+
+										ventanaModal.innerHTML = imagenWin;
+										ventanaModal.style.display = "flex";
+										ventanaModal.style.pointerEvents = "none";
 
 										todasLasCasillas.forEach(casilla => {
 											casilla.style.pointerEvents = "none";
 										});
 
-										/*
-										ventanaModal.innerHTML = imagenNice;
-										ventanaModal.style.display = "flex";
-										ventanaModal.style.pointerEvents = "none";
-										rightAnswer.play();
-										
-										await esperarVentana(3000);
-
-										ventanaModal.style.display = "none";
-
-										*/
-
-										todasLasCasillas.forEach(casilla => {								    	
-											if (valorA === casilla || valorB === casilla) {
-												casillasBloqueadas.push(casilla);
-											} else if(!casillasBloqueadas.includes(casilla)){
-												casilla.style.pointerEvents = "auto";
-											}
-										});
-
-										async function irALaPantallaPrincipalWin(){
-											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-											const todasLasCasillas = document.querySelectorAll('.casilla');
-
-											if (contadorAciertos === 8) {
-												let imagenWin = `<img src = "images/youWin.jpg" class = "img-modal">`;
-												let ventanaModal = document.querySelector('.ventana-modal');
-
-												ventanaModal.innerHTML = imagenWin;
-												ventanaModal.style.display = "flex";
-												ventanaModal.style.pointerEvents = "none";
-
-												todasLasCasillas.forEach(casilla => {
-													casilla.style.pointerEvents = "none";
-												});
-
-												youWin.play();
-												await delay(3000);
+										youWin.play();
+										await delay(3000);
 												
-											    ventanaModal.style.display = "none";
-												await delay(1000);
+										ventanaModal.style.display = "none";
+										await delay(1000);
 
-												let ventanaModalFinal = document.getElementById('ventana-continuar');
-												ventanaModalFinal.style.display = "flex";
+										let ventanaModalFinal = document.getElementById('ventana-continuar');
+										ventanaModalFinal.style.display = "flex";
 
-												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
-												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
+										let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
+										let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
 
-												botonReiniciarPartida.addEventListener('click', cargarContenido);
+										botonReiniciarPartida.addEventListener('click', cargarContenido);
 
-												botonReiniciarJuego.addEventListener('click',() => {
-													contenidoPrincipal.innerHTML = `
-													<div class="titulo">
-														<img src="images/imgLogo.png" class="play-img">
-														<button class="boton" id="play">Play!</button>
-													</div>
-													`;	
+										botonReiniciarJuego.addEventListener('click',() => {
+											contenidoPrincipal.innerHTML = `
+											<div class="titulo">
+												<img src="images/imgLogo.png" class="play-img">
+												<button class="boton" id="play">Play!</button>
+											</div>
+											`;	
 													
-													let botonPlay = document.getElementById('play');
-													botonPlay.addEventListener('click', cargarContenido);
-												});
-											} 									
-										}
+											let botonPlay = document.getElementById('play');
+											botonPlay.addEventListener('click', cargarContenido);
+										});
+									} 									
+								}
 
-										irALaPantallaPrincipalWin();
+								irALaPantallaPrincipalWin();
 
-									}
+							}
 
 									activarVentanaModal(FailA,FailB);	
-								} 
+						} 
 
-							} catch(error) {
-								const activarVentanaModalFail = (valorA,valorB) => {
-									let imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
-									let ventanaModal = document.querySelector('.ventana-modal');
-									let contenedorVidas = document.getElementById('vidas-img-contenedor');
+					} catch(error) {
+						const activarVentanaModalFail = (valorA,valorB) => {
+						const imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
+						const ventanaModal = document.querySelector('.ventana-modal');
+						const contenedorVidas = document.getElementById('vidas-img-contenedor');
 
-									async function activarVentanaModalFail(valorA,valorB) {
+						async function activarVentanaModalFail(valorA,valorB) {
 										
-										const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-										const todasLasCasillas = document.querySelectorAll(".casilla");
+							const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+							const todasLasCasillas = document.querySelectorAll(".casilla");
 
-										contenedorVidas.removeChild(contenedorVidas.lastElementChild);
-										contadorVidas--;
+							contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+							contadorVidas--;
 
-										await esperarVentana(1000);
+							await esperarVentana(1000);
 
-										/*
-										gameOver.play();
-										ventanaModal.innerHTML = imagenFail;
-										ventanaModal.style.display = "flex";
-										ventanaModal.style.pointerEvents = "none";
+							/*
+							gameOver.play();
+							ventanaModal.innerHTML = imagenFail;
+							ventanaModal.style.display = "flex";
+							ventanaModal.style.pointerEvents = "none";
 										
-										todasLasCasillas.forEach(casilla => {
-											casilla.style.pointerEvents = "none";
-										});
+							todasLasCasillas.forEach(casilla => {
+								casilla.style.pointerEvents = "none";
+							});
 										
-										await esperarVentana(5000);
+							await esperarVentana(5000);
 
-										ventanaModal.style.display = "none";
-										*/
+							ventanaModal.style.display = "none";
+							*/
 
-										todasLasCasillas.forEach(casilla => {
-											casilla.style.pointerEvents = "none";
-										});
+							todasLasCasillas.forEach(casilla => {
+								casilla.style.pointerEvents = "none";
+							});
 
-										cardPut.play();
-										valorA.innerHTML = imgReversoCarta;
-										valorB.innerHTML = imgReversoCarta;
+							cardPut.play();
+							valorA.innerHTML = imgReversoCarta;
+							valorB.innerHTML = imgReversoCarta;
 										
-										todasLasCasillas.forEach(casilla => {
-											if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
-												casillasDesbloqueadas.push(casilla);
-											} else if(casillasDesbloqueadas.includes(casilla)){
-												casilla.style.pointerEvents = "auto";
-											} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
-												casilla.style.pointerEvents = "auto";
-											}
+							todasLasCasillas.forEach(casilla => {
+								if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
+									casillasDesbloqueadas.push(casilla);
+								} else if(casillasDesbloqueadas.includes(casilla)){
+									casilla.style.pointerEvents = "auto";
+								} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
+									casilla.style.pointerEvents = "auto";
+								}
 
-										});										
+							});										
 
-										async function irALaPantallaPrincipal() {
-											
-											const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-											const todasLasCasillas = document.querySelectorAll('.casilla');
+							async function irALaPantallaPrincipal() {			
+								const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+								const todasLasCasillas = document.querySelectorAll('.casilla');
 
-											if (contadorVidas === 0) {
-												let imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
-												let ventanaModal = document.querySelector('.ventana-modal');
+								if (contadorVidas === 0) {
+									const imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
+									const ventanaModal = document.querySelector('.ventana-modal');
 
 												ventanaModal.innerHTML = imagenFail;
 												ventanaModal.style.display = "flex";
@@ -1037,7 +1035,7 @@ async function cargarContenido() {
 }
 
 
-});  } 	*/
+});  }*/
 
 botonStart.addEventListener('click', cargarContenido);
 botonStart.addEventListener('mouseover', () => buttonPlay.play());
