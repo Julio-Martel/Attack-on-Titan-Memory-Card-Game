@@ -414,7 +414,7 @@ async function cargarContenido() {
 												botonReiniciarJuego.addEventListener('click',() => {
 													contenidoPrincipal.innerHTML = `
 													<div class="titulo">
-														<img src="images/imgLogo.png.png" class="play-img">
+														<img src="images/imgLogo.png" class="play-img">
 														<button class="boton" id="play">Play!</button>
 													</div>
 													`;	
