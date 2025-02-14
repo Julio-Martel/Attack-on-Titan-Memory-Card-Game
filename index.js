@@ -179,7 +179,7 @@ async function cargarContenido() {
 
 			tabla.style.pointerEvents = "none";
 
-			await delay(500);
+			await delay(450);
 
 			tabla.style.pointerEvents = "auto";
 			idCartaAColocar.innerHTML = imgReversoCarta;
@@ -246,6 +246,7 @@ async function cargarContenido() {
 
 							contadorAciertos++;
 							displayScore.value = displayNroScore + 1000;
+							rightAnswer.play();
 
 							async function activarVentanaModal(valorA,valorB){			
 								const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
@@ -342,14 +343,13 @@ async function cargarContenido() {
 							contenedorVidas.removeChild(contenedorVidas.lastElementChild);
 							contadorVidas--;
 
-							await esperarVentana(1000);
-
 							/*
 							gameOver.play();
 							ventanaModal.innerHTML = imagenFail;
 							ventanaModal.style.display = "flex";
 							ventanaModal.style.pointerEvents = "none";
 										
+			
 							todasLasCasillas.forEach(casilla => {
 								casilla.style.pointerEvents = "none";
 							});
@@ -362,6 +362,8 @@ async function cargarContenido() {
 							todasLasCasillas.forEach(casilla => {
 								casilla.style.pointerEvents = "none";
 							});
+
+							await esperarVentana(1000);
 
 							cardPut.play();
 							valorA.innerHTML = imgReversoCarta;
@@ -386,40 +388,40 @@ async function cargarContenido() {
 									const imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
 									const ventanaModal = document.querySelector('.ventana-modal');
 
-												ventanaModal.innerHTML = imagenFail;
-												ventanaModal.style.display = "flex";
-												ventanaModal.style.pointerEvents = "none";
+									ventanaModal.innerHTML = imagenFail;
+									ventanaModal.style.display = "flex";
+									ventanaModal.style.pointerEvents = "none";
 												
-												const todasLasCasillas = document.querySelectorAll('.casilla');
+									const todasLasCasillas = document.querySelectorAll('.casilla');
 
-												todasLasCasillas.forEach(casilla => {
-													casilla.style.pointerEvents = "none";
-												});
+									todasLasCasillas.forEach(casilla => {
+										casilla.style.pointerEvents = "none";
+									});
 												
-												gameOver1.play();
-												await delay(10000);
-												ventanaModal.style.display = "none";
-												await delay(1000);
+									gameOver1.play();
+									await delay(1000);
+									ventanaModal.style.display = "none";
+									await delay(10000);
 
-												let ventanaModalFinal = document.getElementById('ventana-continuar');
-												ventanaModalFinal.style.display = "flex";
+									let ventanaModalFinal = document.getElementById('ventana-continuar');
+									ventanaModalFinal.style.display = "flex";
 
-												let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
-												let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');			// Aqui tiene que ir el contenedor que mostrara las dos opciones
+									let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
+									let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');			// Aqui tiene que ir el contenedor que mostrara las dos opciones
 
-												botonReiniciarPartida.addEventListener('click', cargarContenido);
+									botonReiniciarPartida.addEventListener('click', cargarContenido);
 
-												botonReiniciarJuego.addEventListener('click',() => {
-													contenidoPrincipal.innerHTML = `
-													<div class="titulo">
-														<img src="images/imgLogo.png" class="play-img">
-														<button class="boton" id="play">Play!</button>
-													</div>
-													`;	
+									botonReiniciarJuego.addEventListener('click',() => {
+										contenidoPrincipal.innerHTML = `
+										<div class="titulo">
+											<img src="images/imgLogo.png" class="play-img">
+											<button class="boton" id="play">Play!</button>
+										</div>
+										`;	
 													
-													let botonPlay = document.getElementById('play');
-													botonPlay.addEventListener('click', cargarContenido);
-												});
+										let botonPlay = document.getElementById('play');
+										botonPlay.addEventListener('click', cargarContenido);
+									});
 											}
 										}		
 
