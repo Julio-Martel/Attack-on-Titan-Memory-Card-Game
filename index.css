@@ -171,7 +171,7 @@ body{
 }
 
 input {
-  border: 2px solid darkgrey; /* Borde de 2px de grosor, color verde */
+  border: 1px solid darkgrey; /* Borde de 2px de grosor, color verde */
   padding: 5px; /* Espaciado interno */
   border-radius: 5px; /* Bordes redondeados */
   font-family: 'The Dark Titan Classic';
@@ -399,6 +399,7 @@ input {
 }
 
 #ventana-continuar {
+	backdrop-filter: blur(10px);
 	display: none;
 	width: 100%;
 	height: 100%;
@@ -411,7 +412,7 @@ input {
 }
 
 .contenedor-opciones {
-	background: yellow;
+	background: linear-gradient(to right, darkgreen, green, white);
 	width: 60%;
 	height: 500px;
 	display: flex;
@@ -419,14 +420,102 @@ input {
 	justify-content: center;
 	align-items: center;
 	padding: 15px;
+	border: solid 1px #000000;
+	border-radius: 5px;
 }
 
 .opcion {
 	background: yellow;
 	width: 20%;
-	height: 50%;
+	height: 70%;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	border: solid 1px #000000;
 	border-radius: 5px;
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+
+	body {
+		background: linear-gradient(to right, darkgrey, grey, black);
+	}
+
+	.contenido-principal {
+		height: 760px;
+		margin: 10px auto;
+	}
+
+	.play-img {
+		width: 100%;
+		height: 60%;
+	}
+
+	.contenedor-tablero-estadisticas {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tablero-cartas {
+		width: 100%;
+	}
+
+	.estadisticas-vidas {
+		width: 100%;
+		height: 100px;
+		padding: 0px;
+	}
+
+	.display-video {
+		display: none;
+	}
+
+	.display-vidas {
+		width: 100%;
+		height: 100px;
+	}
+
+	.entrada-vidas {
+		font-family: 'The Dark Titan Classic';
+		color: #ffffff;
+	}
+
+	.vidas-img {
+		background: url('images/fondo1.jpg');
+		background-size: cover;
+		width: 100%;
+		height: 30px;
+		border: solid 1px darkgrey;
+		border-radius: 5px;
+		display: none;
+		gap: 5px;
+	}
+
+	.vida-img {
+		width: 35px;
+	}
+
+	.display-score {
+	 	width: 100%;
+	 	height: 100px;
+	}	
+
+	.display-score-numbers {
+		display: none;
+		flex-direction: column;
+		justify-content: right;
+		gap: 2px;
+		width: 50%;
+	}
+
+	.entrada-scores {
+		font-family: 'The Dark Titan Classic';
+		color: #ffffff;
+	}
+
+	.pausar-musica {
+		display: flex;
+	}
+
 }
