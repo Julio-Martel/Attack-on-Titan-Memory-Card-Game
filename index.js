@@ -298,13 +298,17 @@ async function cargarContenido() {
 										await delay(3000);
 												
 										ventanaModal.style.display = "none";
-										await delay(1000);
+										await delay(500);
 
 										let ventanaModalFinal = document.getElementById('ventana-continuar');
 										ventanaModalFinal.style.display = "flex";
 
 										let botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
 										let botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
+
+										botonReiniciarJuego.addEventListener('mouseover', () => buttonPlay.play());
+
+										botonReiniciarPartida.addEventListener('mouseover', () => buttonPlay.play());
 
 										botonReiniciarPartida.addEventListener('click', cargarContenido);
 
@@ -399,9 +403,9 @@ async function cargarContenido() {
 									});
 												
 									gameOver1.play();
-									await delay(1000);
+									await delay(5000);
 									ventanaModal.style.display = "none";
-									await delay(10000);
+									await delay(1000);
 
 									let ventanaModalFinal = document.getElementById('ventana-continuar');
 									ventanaModalFinal.style.display = "flex";
