@@ -18,16 +18,15 @@ body{
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	/*
 	background: url('images/fondo7.jpg');
-	background-size: cover;
+	background-size: cover;*/
 	margin: 25px auto;
 	padding: 5px;
 	width: 95%;
 	height: 95%;
 	max-width: 1600px;
 	height: 900px;
-	border: solid 1px #000000;
-	border-radius: 10px;
 	gap: 10px;
 }
 
@@ -189,18 +188,21 @@ input {
 }
 
 .contenedor-tablero-estadisticas {
-	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	gap: 10px;
-	padding: 5px;
+	max-width: 1000px;
+	max-height: 1000px;
+	gap: 5px;
+	align-items: center;
 }
 
 .tablero-cartas {
 	background: #000000;
 	display: grid;
-	width: 60%;
+	width: 100%;
   grid-template-columns: repeat(4, auto); 
   grid-template-rows: repeat(4,auto);
   border: solid 1px darkgrey;
@@ -222,10 +224,13 @@ input {
 }
 
 .estadisticas-vidas {
+	background: #000000;
 	display: flex;
-	flex-direction: column;
 	gap: 5px;
-	width: 40%;
+	width: 100%;
+	padding: 5px;
+  border: solid 1px darkgrey;
+  border-radius: 5px;
 }
 
 .carta-reverso {
@@ -247,9 +252,9 @@ input {
 	display: flex;
 	justify-content: center;
 	width: 30%;
-	max-width: 50px;
-	height: 5%;
-	max-height: 50px;
+	max-width: 50%;
+	height: 100%;
+	max-height: 100px;
 	border: solid 1px darkgrey;
   border-radius: 5px;
   align-items: center;
@@ -286,21 +291,13 @@ input {
 	background-size: cover;
 	background-position-x: 90%;
 	width: 100%;
-	height: 100px;
+	height: 70px;
 	display: flex;
 	flex-direction: column;
 	justify-content: left;
 	border-radius: 5px;
 	border: solid 1px darkgrey;
-}
-
-.display-video {
-	background: url('images/movie2.jpg');
-	background-size: cover;
-	background-position-y: 30%;
-	height: 100%;
-	border-radius: 5px;
-	border: solid 1px darkgrey;
+	justify-content: center;
 }
 
 .display-vidas-img {
@@ -338,7 +335,7 @@ input {
 	background: url('images/score.jpg');
 	background-size: cover;
 	width: 100%;
-	height: 100px;
+	height: 70px;
 	display: flex;
 	justify-content: right;
 	align-items: center;
@@ -371,6 +368,11 @@ input {
   -1px  1px 0 #000,
   1px  1px 0 #000;
 }
+
+
+
+
+
 
 .ventana-modal {
   background: rgba(0, 0, 0, 0.5);
@@ -412,7 +414,8 @@ input {
 }
 
 .contenedor-opciones {
-	background: linear-gradient(to right, darkgreen, green, white);
+	background: url('images/fondo4.jpg');
+	background-size: cover;
 	width: 60%;
 	height: 500px;
 	display: flex;
@@ -425,15 +428,27 @@ input {
 }
 
 .opcion {
-	background: yellow;
 	width: 20%;
 	height: 70%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: end;
 	border: solid 1px #000000;
 	border-radius: 5px;
+	padding: 5px;
 }
+
+#reiniciar-partida {
+	background: url('images/option1.jpg');
+	background-size: cover;
+}
+
+#reiniciar-juego {
+	background: url('images/option2.jpg');
+	background-size: cover;	
+	background-position-x: 30%;
+}
+
 
 @media (min-width: 400px) and (max-width: 800px) {
 
