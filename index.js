@@ -18,6 +18,31 @@ async function cargarContenido() {
 
 	contenidoPrincipal.innerHTML = `
 		<div class = "contenedor-tablero-estadisticas">	
+					<div class = "estadisticas-vidas" id = "est-vid">
+						<div class = "display-vidas" id = "vidas">
+							<div class = "display-vidas-img" id = "vidas">
+								<label for="vidas" class="entrada-vidas">Vidas:</label>
+   					  			<div class = "vidas-img" id = "vidas-img-contenedor">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida1">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida2">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida3">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida4">
+									<img src = "images/vida1.png" class = "vida-img" id = "vida5">
+								</div>
+							</div>
+						</div>
+
+						<div class = "display-score" id = "score">
+							<div class = "display-score-numbers">
+								<label for="scores" class="entrada-scores">Score:</label>
+								<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
+							</div>
+						</div>
+						<div class = "pausar-musica">
+							<img src = "images/soundIco.png" class = "ico-sound">
+						</div>
+					</div>
+					
 					<div class = "tablero-cartas" id = "tabla">
 
 						<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
@@ -71,7 +96,6 @@ async function cargarContenido() {
 						<div class = "casilla" data-ejeX = "3" data-ejeY = "3" id = "3-3" data-coordenada = "3-3">
 							<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
 						</div>						
-
 					</div>
 
 						<div class = "ventana-modal">
@@ -93,38 +117,6 @@ async function cargarContenido() {
 								</div>
 							</div>
 						</div>
-
-					<div class = "estadisticas-vidas" id = "est-vid">
-
-						<div class = "display-vidas" id = "vidas">
-							<div class = "display-vidas-img" id = "vidas">
-								<label for="vidas" class="entrada-vidas">Vidas:</label>
-   					  			<div class = "vidas-img" id = "vidas-img-contenedor">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida1">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida2">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida3">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida4">
-									<img src = "images/vida1.png" class = "vida-img" id = "vida5">
-								</div>
-							</div>
-						</div>
-
-						<div class = "display-score" id = "score">
-							<div class = "display-score-numbers">
-								<label for="scores" class="entrada-scores">Score:</label>
-								<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
-							</div>
-						</div>
-
-						<div class = "display-video" id = "video">
-
-						</div>
-
-					</div>
-					
-					<div class = "pausar-musica">
-						<img src = "images/soundIco.png" class = "ico-sound">
-					</div>
 		</div>
 	`;
 
@@ -258,18 +250,6 @@ async function cargarContenido() {
 									casilla.style.pointerEvents = "none";
 								});
 
-								/*
-								ventanaModal.innerHTML = imagenNice;
-								ventanaModal.style.display = "flex";
-								ventanaModal.style.pointerEvents = "none";
-								rightAnswer.play();
-										
-								await esperarVentana(3000);
-
-								ventanaModal.style.display = "none";
-
-								*/
-
 								todasLasCasillas.forEach(casilla => {								    	
 									if (valorA === casilla || valorB === casilla) {
 										casillasBloqueadas.push(casilla);
@@ -346,22 +326,6 @@ async function cargarContenido() {
 
 							contenedorVidas.removeChild(contenedorVidas.lastElementChild);
 							contadorVidas--;
-
-							/*
-							gameOver.play();
-							ventanaModal.innerHTML = imagenFail;
-							ventanaModal.style.display = "flex";
-							ventanaModal.style.pointerEvents = "none";
-										
-			
-							todasLasCasillas.forEach(casilla => {
-								casilla.style.pointerEvents = "none";
-							});
-										
-							await esperarVentana(5000);
-
-							ventanaModal.style.display = "none";
-							*/
 
 							todasLasCasillas.forEach(casilla => {
 								casilla.style.pointerEvents = "none";
