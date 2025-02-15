@@ -11,6 +11,14 @@
 body{
 	background: url('images/fondo4.jpg');
 	background-size: cover;
+	    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+    width: 100vw;  /* Ocupa el 100% del ancho de la pantalla */
+    overflow: hidden; /* Evita los scrolls */
 }
 
 .contenido-principal {
@@ -18,16 +26,16 @@ body{
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	/*
-	background: url('images/fondo7.jpg');
-	background-size: cover;*/
-	margin: 25px auto;
 	padding: 5px;
-	width: 95%;
-	height: 95%;
-	max-width: 1600px;
-	height: 900px;
+  width: 40vw;
+  height: 40vw;
+	max-width: 1000px;
+  max-height: 1000px;
 	gap: 10px;
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .titulo {
@@ -38,8 +46,8 @@ body{
 }
 
 .play-img {
-	width: 50%;
-	height: 60%;
+	width: 100%;
+	height: 100%;
 }
 
 .boton {
@@ -328,7 +336,7 @@ input {
 }
 
 .vida-img {
-	width: 35px;
+	width: 15%;
 }
 
 .display-score {
