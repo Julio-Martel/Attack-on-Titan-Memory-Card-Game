@@ -9,46 +9,35 @@
 }
 
 body{
-	background: url('images/fondo4.jpg');
-	background-size: cover;
-	    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
-    width: 100vw;  /* Ocupa el 100% del ancho de la pantalla */
-    overflow: hidden; /* Evita los scrolls */
+	background: linear-gradient(to right, purple, darkgreen, green, pink);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 3rem auto;
 }
 
 .contenido-principal {
+	background: rgba(0, 0, 0, 0.6);
 	display: flex;
 	justify-content: center;
-	align-content: center;
 	align-items: center;
-	padding: 5px;
-  width: 40vw;
-  height: 40vw;
-	max-width: 1000px;
-  max-height: 1000px;
-	gap: 10px;
-	position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	width: 90vw;
+	height: 90vh;
 }
+
 
 .titulo {
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	width: 90%;
+	flex-direction: column;
 }
 
 .play-img {
-	width: 100%;
-	height: 100%;
+	width: 60%;
+	height: 60%;
 }
+
 
 .boton {
 	background-color: #000000;
@@ -67,7 +56,7 @@ body{
 	border: solid 1px #000000;
 }
 
-.fomulario-contenedor {
+/*.fomulario-contenedor {
 	background: url('images/fondo2.png');
 	background-size: cover;
 	display: flex;
@@ -178,9 +167,9 @@ body{
 }
 
 input {
-  border: 1px solid darkgrey; /* Borde de 2px de grosor, color verde */
-  padding: 5px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
+  border: 1px solid darkgrey; 
+  padding: 5px; 
+  border-radius: 5px; 
   font-family: 'The Dark Titan Classic';
 }
 
@@ -203,7 +192,7 @@ input {
 	height: 100%;
 	max-width: 1000px;
 	max-height: 1000px;
-	gap: 5px;
+	gap: 10px;
 	align-items: center;
 }
 
@@ -232,13 +221,10 @@ input {
 }
 
 .estadisticas-vidas {
-	background: #000000;
+	background: yellow;
 	display: flex;
 	gap: 5px;
 	width: 100%;
-	padding: 5px;
-  border: solid 1px darkgrey;
-  border-radius: 5px;
 }
 
 .carta-reverso {
@@ -336,7 +322,7 @@ input {
 }
 
 .vida-img {
-	width: 15%;
+	width: 35px;
 }
 
 .display-score {
@@ -376,11 +362,6 @@ input {
   -1px  1px 0 #000,
   1px  1px 0 #000;
 }
-
-
-
-
-
 
 .ventana-modal {
   background: rgba(0, 0, 0, 0.5);
@@ -456,89 +437,4 @@ input {
 	background-size: cover;	
 	background-position-x: 30%;
 }
-
-
-@media (min-width: 400px) and (max-width: 800px) {
-
-	body {
-		background: linear-gradient(to right, darkgrey, grey, black);
-	}
-
-	.contenido-principal {
-		height: 760px;
-		margin: 10px auto;
-	}
-
-	.play-img {
-		width: 100%;
-		height: 60%;
-	}
-
-	.contenedor-tablero-estadisticas {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.tablero-cartas {
-		width: 100%;
-	}
-
-	.estadisticas-vidas {
-		width: 100%;
-		height: 100px;
-		padding: 0px;
-	}
-
-	.display-video {
-		display: none;
-	}
-
-	.display-vidas {
-		width: 100%;
-		height: 100px;
-	}
-
-	.entrada-vidas {
-		font-family: 'The Dark Titan Classic';
-		color: #ffffff;
-	}
-
-	.vidas-img {
-		background: url('images/fondo1.jpg');
-		background-size: cover;
-		width: 100%;
-		height: 30px;
-		border: solid 1px darkgrey;
-		border-radius: 5px;
-		display: none;
-		gap: 5px;
-	}
-
-	.vida-img {
-		width: 35px;
-	}
-
-	.display-score {
-	 	width: 100%;
-	 	height: 100px;
-	}	
-
-	.display-score-numbers {
-		display: none;
-		flex-direction: column;
-		justify-content: right;
-		gap: 2px;
-		width: 50%;
-	}
-
-	.entrada-scores {
-		font-family: 'The Dark Titan Classic';
-		color: #ffffff;
-	}
-
-	.pausar-musica {
-		display: flex;
-	}
-
-}
+*/
