@@ -122,6 +122,7 @@ body{
 .seccion {
 	width: 100%;
 	display: flex;
+	justify-content: center;
 	gap: 5px;
 }
 
@@ -420,9 +421,118 @@ input {
 		flex-direction: column-reverse;
 	}
 
+
 }
 
+
+@media (min-width: 320px) and (max-width: 480px) {
+ 
+	body {
+		overflow-y: hidden;
+	}
+
+  .contenido-principal {
+  	width: 85vw;
+  	height: 85vh;
+  }
+
+	.play-img {
+		width: 80vw;
+		height: 100%;
+	}
+
+	.contenedor-tablero-estadisticas {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		width: 90%;
+	}
+
+	.estadisticas-vidas {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 5px;
+		padding: 5px;
+	}
+
+	.display-vidas {
+		background: none;
+		width: 50%;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		padding: 3px;
+		align-items: center;
+	}
+
+	.display-vidas-img {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		width: 90%;
+	}
+
+	.vidas-img {
+		background: none;
+		display: flex;
+		width: 50
+		%;
+		border: solid 1px darkgrey;
+	}
+
+
+	.vida-img {
+		width: 5px;
+}
+
+	.display-score {
+		background: none;
+		width: 50%;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		padding: 3px;
+	}
+
+
+	.display-score-numbers {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		width: 90%;
+		padding: 5px;
+	}
+
+	#entrada-score {
+		font-size: 1rem;
+	}
+
+
+}
+
+
 @media (min-width: 769px) and (max-width: 1279px) {
+	
+	.contenedor-coordenadas-cartas {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 15px;
+		padding: 5px;
+	}
+
+	.formularios {
+		width: 90%;
+	}
+
+	.cartas {
+		width: 100%;
+	}
+
+	.encabezado-cartas {
+		text-align: center;
+	}
 
 	.contenedor-tablero-estadisticas {
 		display: flex;
@@ -431,4 +541,15 @@ input {
 		min-width: 90vw;
 		align-items: center;
 	}
+
+
+	.estadisticas-vidas {
+		background: #000000;
+		padding: 10px;
+		display: flex;
+		align-items: center;
+	}
+
+
 }
+
