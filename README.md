@@ -14,6 +14,6 @@ Este es un juego de cartas de memoria inspirado en Attack on Titan, desarrollado
 </ol>
 </p>
 <p aling="center>
-  <img src="images/capture1.jpeg" alt="menu"/>
+  <img src="images/capture1.jpg" alt="menu"/>
   <figcaption>Entrada principal del juego</figcaption>
 </p>
