@@ -13,7 +13,9 @@ Este es un juego de cartas de memoria inspirado en Attack on Titan, desarrollado
   <li>Gana cuando todas las parejas hayan sido descubiertas.</li>
 </ol>
 </p>
-<p aling="center>
+<p aling="center">
   <img src="images/capture1.jpg" alt="menu"/>
+</p>
+<p aling="center>
   <figcaption>Entrada principal del juego</figcaption>
 </p>
