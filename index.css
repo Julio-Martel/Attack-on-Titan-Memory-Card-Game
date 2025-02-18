@@ -20,7 +20,8 @@ body{
 }
 
 .contenido-principal {
-	background: rgba(0, 0, 0, 0.6);
+	background: url('images/fondoStart.jpg');
+	background-size: cover;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -79,6 +80,29 @@ body{
 
 .img-logo {
 	width: 100%;
+}
+
+.par-colocado {
+	background: rgba(0, 0, 0, 0.5);;
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	gap: 3px;
+	width: 25%;
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+}
+
+
+.par-class {
+	color: #ffffff;
+	font-family: 'The Dark Titan Classic';
+	text-shadow: 	
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  font-size: 1rem;		
 }
 
 .formularios {
