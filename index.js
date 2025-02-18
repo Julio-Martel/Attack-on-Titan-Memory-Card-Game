@@ -265,6 +265,8 @@ async function cargarContenido() {
 									botonReiniciarPartida.addEventListener('click', cargarContenido);
 
 									botonReiniciarJuego.addEventListener('click',() => {
+										contenidoPrincipal.style.border = "solid 1px darkgrey";
+										contenidoPrincipal.style.background = "rgba(0, 0, 0, 0.6)";
 										contenidoPrincipal.innerHTML = `
 										<div class="titulo">
 											<img src="imgLogo/imgLogo.png" class="play-img">
@@ -352,6 +354,8 @@ async function cargarContenido() {
 									botonReiniciarPartida.addEventListener('click', cargarContenido);
 
 									botonReiniciarJuego.addEventListener('click',() => {
+										contenidoPrincipal.style.border = "solid 1px darkgrey";
+										contenidoPrincipal.style.background = "rgba(0, 0, 0, 0.6)";
 										contenidoPrincipal.innerHTML = `
 										<div class="titulo">
 											<img src="imgLogo/imgLogo.png" class="play-img">
