@@ -464,6 +464,7 @@ async function cargarContenido(){
 
 														if (tableroReiniciado) {
 															contenidoPrincipal.style.background = "url('images/fondoStart.jpg')";
+															contenidoPrincipal.style.backgroundSize = "cover";
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
@@ -549,6 +550,7 @@ async function cargarContenido(){
 
 														if (tableroReiniciado) {
 															contenidoPrincipal.style.background = "url('images/fondoStart.jpg')";
+															contenidoPrincipal.style.backgroundSize = "cover";
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
