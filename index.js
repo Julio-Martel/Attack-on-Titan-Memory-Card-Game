@@ -178,6 +178,7 @@ async function cargarContenido(){
 	let coordenadaX1, coordenadaX2, coordenadaY1, coordenadaY2;
 	const contenedorDeCartas = document.querySelector('.cartas');
 	let display = document.getElementById('display');
+	const tablaSeleccionarCoordendas = document.querySelector('.tabla-seleccionar-coordenadas');
 	
 	contenedorDeCartas.style.opacity = "0.5";
 	contenedorDeCartas.style.pointerEvents = "none";
@@ -202,6 +203,9 @@ async function cargarContenido(){
 				coordenadaX2 = parseInt(coordenadasArray[0]);
 				coordenadaY2 = parseInt(coordenadasArray[1]);
 
+				tablaSeleccionarCoordendas.style.pointerEvents = "none";
+				tablaSeleccionarCoordendas.style.opacity = "0.5";
+
 				cartaSeleccionada = await seleccionarCarta();
 
 				tableroCartas[coordenadaX1][coordenadaY1] = cartaSeleccionada;
@@ -209,6 +213,8 @@ async function cargarContenido(){
 
 				contenedorDeCartas.style.opacity = "0.5";
 				contenedorDeCartas.style.pointerEvents = "none";
+				tablaSeleccionarCoordendas.style.pointerEvents = "auto";
+				tablaSeleccionarCoordendas.style.opacity = "1";				
 				permitirAccesoACoordenadas = 1;
 
 				display.value = displayNro + 1;
