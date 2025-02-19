@@ -3,18 +3,17 @@ const botonStart = document.getElementById('play');
 const overCardSound = new Audio('audios/oversoundcard.mp3');
 const cardPut = new Audio('audios/cardmove.mp3');
 const gameOver = new Audio('audios/gameover.mp3');
-const selectCharacter = new Audio('audios/selectCharacter.mp3');
 const rightAnswer = new Audio('audios/rightAnswer.mp3');
 const youWin = new Audio('audios/youWin.mp3');
 const gameOver1 = new Audio('audios/gameOver1.mp3');
 const buttonPlay = new Audio('audios/buttonPlay.mp3');
 const boardGame = new Audio('audios/boardGame.mp3');
 
-	
+
 let tableroCartas = [[0,0,0,0],
-					 [0,0,0,0],
-					 [0,0,0,0],
-					 [0,0,0,0]];
+[0,0,0,0],
+[0,0,0,0],
+[0,0,0,0]];
 
 async function cargarContenido(){
 	contenidoPrincipal.style.background = "rgba(0, 0, 0, 0.5)";
@@ -26,6 +25,9 @@ async function cargarContenido(){
 					<label for="par-colocado-nro" class ="par-class">Par nro:</label>
 					<input type = "number" name = "display" id = "display" value = "0" readonly>
 				</div>		
+				<div class = "instrucciones">
+					Selecciona un par de casillas y luego una carta para distribuirlas segun las coordendas que hayas seleccionado.
+				</div>	
 				<div class="tabla-seleccionar-coordenadas">
 				 	<div class="coordenada-casilla" data-coordenada-casilla="0-0" id="0-0">
 				 		0-0
@@ -120,23 +122,25 @@ async function cargarContenido(){
 	</div>	
 	`;
 
-	reiniciarTablero = () => {
+	const reiniciarTablero = () => {
 		return new Promise(resolve => {
-			let acumCeros = -1;
-			for(let i = 0; i < tableroCartas[i]; i++) {
-				for(let j = 0; j < tableroCartas[i].length; j++) {
+			let acumCeros = 0; 
+			for (let i = 0; i < tableroCartas.length; i++) { 
+				for (let j = 0; j < tableroCartas[i].length; j++) {
 					tableroCartas[i][j] = 0;
 					acumCeros++;
 				}
 			}
-			
+
 			if (acumCeros === 16) {
 				resolve(true);
+			} else {
+				resolve(false);
 			}
 		});
-	}
+	};
 
-	buscarCasilla = (coordenadaX, coordenadaY) => {
+	const buscarCasilla = (coordenadaX, coordenadaY) => {
 		return new Promise((resolve) => {
 			if (tableroCartas[coordenadaX][coordenadaY] !== 0) {
 				resolve(false);
@@ -146,7 +150,7 @@ async function cargarContenido(){
 		});
 	};
 
-	seleccionarCarta = () => {
+	const seleccionarCarta = () => {
 		return new Promise((resolve) => {
 			let numeroCarta;
 
@@ -194,9 +198,9 @@ async function cargarContenido(){
 			const coordenadasArray = dataCasillaCoordenada.split('-');
 			
 			if (permitirAccesoACoordenadas === 1) {			 
-				 coordenadaX1 = parseInt(coordenadasArray[0]);
-				 coordenadaY1 = parseInt(coordenadasArray[1]); 
-				 permitirAccesoACoordenadas++;
+				coordenadaX1 = parseInt(coordenadasArray[0]);
+				coordenadaY1 = parseInt(coordenadasArray[1]); 
+				permitirAccesoACoordenadas++;
 			} else {
 				let displayNro = parseInt(display.value);
 				let cartaSeleccionada;
@@ -313,8 +317,6 @@ async function cargarContenido(){
 							</div>
 							</div>
 					`;
-					contenidoPrincipal.style.border = "none";
-					contenidoPrincipal.style.background = "none";
 
 					const displayScore = document.getElementById('entrada-score');
 					const casillas = document.querySelectorAll('.casilla');
@@ -369,7 +371,7 @@ async function cargarContenido(){
 							cardPut.play();
 
 							let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
-									
+
 							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
 								let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
 								idCartaAColocar.innerHTML = imagenNueva;
@@ -404,7 +406,7 @@ async function cargarContenido(){
 
 								async function comparar() {
 									try {
-													
+
 										let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
 
 										if (resultadoComparativa) {
@@ -451,36 +453,28 @@ async function cargarContenido(){
 														});
 
 														youWin.play();
+														
 														await delay(3000);			
+														
 														ventanaModal.style.display = "none";
+														
 														await delay(500);
 
-														await reiniciarTablero(); 
+														const tableroReiniciado = await reiniciarTablero(); 
 
-														const ventanaModalFinal = document.getElementById('ventana-continuar');
-														ventanaModalFinal.style.display = "flex";
-
-														const botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
-														const botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');													// Aqui tiene que ir el contenedor que mostrara las dos opciones
-
-														botonReiniciarJuego.addEventListener('mouseover', () => buttonPlay.play());
-
-														botonReiniciarPartida.addEventListener('mouseover', () => buttonPlay.play());
-
-														botonReiniciarPartida.addEventListener('click', cargarContenido);
-
-														botonReiniciarJuego.addEventListener('click',() => {
+														if (tableroReiniciado) {
+															contenidoPrincipal.style.background = "url('images/fondoStart.jpg')";
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
 																<button class="boton" id="play">Play!</button>
 															</div>
 															`;	
-																		
+
 															const botonPlay = document.getElementById('play');
 															botonPlay.addEventListener('click', cargarContenido);
 															botonPlay.addEventListener('mouseover', () => buttonPlay.play());
-														});
+														}
 													} 									
 												}
 
@@ -493,107 +487,103 @@ async function cargarContenido(){
 
 									} catch(error) {
 										const activarVentanaModalFail = (valorA,valorB) => {
-										const imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
-										const ventanaModal = document.querySelector('.ventana-modal');
-										const contenedorVidas = document.getElementById('vidas-img-contenedor');
+											const imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
+											const ventanaModal = document.querySelector('.ventana-modal');
+											const contenedorVidas = document.getElementById('vidas-img-contenedor');
 
-										async function activarVentanaModalFail(valorA,valorB) {			
-											const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-											const todasLasCasillas = document.querySelectorAll(".casilla");
+											async function activarVentanaModalFail(valorA,valorB) {			
+												const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+												const todasLasCasillas = document.querySelectorAll(".casilla");
 
-											contenedorVidas.removeChild(contenedorVidas.lastElementChild);
-											contadorVidas--;
+												contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+												contadorVidas--;
 
-											todasLasCasillas.forEach(casilla => {
-												casilla.style.pointerEvents = "none";
-											});
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
 
-											await esperarVentana(1000);
+												await esperarVentana(1000);
 
-											cardPut.play();
-											valorA.innerHTML = imgReversoCarta;
-											valorB.innerHTML = imgReversoCarta;
-															
-											todasLasCasillas.forEach(casilla => {
-												if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
-													casillasDesbloqueadas.push(casilla);
-												} else if(casillasDesbloqueadas.includes(casilla)){
-													casilla.style.pointerEvents = "auto";
-												} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
-													casilla.style.pointerEvents = "auto";
-												}
+												cardPut.play();
+												valorA.innerHTML = imgReversoCarta;
+												valorB.innerHTML = imgReversoCarta;
 
-											});										
-
-											async function irALaPantallaPrincipal() {			
-												const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
-												const todasLasCasillas = document.querySelectorAll('.casilla');
-
-												if (contadorVidas === 0) {
-													const imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
-													const ventanaModal = document.querySelector('.ventana-modal');
-
-													ventanaModal.innerHTML = imagenFail;
-													ventanaModal.style.display = "flex";
-													ventanaModal.style.pointerEvents = "none";
-																	
-													const todasLasCasillas = document.querySelectorAll('.casilla');
-
-													todasLasCasillas.forEach(casilla => {
-														casilla.style.pointerEvents = "none";
-													});
-																	
-													gameOver1.play();
-													await delay(5000);
-													ventanaModal.style.display = "none";
-													await delay(1000);
-
-													await reiniciarTablero();
-
-													const ventanaModalFinal = document.getElementById('ventana-continuar');
-													ventanaModalFinal.style.display = "flex";
-
-													const botonReiniciarPartida = document.getElementById('boton-reiniciar-partida');
-													const botonReiniciarJuego = document.getElementById('boton-reiniciar-juego');			// Aqui tiene que ir el contenedor que mostrara las dos opciones
-
-													botonReiniciarPartida.addEventListener('click', cargarContenido);
-
-													botonReiniciarJuego.addEventListener('click',() => {
-														contenidoPrincipal.innerHTML = `
-														<div class="titulo">
-															<img src="imgLogo/imgLogo.png" class="play-img">
-															<button class="boton" id="play">Play!</button>
-														</div>
-														`;	
-																		
-														const botonPlay = document.getElementById('play');
-														botonPlay.addEventListener('click', cargarContenido);
-														botonPlay.addEventListener('mouseover', () => buttonPlay.play());
-													});
-												}
-											}		
-
-											irALaPantallaPrincipal();
-										}								
-
-														activarVentanaModalFail(FailA,FailB);
+												todasLasCasillas.forEach(casilla => {
+													if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
+														casillasDesbloqueadas.push(casilla);
+													} else if(casillasDesbloqueadas.includes(casilla)){
+														casilla.style.pointerEvents = "auto";
+													} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
+														casilla.style.pointerEvents = "auto";
 													}
 
-													activarVentanaModalFail(FailA,FailB);			}
-												}
+												});										
 
-												comparar();
+												async function irALaPantallaPrincipal() {			
+													const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+													const todasLasCasillas = document.querySelectorAll('.casilla');
 
-											}
+													if (contadorVidas === 0) {
+														const imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
+														const ventanaModal = document.querySelector('.ventana-modal');
 
-										});	}								
-			}
-			}
+														ventanaModal.innerHTML = imagenFail;
+														ventanaModal.style.display = "flex";
+														ventanaModal.style.pointerEvents = "none";
 
-		});
-	
+														const todasLasCasillas = document.querySelectorAll('.casilla');
+
+														todasLasCasillas.forEach(casilla => {
+															casilla.style.pointerEvents = "none";
+														});
+
+														gameOver1.play();
+
+														await delay(5000);
+
+														ventanaModal.style.display = "none";
+
+														await delay(1000);
+
+														const tableroReiniciado = await reiniciarTablero(); 
+
+														if (tableroReiniciado) {
+															contenidoPrincipal.style.background = "url('images/fondoStart.jpg')";
+															contenidoPrincipal.innerHTML = `
+															<div class="titulo">
+																<img src="imgLogo/imgLogo.png" class="play-img">
+																<button class="boton" id="play">Play!</button>
+															</div>
+															`;	
+
+															const botonPlay = document.getElementById('play');
+															botonPlay.addEventListener('click', cargarContenido);
+															botonPlay.addEventListener('mouseover', () => buttonPlay.play());
+														}
+													}
+												}		
+
+												irALaPantallaPrincipal();
+											}								
+
+											activarVentanaModalFail(FailA,FailB);
+										}
+
+										activarVentanaModalFail(FailA,FailB);			}
+									}
+
+									comparar();
+
+								}
+
+							});	}								
+}
+}
+
+});
 
 
-	}} 
+
+}} 
 
 botonStart.addEventListener('click', cargarContenido);
