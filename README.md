@@ -19,3 +19,11 @@ Este es un juego de cartas de memoria inspirado en Attack on Titan, desarrollado
 <p aling="center">
   <figcaption>Entrada principal del juego</figcaption>
 </p>
+<div>
+  <img src="images/cargaCoordenadas.jpg" alt="carga-coordenadas"/>  
+  <p aling="left">
+    Seccion donde se ingresan los valores de las coordendas. Se evalua cambiar esta forma de ingresar las coordendas.
+  </p>
+</div>
+
+
