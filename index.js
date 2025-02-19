@@ -26,20 +26,59 @@ async function cargarContenido(){
 					<label for="par-colocado-nro" class ="par-class">Par nro:</label>
 					<input type = "number" name = "display" id = "display" value = "0" readonly>
 				</div>		
-				<div class="formularios">
-					<form class="formulario">
- 				   		<label for="coordenadaX1" class="entrada">Seleccione la coordenada(EjeX1): </label>
-   				  		<input type="number" min="0" max="3" id="coordenadaX1" name="coordenadaX1" placeholder="Ingresar numero" required>
-    					<label for="coordenadaY1" class="entrada">Seleccione la coordenada(EjeY1):  </label>
-   						<input type="number" min="0" max="3" id="coordenadaY1" name="coordenadaY1" placeholder="Ingresar numero" required>
-					</form>
-					<form class="formulario">
-   						<label for="coordenadaX2" class="entrada">Seleccione la coordenada(EjeX2): </label>
-   					    <input type="number" min="0" max="3" id="coordenadaX2" name="coordenadaX2" placeholder="Ingresar numero" required>
-                        <label for="coordenadaY2" class="entrada">Seleccione la coordenada(EjeY2):</label>
-                        <input type="number" min="0" max="3" id="coordenadaY2" name="coordenadaY2" placeholder="Ingresar numero" required>
-                    </form>
-				</div>
+				<div class="tabla-seleccionar-coordenadas">
+				 	<div class="coordenada-casilla" data-coordenada-casilla="0-0" id="0-0">
+				 		0-0
+				 	</div>
+				  	<div class="coordenada-casilla" data-coordenada-casilla="0-1" id="0-1">
+				 		0-1
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="0-2" id="0-2">
+				 		0-2
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="0-3" id="0-3">
+				 		0-3
+				 	</div>
+
+				 	<div class="coordenada-casilla" data-coordenada-casilla="1-0" id="1-0">
+				 		1-0
+				 	</div>
+				  	<div class="coordenada-casilla" data-coordenada-casilla="1-1" id="1-1">
+				 		1-1
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="1-2" id="1-2">
+				 		1-2
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="1-3" id="1-3">
+				 		1-3
+				 	</div>
+
+				  	<div class="coordenada-casilla" data-coordenada-casilla="2-0" id="2-0">
+				 		2-0
+				 	</div>
+				  	<div class="coordenada-casilla" data-coordenada-casilla="2-1" id="2-1">
+				 		2-1
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="2-2" id="2-2">
+				 		2-2
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="2-3" id="2-3">
+				 		2-3
+				 	</div>
+
+				 	<div class="coordenada-casilla" data-coordenada-casilla="3-0" id="3-0">
+				 		3-0
+				 	</div>
+				  	<div class="coordenada-casilla" data-coordenada-casilla="3-1" id="3-1">
+				 		3-1
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="3-2" id="3-2">
+				 		3-2
+				 	</div>
+				 	<div class="coordenada-casilla" data-coordenada-casilla="3-3" id="3-3">
+				 		3-3
+				 	</div>
+				  </div>
 				<button type="button" class="boton" id="boton-formulario">Ingresar coordenadas</button>	
 		</div>
 		<div class="cartas" id = "contenedor-cartas">
@@ -126,8 +165,47 @@ async function cargarContenido(){
 	};
 
 
-	let contenedorDeCartas = document.querySelector('.cartas');
-	let botonIngresarCoordenadas = document.getElementById('boton-formulario');
+	/*---------------------------------------------------------------------------*/
+
+	const casillasCoordenadas = document.querySelectorAll('.coordenada-casilla');
+	let permitirAccesoACoordenadas = 1;
+	let coordenadaX1, coordenadaX2, coordenadaY1, coordenadaY2;
+
+	for(let casillaCoordenada of casillasCoordenadas) {
+		const dataCasillaCoordenada = casillaCoordenada.getAttribute('data-coordenada-casilla');
+		const idCasillaCoordenada = document.getElementById(dataCasillaCoordenada);
+		
+		casillaCoordenada.addEventListener('click',async () => {
+			casillaCoordenada.style.pointerEvents = "none";
+			casillaCoordenada.style.background = "darkred";
+			
+			const coordenadasArray = dataCasillaCoordenada.split('-');
+			
+			if (permitirAccesoACoordenadas === 1) {
+				 coordenadaX1 = parseInt(coordenadasArray[0]);
+				 coordenadaY1 = parseInt(coordenadasArray[1]);
+				 permitirAccesoACoordenadas++;
+			} else {
+
+				// ACA QUEDAMOS
+				coordenadaX2 = parseInt(coordenadasArray[0]);
+				coordenadaY2 = parseInt(coordenadasArray[1]);
+			}
+
+
+
+		});
+	}
+
+	/*AQUI AGREGAMOS LA SELECCION DE COORDENADAS MEDIANTE UNA TABLA*/
+
+
+	/*---------------------------------------------------------------------*/
+
+
+
+	const contenedorDeCartas = document.querySelector('.cartas');
+	const botonIngresarCoordenadas = document.getElementById('boton-formulario');
 
 	contenedorDeCartas.style.opacity = "0.5";
 	contenedorDeCartas.style.pointerEvents = "none";
@@ -148,8 +226,8 @@ async function cargarContenido(){
 		if (coordenadaX1 < 0 || coordenadaX1 > 3 || coordenadaX2 < 0 || coordenadaX2 > 3 ||
 			coordenadaY1 < 0 || coordenadaY1 > 3 || coordenadaY2 < 0 || coordenadaY2 > 3) {
 			alert('Las coordenadas están fuera del rango permitido.');
-		return;
-	}
+			return;
+		}
 
 	let display = document.getElementById('display');
 	let displayNro = parseInt(display.value);
