@@ -136,6 +136,26 @@ body{
 	border: solid 1px darkgrey;
 }
 
+.instrucciones {
+	background: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+	font-family: 'The Dark Titan Classic';
+	text-shadow: 	
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  font-size: 1rem;
+  border: solid 1px darkgrey;
+	border-radius: 5px;	
+	text-align: center;
+	width: 50%;
+}
+
 .cartas {
 	background: linear-gradient(to right, black, darkblue, purple);
 	width: 70%;
