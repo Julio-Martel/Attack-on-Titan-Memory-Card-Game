@@ -178,7 +178,6 @@ async function cargarContenido(){
 	let coordenadaX1, coordenadaX2, coordenadaY1, coordenadaY2;
 	const contenedorDeCartas = document.querySelector('.cartas');
 	let display = document.getElementById('display');
-	let displayNro = parseInt(display.value);
 	
 	contenedorDeCartas.style.opacity = "0.5";
 	contenedorDeCartas.style.pointerEvents = "none";
@@ -198,6 +197,7 @@ async function cargarContenido(){
 				 coordenadaY1 = parseInt(coordenadasArray[1]); 
 				 permitirAccesoACoordenadas++;
 			} else {
+				let displayNro = parseInt(display.value);
 				let cartaSeleccionada;
 				coordenadaX2 = parseInt(coordenadasArray[0]);
 				coordenadaY2 = parseInt(coordenadasArray[1]);
@@ -210,7 +210,9 @@ async function cargarContenido(){
 				contenedorDeCartas.style.opacity = "0.5";
 				contenedorDeCartas.style.pointerEvents = "none";
 				permitirAccesoACoordenadas = 1;
+
 				display.value = displayNro + 1;
+
 				let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 				if (avanzarAlJuego === 16) {
 					contenidoPrincipal.innerHTML = `
