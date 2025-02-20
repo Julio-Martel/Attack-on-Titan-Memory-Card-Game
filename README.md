@@ -27,6 +27,7 @@ Este es un juego de cartas de memoria inspirado en Attack on Titan, desarrollado
 <p aling="left">
    Seccion donde se seleccionara una unica carta para luego distribuirla en dos casillas del tablero.
 </p>
+<img src="images/dispositivosMoviles.jpg" alt="dipositivosMoviles" />
 
 
 
