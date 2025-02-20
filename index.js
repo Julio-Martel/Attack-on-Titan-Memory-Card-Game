@@ -8,6 +8,7 @@ const youWin = new Audio('audios/youWin.mp3');
 const gameOver1 = new Audio('audios/gameOver1.mp3');
 const buttonPlay = new Audio('audios/buttonPlay.mp3');
 const boardGame = new Audio('audios/boardGame.mp3');
+const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
 
 
 let tableroCartas = [[0,0,0,0],
@@ -194,6 +195,8 @@ async function cargarContenido(){
 		casillaCoordenada.addEventListener('click',async () => {
 			casillaCoordenada.style.pointerEvents = "none";
 			casillaCoordenada.style.background = "darkred";
+
+			sonidoCasillaCoordenada.play();
 
 			const coordenadasArray = dataCasillaCoordenada.split('-');
 			
