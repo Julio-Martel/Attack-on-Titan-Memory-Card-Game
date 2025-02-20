@@ -87,37 +87,48 @@ async function cargarContenido(){
 			<header class="encabezado-cartas">
 				<h3>Seleccione carta para colocar en el tablero</h3>
 			</header>
-		<div class="seccion">
-			<img src="images/1.jpg" class="carta" data-value = "1" id = "1">
-			<img src="images/2.jpg" class="carta" data-value = "2" id=  "2">
-			<img src="images/3.jpg" class="carta" data-value = "3" id = "3">
-			<img src="images/4.jpg" class="carta" data-value = "4" id = "4">
-			<img src="images/5.jpg" class="carta" data-value = "5" id = "5">
-			<img src="images/6.jpg" class="carta" data-value = "6" id = "6">
-		</div>
-		<div class="seccion">
-			<img src="images/7.jpg" class="carta" data-value = "7" id = "7">	
-			<img src="images/8.jpg" class="carta" data-value = "8" id = "8">
-			<img src="images/9.jpg" class="carta" data-value = "9" id = "9">
-			<img src="images/10.jpg" class="carta" data-value = "10" id = "10">	
-			<img src="images/11.jpg" class="carta" data-value = "11" id = "11">
-			<img src="images/12.jpg" class="carta" data-value = "12" id = "12">
-		</div>	
-		<div class="seccion">
-			<img src="images/13.jpg" class="carta" data-value = "13" id = "13">	
-			<img src="images/14.jpg" class="carta" data-value = "14" id = "14">
-			<img src="images/15.jpg" class="carta" data-value = "15" id = "15">
-			<img src="images/16.jpg" class="carta" data-value = "16" id = "16">
-			<img src="images/17.jpg" class="carta" data-value = "17" id = "17">
-			<img src="images/18.jpg" class="carta" data-value = "18" id = "18">
-		</div>				
-		<div class="seccion">
-			<img src="images/19.jpg" class="carta" data-value = "19" id = "19">	
-			<img src="images/20.jpg" class="carta" data-value = "20" id = "20">
-			<img src="images/21.jpg" class="carta" data-value = "21" id = "21">
-			<img src="images/22.jpg" class="carta" data-value = "22" id = "22">
-			<img src="images/23.jpg" class="carta" data-value = "23" id = "23">
-			<img src="images/24.jpg" class="carta" data-value = "24" id = "24">
+		
+		<div class="secciones-cartas">
+			<div class="seccion">
+				<img src="images/1.jpg" class="carta" data-value = "1" id = "1">
+				<img src="images/2.jpg" class="carta" data-value = "2" id=  "2">
+				<img src="images/3.jpg" class="carta" data-value = "3" id = "3">
+				<img src="images/4.jpg" class="carta" data-value = "4" id = "4">
+				<img src="images/5.jpg" class="carta" data-value = "5" id = "5">
+				<img src="images/6.jpg" class="carta" data-value = "6" id = "6">
+			</div>
+			<div class="seccion">
+				<img src="images/7.jpg" class="carta" data-value = "7" id = "7">	
+				<img src="images/8.jpg" class="carta" data-value = "8" id = "8">
+				<img src="images/9.jpg" class="carta" data-value = "9" id = "9">
+				<img src="images/10.jpg" class="carta" data-value = "10" id = "10">	
+				<img src="images/11.jpg" class="carta" data-value = "11" id = "11">
+				<img src="images/12.jpg" class="carta" data-value = "12" id = "12">
+			</div>	
+			<div class="seccion">
+				<img src="images/13.jpg" class="carta" data-value = "13" id = "13">	
+				<img src="images/14.jpg" class="carta" data-value = "14" id = "14">
+				<img src="images/15.jpg" class="carta" data-value = "15" id = "15">
+				<img src="images/16.jpg" class="carta" data-value = "16" id = "16">
+				<img src="images/17.jpg" class="carta" data-value = "17" id = "17">
+				<img src="images/18.jpg" class="carta" data-value = "18" id = "18">
+			</div>				
+			<div class="seccion">
+				<img src="images/19.jpg" class="carta" data-value = "19" id = "19">	
+				<img src="images/20.jpg" class="carta" data-value = "20" id = "20">
+				<img src="images/21.jpg" class="carta" data-value = "21" id = "21">
+				<img src="images/22.jpg" class="carta" data-value = "22" id = "22">
+				<img src="images/23.jpg" class="carta" data-value = "23" id = "23">
+				<img src="images/24.jpg" class="carta" data-value = "24" id = "24">
+			</div>
+			<div class="seccion">
+				<img src="images/25.jpg" class="carta" data-value = "25" id = "25">	
+				<img src="images/26.jpg" class="carta" data-value = "26" id = "26">
+				<img src="images/27.jpg" class="carta" data-value = "27" id = "27">
+				<img src="images/28.jpg" class="carta" data-value = "28" id = "28">
+				<img src="images/29.jpg" class="carta" data-value = "29" id = "29">
+				<img src="images/30.jpg" class="carta" data-value = "30" id = "30">
+			</div>
 		</div>
 		</div>
 	</div>	
@@ -298,23 +309,13 @@ async function cargarContenido(){
 											<label for="scores" class="entrada-scores">Score:</label>
 											<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
 										</div>
+									</div>
+									<div class ="banner">
+										<img src = "images/memory.png" class="banner-memory">
 									</div>							
 								</div>	
 							<div class = "ventana-modal">
 								<div class = "contenido-modal">
-								</div>
-							</div>	
-							<div class = ventanaModal" id = "ventana-continuar">
-								<div class = "contenedor-opciones">
-									<div class = "opcion" id = "reiniciar-partida">
-										<button class = "boton" id = "boton-reiniciar-partida">
-											Play again!	
-										</button>
-									</div>
-								<div class = "opcion" id = "reiniciar-juego">
-									<button class = "boton" id = "boton-reiniciar-juego">
-										Restart game!
-									</button>
 								</div>
 							</div>	
 							</div>
@@ -375,7 +376,7 @@ async function cargarContenido(){
 
 							let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 
-							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
+							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 30) {
 								let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
 								idCartaAColocar.innerHTML = imagenNueva;
 							}	
