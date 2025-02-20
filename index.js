@@ -454,6 +454,9 @@ async function cargarContenido(){
 
 														youWin.play();
 														
+														casillasBloqueadas = [];
+														casillasDesbloqueadas = [];
+
 														await delay(3000);			
 														
 														ventanaModal.style.display = "none";
@@ -506,6 +509,7 @@ async function cargarContenido(){
 												await esperarVentana(1000);
 
 												cardPut.play();
+												
 												valorA.innerHTML = imgReversoCarta;
 												valorB.innerHTML = imgReversoCarta;
 
@@ -545,6 +549,9 @@ async function cargarContenido(){
 														ventanaModal.style.display = "none";
 
 														await delay(1000);
+
+														casillasBloqueadas = [];
+														casillasDesbloqueadas = [];
 
 														const tableroReiniciado = await reiniciarTablero(); 
 
