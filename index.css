@@ -194,12 +194,11 @@ body{
 	border-radius: 5px;
 	width: 15%;
 	cursor: pointer;
-	transition: transform 0.3s ease, background-color 0.3s ease;
+	transition: filter 0.3s linear;
 }
 
 .carta:hover {
-	transform: scale(1.1);
-  background-color: #2ecc71;
+  filter: brightness(1.5);
 }
 
 .contenedor-coordenadas-cartas {
