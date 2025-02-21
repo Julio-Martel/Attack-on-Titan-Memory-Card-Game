@@ -11,6 +11,9 @@ const mainMenu = new Audio('audios/game.mp3');
 const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
 
 
+botonStart.addEventListener('mouseover', () => buttonPlay.play());
+
+
 let tableroCartas = [[0,0,0,0],
 [0,0,0,0],
 [0,0,0,0],
