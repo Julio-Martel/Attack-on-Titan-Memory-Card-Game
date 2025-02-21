@@ -343,11 +343,13 @@ async function cargarContenido(){
 							let idCartaAColocar = document.getElementById(cartaAColocar);
 							let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 
-							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 24) {
+							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 30) {
 								let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
 								idCartaAColocar.innerHTML = imagenNueva;
 							}		   
 						}
+
+						await delay(5000);
 
 						for (let casilla of casillas) {
 							let cartaAColocar = casilla.getAttribute('data-coordenada');
