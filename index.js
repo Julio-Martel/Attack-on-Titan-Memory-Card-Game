@@ -5,9 +5,9 @@ const cardPut = new Audio('audios/cardmove.mp3');
 const gameOver = new Audio('audios/gameover.mp3');
 const rightAnswer = new Audio('audios/rightAnswer.mp3');
 const youWin = new Audio('audios/youWin.mp3');
-const gameOver1 = new Audio('audios/gameOver1.mp3');
+const gameOver1 = new Audio('audios/gameOver2.mp3');
 const buttonPlay = new Audio('audios/buttonPlay.mp3');
-const boardGame = new Audio('audios/boardGame.mp3');
+const mainMenu = new Audio('audios/game.mp3');
 const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
 
 
@@ -133,7 +133,10 @@ async function cargarContenido(){
 		</div>
 	</div>	
 	`;
-
+	
+	mainMenu.play();	
+	mainMenu.loop = true;
+	
 	const reiniciarTablero = () => {
 		return new Promise(resolve => {
 			let acumCeros = 0; 
@@ -239,6 +242,9 @@ async function cargarContenido(){
 
 				let avanzarAlJuego = tableroCartas.flat().filter(unNumeroDistintoDeCero => unNumeroDistintoDeCero !== 0).length;
 				if (avanzarAlJuego === 16) {
+					
+					mainMenu.pause();
+
 					contenidoPrincipal.innerHTML = `
 							<div class = "contenedor-tablero-estadisticas">								
 								<div class = "tablero-cartas" id = "tabla">
@@ -343,6 +349,8 @@ async function cargarContenido(){
 							let idCartaAColocar = document.getElementById(cartaAColocar);
 							let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
 
+							casilla.style.pointerEvents = "none";
+
 							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 30) {
 								let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
 								idCartaAColocar.innerHTML = imagenNueva;
@@ -352,6 +360,7 @@ async function cargarContenido(){
 						await delay(5000);
 
 						for (let casilla of casillas) {
+							casilla.style.pointerEvents = "auto";
 							let cartaAColocar = casilla.getAttribute('data-coordenada');
 							let idCartaAColocar = document.getElementById(cartaAColocar);
 
