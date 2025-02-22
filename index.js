@@ -9,6 +9,7 @@ const gameOver1 = new Audio('audios/gameOver2.mp3');
 const buttonPlay = new Audio('audios/buttonPlay.mp3');
 const mainMenu = new Audio('audios/game.mp3');
 const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
+const startGameMatch = new Audio('audios/startGame.mp3');
 
 
 botonStart.addEventListener('mouseover', () => buttonPlay.play());
@@ -20,7 +21,6 @@ let tableroCartas = [[0,0,0,0],
 [0,0,0,0]];
 
 async function cargarContenido(){
-	contenidoPrincipal.style.background = "rgba(0, 0, 0, 0.5)";
 	contenidoPrincipal.innerHTML = `
 	<div class="contenedor-coordenadas-cartas">	
 		<div class="fomulario-contenedor" id="ingreso-coordenadas">
@@ -345,6 +345,8 @@ async function cargarContenido(){
 					primerVistazoTablero = async () => {
 						const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+						startGameMatch.play();
+
 						for (let casilla of casillas) {
 							let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
 							let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));
@@ -478,8 +480,6 @@ async function cargarContenido(){
 														const tableroReiniciado = await reiniciarTablero(); 
 
 														if (tableroReiniciado) {
-															contenidoPrincipal.style.background = "url('images/fondoStart.jpg')";
-															contenidoPrincipal.style.backgroundSize = "cover";
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
@@ -568,8 +568,6 @@ async function cargarContenido(){
 														const tableroReiniciado = await reiniciarTablero(); 
 
 														if (tableroReiniciado) {
-															contenidoPrincipal.style.background = "url('images/fondoStart.jpg')";
-															contenidoPrincipal.style.backgroundSize = "cover";
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
