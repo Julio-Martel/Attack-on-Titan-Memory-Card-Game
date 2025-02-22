@@ -20,13 +20,13 @@ body{
 }
 
 .contenido-principal {
-	background: url('images/fondoStart.jpg');
-	background-size: cover;
+	/*background: url('images/fondoStart.jpg');
+	background-size: cover;*/
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: solid 1px darkgrey;
-	border-radius: 15px;
+/*border: solid 1px darkgrey;
+	border-radius: 15px;*/
 	width: 90%;
 	padding: 1em;
 }
@@ -55,6 +55,7 @@ body{
 	border: solid 1px grey;
 	border-radius: 5px;
 	font-family: 'The Dark Titan Classic';
+	font-size: 2rem;
 }
 
 .boton:hover {
