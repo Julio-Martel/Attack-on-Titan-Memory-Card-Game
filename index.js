@@ -360,18 +360,12 @@ async function cargarContenido(){
 							}		   
 						}
 
-						await delay(5000);
+						await delay(3000);
 
 						for (let casilla of casillas) {
-							casilla.style.pointerEvents = "auto";
 							let cartaAColocar = casilla.getAttribute('data-coordenada');
 							let idCartaAColocar = document.getElementById(cartaAColocar);
-
-							tabla.style.pointerEvents = "none";
-
-							await delay(450);
-
-							tabla.style.pointerEvents = "auto";
+							casilla.style.pointerEvents = "auto";
 							idCartaAColocar.innerHTML = imgReversoCarta;
 							cardPut.play();
 						}
