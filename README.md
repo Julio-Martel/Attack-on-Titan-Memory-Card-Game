@@ -1,5 +1,5 @@
 # Attack-on-Titan-Memory-Card-Game
-<h1 align="center">Attack on Titan Memory Game(En desarrollo) </h1>
+<h1 align="center">Attack on Titan Memory Game</h1>
 
 <p align="center">
   <img src="imgLogo/imgLogo2.png" alt="Mi Logo" />
