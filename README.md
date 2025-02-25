@@ -24,6 +24,7 @@ Este es un juego de cartas de memoria inspirado en Attack on Titan, desarrollado
    Seccion donde se seleccionara una unica carta para luego distribuirla en dos casillas del tablero.
 </p>
 <img src="images/dispositivosMoviles.jpg" alt="dipositivosMoviles" />
+<p>Pruebalo aqui: https://attack-on-titan-memory-game.netlify.app/ </p>
 
 
 
