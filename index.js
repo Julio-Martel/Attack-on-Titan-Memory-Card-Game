@@ -1,5 +1,5 @@
 const contenidoPrincipal = document.getElementById('contenedor-principal');
-const botonStart = document.getElementById('play');
+const botomCustomParty = document.getElementById('custom-party');
 const overCardSound = new Audio('audios/oversoundcard.mp3');
 const cardPut = new Audio('audios/cardmove.mp3');
 const gameOver = new Audio('audios/gameover.mp3');
@@ -12,7 +12,7 @@ const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
 const startGameMatch = new Audio('audios/startGame.mp3');
 
 
-botonStart.addEventListener('mouseover', () => buttonPlay.play());
+botomCustomParty.addEventListener('mouseover', () => buttonPlay.play());
 
 
 let tableroCartas = [[0,0,0,0],
@@ -605,4 +605,4 @@ async function cargarContenido(){
 
 }} 
 
-botonStart.addEventListener('click', cargarContenido);
+botomCustomParty.addEventListener('click', cargarContenido);
