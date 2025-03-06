@@ -1,5 +1,6 @@
 const contenidoPrincipal = document.getElementById('contenedor-principal');
-const botomCustomParty = document.getElementById('custom-party');
+const botonPartidaPersonalizada = document.getElementById('custom-party');
+const botonPartidaAutomatica =
 const overCardSound = new Audio('audios/oversoundcard.mp3');
 const cardPut = new Audio('audios/cardmove.mp3');
 const gameOver = new Audio('audios/gameover.mp3');
@@ -12,8 +13,7 @@ const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
 const startGameMatch = new Audio('audios/startGame.mp3');
 
 
-botomCustomParty.addEventListener('mouseover', () => buttonPlay.play());
-
+botonPartidaPersonalizada.addEventListener('mouseover', () => buttonPlay.play());
 
 let tableroCartas = [[0,0,0,0],
 [0,0,0,0],
@@ -21,6 +21,7 @@ let tableroCartas = [[0,0,0,0],
 [0,0,0,0]];
 
 async function cargarContenido(){
+
 	contenidoPrincipal.innerHTML = `
 	<div class="contenedor-coordenadas-cartas">	
 		<div class="fomulario-contenedor" id="ingreso-coordenadas">
