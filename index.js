@@ -484,7 +484,8 @@ async function contenidoPartidaPersonalizada(){
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
-																<button class="boton" id="play">Play!</button>
+																<button class="boton" id="play">Partida automatica</button>
+																<button class="boton" id="custom-party">Partida personalizada</button>
 															</div>
 															`;	
 
@@ -572,7 +573,8 @@ async function contenidoPartidaPersonalizada(){
 															contenidoPrincipal.innerHTML = `
 															<div class="titulo">
 																<img src="imgLogo/imgLogo.png" class="play-img">
-																<button class="boton" id="play">Play!</button>
+																<button class="boton" id="play">Partida automatica</button>
+																<button class="boton" id="custom-party">Partida personalizada</button>
 															</div>
 															`;	
 
