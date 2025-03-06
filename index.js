@@ -20,7 +20,7 @@ let tableroCartas = [[0,0,0,0],
 [0,0,0,0],
 [0,0,0,0]];
 
-async function cargarContenido(){
+async function contenidoPartidaPersonalizada(){
 
 	contenidoPrincipal.innerHTML = `
 	<div class="contenedor-coordenadas-cartas">	
@@ -606,4 +606,4 @@ async function cargarContenido(){
 
 }} 
 
-botomCustomParty.addEventListener('click', cargarContenido);
+botonPartidaPersonalizada.addEventListener('click', contenidoPartidaPersonalizada);
