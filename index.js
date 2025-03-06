@@ -12,13 +12,46 @@ const mainMenu = new Audio('audios/game.mp3');
 const sonidoCasillaCoordenada = new Audio('audios/button2.mp3');
 const startGameMatch = new Audio('audios/startGame.mp3');
 
-
-botonPartidaPersonalizada.addEventListener('mouseover', () => buttonPlay.play());
-
 let tableroCartas = [[0,0,0,0],
 [0,0,0,0],
 [0,0,0,0],
 [0,0,0,0]];
+
+async function contenidoPartidaAutomatica() {
+	let numeroDeVecesQueSeCargaUnParDeCartas = 0;
+	let contadorDeParCasillasOcupadas = 0;
+
+	const verificarSiElTableroEstaVacio = () => {
+		return new Promise(resolve => {
+			let cantidadDeCeros = tableroCartas.flat().filter(unCero => unCero !== 0).length;
+			if (cantidadDeCeros === 0) {resolve(true)} else {resolve(false)}
+		});
+	}
+
+	for(let i = 0; i < 17; i++){
+		const tableroVacio = await verificarSiElTableroEstaVacio();
+		if (tableroVacio) {
+			let valorEjeX1 = Math.floor(Math.random() * 4);
+			let valorEjeY1 = Math.floor(Math.random() * 4);
+			let valorEjeX2 = Math.floor(Math.random() * 4);
+			let valorEjeY2 = Math.floor(Math.random() * 4);
+
+			const cartaAColocar = Math.floor(Math.random() * 31);
+
+			tableroCartas[valorEjeX1] = cartaAColocar;
+			tableroCartas[valorEjeY1] = cartaAColocar;
+			tableroCartas[valorEjeX2] = cartaAColocar;
+			tableroCartas[valorEjeY2] = cartaAColocar;
+
+			contadorDeParCasillasOcupadas++;
+
+		} else {
+
+
+
+		}
+	}	
+}
 
 async function contenidoPartidaPersonalizada(){
 
@@ -608,4 +641,5 @@ async function contenidoPartidaPersonalizada(){
 
 }} 
 
+botonPartidaPersonalizada.addEventListener('mouseover', () => buttonPlay.play());
 botonPartidaPersonalizada.addEventListener('click', contenidoPartidaPersonalizada);
