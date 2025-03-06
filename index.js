@@ -38,11 +38,9 @@ async function contenidoPartidaAutomatica() {
 
 			const cartaAColocar = Math.floor(Math.random() * 31);
 
-			tableroCartas[valorEjeX1] = cartaAColocar;
-			tableroCartas[valorEjeY1] = cartaAColocar;
-			tableroCartas[valorEjeX2] = cartaAColocar;
-			tableroCartas[valorEjeY2] = cartaAColocar;
-
+			tableroCartas[valorEjeX1][valorEjeY1] = cartaAColocar;
+			tableroCartas[valorEjeX2][valorEjeY2] = cartaAColocar;
+			
 			contadorDeParCasillasOcupadas++;
 
 		} else {
