@@ -19,12 +19,28 @@ let tableroCartas = [[0,0,0,0],
 
 async function contenidoPartidaAutomatica() {
 	let numeroDeVecesQueSeCargaUnParDeCartas = 0;
-	let contadorDeParCasillasOcupadas = 0;
+	let valoresDeCartasYaUsadas = [];
 
 	const verificarSiElTableroEstaVacio = () => {
 		return new Promise(resolve => {
 			let cantidadDeCeros = tableroCartas.flat().filter(unCero => unCero !== 0).length;
 			if (cantidadDeCeros === 0) {resolve(true)} else {resolve(false)}
+		});
+	}
+
+	const asignarCasillas = (ejeX1,ejeY1,ejeX2,ejeY2) => {
+		return new Promise(resolve => {
+			if (tableroCartas[ejeX1][ejeY1] !== 0 && tableroCartas[ejeX2][ejeY2] !== 0) {resolve(false)} else {resolve(true)}
+		});
+	}
+
+	const encontrarCartaNueva = (carta) => {
+		return new Promise(resolve => {
+			do {
+				const cartaExistenteYaUsada = valoresDeCartasYaUsadas.includes(carta);
+			} while(cartaExistenteYaUsada === true);
+			
+			resolve(cartaExistenteYaUsada);
 		});
 	}
 
@@ -38,17 +54,45 @@ async function contenidoPartidaAutomatica() {
 
 			const cartaAColocar = Math.floor(Math.random() * 31);
 
+			valoresDeCartasYaUsadas.push(cartaAColocar);
+
 			tableroCartas[valorEjeX1][valorEjeY1] = cartaAColocar;
 			tableroCartas[valorEjeX2][valorEjeY2] = cartaAColocar;
-			
-			contadorDeParCasillasOcupadas++;
 
 		} else {
+			
+			async function generarCasillas() {
+			    let casillasAsignadas = false; // Inicialmente en false
+			    let valorEjeX1, valorEjeY1, valorEjeX2, valorEjeY2;
 
+			    do {
+			        
+			        valorEjeX1 = Math.floor(Math.random() * 4);
+			        valorEjeY1 = Math.floor(Math.random() * 4);
+			        valorEjeX2 = Math.floor(Math.random() * 4);
+			        valorEjeY2 = Math.floor(Math.random() * 4);
 
+			        casillasAsignadas = await asignarCasillas(valorEjeX1, valorEjeY1, valorEjeX2, valorEjeY2);
 
+			    } while (!casillasAsignadas); 
+
+			    console.log("Casillas asignadas:", valorEjeX1, valorEjeY1, valorEjeX2, valorEjeY2);
+			}
+			
+
+			const cartaRandom = Math.floor(Math.random() * 31);
+			
+			//agregar funcion asincrona
+			const cartaAColocar = await encontrarCartaNueva(cartaRandom);
+
+			tableroCartas[valorEjeX1][valorEjeY1]  = cartaAColocar;
+			tableroCartas[valorEjeX2][valorEjeY2] = cartaAColocar;			
 		}
 	}	
+
+	// aqui agregar condicionarl para que se vea el tablero
+
+
 }
 
 async function contenidoPartidaPersonalizada(){
