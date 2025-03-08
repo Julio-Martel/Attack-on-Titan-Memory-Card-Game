@@ -90,7 +90,7 @@ async function contenidoPartidaAutomatica() {
 		}
 	}	
 
-	// aqui agregar condicionarl para que se vea el tablero
+	// aqui agregar condicionar para que se vea el tablero
 
 
 }
