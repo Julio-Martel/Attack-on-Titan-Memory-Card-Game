@@ -1,6 +1,6 @@
 const contenidoPrincipal = document.getElementById('contenedor-principal');
 const botonPartidaPersonalizada = document.getElementById('custom-party');
-const botonPartidaAutomatica =
+const botonPartidaAutomatica =document.getElementById('play');
 const overCardSound = new Audio('audios/oversoundcard.mp3');
 const cardPut = new Audio('audios/cardmove.mp3');
 const gameOver = new Audio('audios/gameover.mp3');
@@ -18,10 +18,392 @@ let tableroCartas = [[0,0,0,0],
 [0,0,0,0]];
 
 async function contenidoPartidaAutomatica() {
+    let valorDeCartasUsadas = [];
+    let posicionesDisponibles = [];
 
-}
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            posicionesDisponibles.push([i, j]);
+        }
+    }
 
-async function contenidoPartidaPersonalizada(){
+    const generarCartaUnica = () => {
+        let carta;
+        do {
+            carta = Math.floor(Math.random() * 31) || 1; 
+        } while (valorDeCartasUsadas.includes(carta));
+
+        valorDeCartasUsadas.push(carta);
+        return carta;
+    };
+
+    for (let i = 0; i < 8; i++) { 
+        let nuevaCarta = generarCartaUnica();
+
+        let indice1 = Math.floor(Math.random() * posicionesDisponibles.length);
+        let [x1, y1] = posicionesDisponibles.splice(indice1, 1)[0];
+
+        let indice2 = Math.floor(Math.random() * posicionesDisponibles.length);
+        let [x2, y2] = posicionesDisponibles.splice(indice2, 1)[0];
+
+        tableroCartas[x1][y1] = nuevaCarta;
+        tableroCartas[x2][y2] = nuevaCarta;
+    }
+
+	mainMenu.pause();
+
+	contenidoPrincipal.innerHTML = `
+							<div class = "contenedor-tablero-estadisticas">								
+								<div class = "tablero-cartas" id = "tabla">
+									<div class = "casilla" data-ejeX = "0" data-ejeY = "0" id = "0-0" data-coordenada = "0-0">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+									</div>
+									<div class = "casilla" data-ejeX = "0" data-ejeY = "1" id = "0-1" data-coordenada = "0-1">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+									</div>
+									<div class = "casilla" data-ejeX = "0" data-ejeY = "2" id = "0-2" data-coordenada = "0-2">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">
+									</div>
+									<div class = "casilla" data-ejeX = "0" data-ejeY = "3" id = "0-3" data-coordenada = "0-3">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "1" data-ejeY = "0" id = "1-0" data-coordenada = "1-0">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>						
+									<div class = "casilla" data-ejeX = "1" data-ejeY = "1" id = "1-1" data-coordenada = "1-1">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "1" data-ejeY = "2" id = "1-2" data-coordenada = "1-2">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "1" data-ejeY = "3" id = "1-3" data-coordenada = "1-3">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+									</div>
+									<div class = "casilla" data-ejeX = "2" data-ejeY = "0" id = "2-0" data-coordenada = "2-0">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>						
+									<div class = "casilla" data-ejeX = "2" data-ejeY = "1" id = "2-1" data-coordenada = "2-1">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "2" data-ejeY = "2" id = "2-2" data-coordenada = "2-2">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "2" data-ejeY = "3" id = "2-3" data-coordenada = "2-3">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+									</div>						
+									<div class = "casilla" data-ejeX = "3" data-ejeY = "0" id = "3-0" data-coordenada = "3-0">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>						
+									<div class = "casilla" data-ejeX = "3" data-ejeY = "1" id = "3-1" data-coordenada = "3-1">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "3" data-ejeY = "2" id = "3-2" data-coordenada = "3-2">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">					
+									</div>
+									<div class = "casilla" data-ejeX = "3" data-ejeY = "3" id = "3-3" data-coordenada = "3-3">
+										<img src = "images/reverso-carta.jpg" class = "carta-reverso">						
+									</div>						
+							</div>
+								<div class = "estadisticas-vidas" id = "est-vid">
+									<div class = "display-vidas" id = "vidas">
+										<div class = "display-vidas-img" id = "vidas">
+											<label for="vidas" class="entrada-vidas">Vidas:</label>
+					   					  	<div class = "vidas-img" id = "vidas-img-contenedor">
+												<img src = "images/vida1.png" class = "vida-img" id = "vida1">
+												<img src = "images/vida1.png" class = "vida-img" id = "vida2">
+												<img src = "images/vida1.png" class = "vida-img" id = "vida3">
+												<img src = "images/vida1.png" class = "vida-img" id = "vida4">
+												<img src = "images/vida1.png" class = "vida-img" id = "vida5">
+											</div>
+										</div>
+									</div>
+									<div class = "display-score" id = "score">
+										<div class = "display-score-numbers">
+											<label for="scores" class="entrada-scores">Score:</label>
+											<input type="number" id="entrada-score" name="entrada-score" value = "0" readonly>
+										</div>
+									</div>
+									<div class ="banner">
+										<img src = "images/memory.png" class="banner-memory">
+									</div>							
+								</div>	
+							<div class = "ventana-modal">
+								<div class = "contenido-modal">
+								</div>
+							</div>	
+							</div>
+							</div>
+					`;
+
+					const displayScore = document.getElementById('entrada-score');
+					const casillas = document.querySelectorAll('.casilla');
+					let cartaProcesada = 1;
+					let valorCartaSeleccionadaA = "", valorCartaSeleccionadaB = "", FailA = "", FailB = "";
+					const imgReversoCarta = `<img src = "images/reverso-carta.jpg" class = "carta-reverso">`;
+					let contadorVidas = 5;
+					const tabla = document.getElementById('tabla');
+					let casillasBloqueadas = [];
+					let casillasDesbloqueadas = [];
+					let contadorAciertos = 0;
+
+					primerVistazoTablero = async () => {
+						const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+						startGameMatch.play();
+
+						for (let casilla of casillas) {
+							let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+							let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));
+							let cartaAColocar = casilla.getAttribute('data-coordenada');
+							let idCartaAColocar = document.getElementById(cartaAColocar);
+							let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+
+							casilla.style.pointerEvents = "none";
+
+							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 30) {
+								let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
+								idCartaAColocar.innerHTML = imagenNueva;
+							}		   
+						}
+
+						await delay(3000);
+
+						for (let casilla of casillas) {
+							let cartaAColocar = casilla.getAttribute('data-coordenada');
+							let idCartaAColocar = document.getElementById(cartaAColocar);
+							casilla.style.pointerEvents = "auto";
+							idCartaAColocar.innerHTML = imgReversoCarta;
+							cardPut.play();
+						}
+					};
+
+					await primerVistazoTablero();
+
+					for(casilla of casillas) {					
+						let valorEjeX = parseInt(casilla.getAttribute('data-ejeX'));
+						let valorEjeY = parseInt(casilla.getAttribute('data-ejeY'));				
+						let cartaAColocar = casilla.getAttribute('data-coordenada');
+						let idCartaAColocar = document.getElementById(cartaAColocar);
+
+						casilla.addEventListener('click', async () => {
+							cardPut.play();
+
+							let valorDeLaCarta = tableroCartas[valorEjeX][valorEjeY];
+
+							if (valorDeLaCarta >= 1 && valorDeLaCarta <= 30) {
+								let imagenNueva = `<img src="images/${valorDeLaCarta}.jpg" class="carta-reverso" id="${valorDeLaCarta}">`;
+								idCartaAColocar.innerHTML = imagenNueva;
+							}	
+
+							if (cartaProcesada === 1) { //CASO EN EL QUE EL PAR SI COINCIDE
+								valorCartaSeleccionadaA = valorDeLaCarta;
+								FailA = idCartaAColocar;
+								cartaProcesada++;
+
+								const idParentCasillaA = document.getElementById(cartaAColocar);
+								
+								idParentCasillaA.style.pointerEvents = "none";
+
+							} else { // CASO EN EL QUE EL PAR NO COINCIDE
+								valorCartaSeleccionadaB = valorDeLaCarta;
+								FailB = idCartaAColocar;
+								cartaProcesada = 1;
+
+								const idParentCasillaB = document.getElementById(cartaAColocar);
+								idParentCasillaB.style.pointerEvents = "none"; 
+
+								const valorComparativaDeCartas = (valorA,valorB) => {
+									return new Promise((resolve,reject) => {
+										if (valorA === valorB) {
+											resolve(true);
+										} else {
+											reject(false);
+										} 
+									});
+								}
+
+								async function comparar() {
+									try {
+
+										let resultadoComparativa = await valorComparativaDeCartas(valorCartaSeleccionadaA,valorCartaSeleccionadaB);
+
+										if (resultadoComparativa) {
+											const imagenNice = `<img src = "images/nice.jpg" class = "img-modal">`;
+											let displayNroScore = parseInt(displayScore.value);
+											const ventanaModal = document.querySelector('.ventana-modal');
+
+											contadorAciertos++;
+											displayScore.value = displayNroScore + 1000;
+											rightAnswer.play();
+
+											async function activarVentanaModal(valorA,valorB){			
+												const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve, ms));	
+												const todasLasCasillas = document.querySelectorAll(".casilla");
+
+												await esperarVentana(1000);
+
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
+
+												todasLasCasillas.forEach(casilla => {								    	
+													if (valorA === casilla || valorB === casilla) {
+														casillasBloqueadas.push(casilla);
+													} else if(!casillasBloqueadas.includes(casilla)){
+														casilla.style.pointerEvents = "auto";
+													}
+												});
+
+												async function irALaPantallaPrincipalWin(){
+													const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+													const todasLasCasillas = document.querySelectorAll('.casilla');
+
+													if (contadorAciertos === 8) {
+														const imagenWin = `<img src = "images/youWin.jpg" class = "img-modal">`;
+														const ventanaModal = document.querySelector('.ventana-modal');
+
+														ventanaModal.innerHTML = imagenWin;
+														ventanaModal.style.display = "flex";
+														ventanaModal.style.pointerEvents = "none";
+
+														todasLasCasillas.forEach(casilla => {
+															casilla.style.pointerEvents = "none";
+														});
+
+														youWin.play();
+														
+														casillasBloqueadas = [];
+														casillasDesbloqueadas = [];
+
+														await delay(3000);			
+														
+														ventanaModal.style.display = "none";
+														
+														await delay(500);
+
+														const tableroReiniciado = await reiniciarTablero(); 
+
+														if (tableroReiniciado) {
+															contenidoPrincipal.innerHTML = `
+															<div class="titulo">
+																<img src="imgLogo/imgLogo.png" class="play-img">
+																<button class="boton" id="play">Partida automatica</button>
+																<button class="boton" id="custom-party">Partida personalizada</button>
+															</div>
+															`;	
+
+															const botonPlay = document.getElementById('play');
+															botonPlay.addEventListener('click', cargarContenido);
+															botonPlay.addEventListener('mouseover', () => buttonPlay.play());
+														}
+													} 									
+												}
+
+												irALaPantallaPrincipalWin();
+
+											}
+
+											activarVentanaModal(FailA,FailB);	
+										} 
+
+									} catch(error) {
+										const activarVentanaModalFail = (valorA,valorB) => {
+											const imagenFail = `<img src = "images/fail.jpg" class = "img-modal">`;
+											const ventanaModal = document.querySelector('.ventana-modal');
+											const contenedorVidas = document.getElementById('vidas-img-contenedor');
+
+											async function activarVentanaModalFail(valorA,valorB) {			
+												const esperarVentana = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+												const todasLasCasillas = document.querySelectorAll(".casilla");
+
+												contenedorVidas.removeChild(contenedorVidas.lastElementChild);
+												contadorVidas--;
+
+												todasLasCasillas.forEach(casilla => {
+													casilla.style.pointerEvents = "none";
+												});
+
+												await esperarVentana(1000);
+
+												cardPut.play();
+												
+												valorA.innerHTML = imgReversoCarta;
+												valorB.innerHTML = imgReversoCarta;
+
+												todasLasCasillas.forEach(casilla => {
+													if ((valorA === casilla || valorB === casilla) && casilla.style.pointerEvents !== "none") {
+														casillasDesbloqueadas.push(casilla);
+													} else if(casillasDesbloqueadas.includes(casilla)){
+														casilla.style.pointerEvents = "auto";
+													} else if(!casillasDesbloqueadas.includes(casilla) && !casillasBloqueadas.includes(casilla)){
+														casilla.style.pointerEvents = "auto";
+													}
+
+												});										
+
+												async function irALaPantallaPrincipal() {			
+													const delay = (ms) => new Promise(resolve => setTimeout(resolve,ms));
+													const todasLasCasillas = document.querySelectorAll('.casilla');
+
+													if (contadorVidas === 0) {
+														const imagenFail = `<img src = "images/gameOver2.jpg" class = "img-modal">`;
+														const ventanaModal = document.querySelector('.ventana-modal');
+
+														ventanaModal.innerHTML = imagenFail;
+														ventanaModal.style.display = "flex";
+														ventanaModal.style.pointerEvents = "none";
+
+														const todasLasCasillas = document.querySelectorAll('.casilla');
+
+														todasLasCasillas.forEach(casilla => {
+															casilla.style.pointerEvents = "none";
+														});
+
+														gameOver1.play();
+
+														await delay(5000);
+
+														ventanaModal.style.display = "none";
+
+														await delay(1000);
+
+														casillasBloqueadas = [];
+														casillasDesbloqueadas = [];
+
+														const tableroReiniciado = await reiniciarTablero(); 
+
+														if (tableroReiniciado) {
+															contenidoPrincipal.innerHTML = `
+															<div class="titulo">
+																<img src="imgLogo/imgLogo.png" class="play-img">
+																<button class="boton" id="play">Partida automatica</button>
+																<button class="boton" id="custom-party">Partida personalizada</button>
+															</div>
+															`;	
+
+															const botonPlay = document.getElementById('play');
+															botonPlay.addEventListener('click', cargarContenido);
+															botonPlay.addEventListener('mouseover', () => buttonPlay.play());
+														}
+													}
+												}		
+
+												irALaPantallaPrincipal();
+											}								
+
+											activarVentanaModalFail(FailA,FailB);
+										}
+
+										activarVentanaModalFail(FailA,FailB);			}
+									}
+
+									comparar();
+
+								}
+
+							});	}	}
+
+async function contenidoPartidaPersonalizada() {
 
 	contenidoPrincipal.innerHTML = `
 	<div class="contenedor-coordenadas-cartas">	
@@ -600,7 +982,7 @@ async function contenidoPartidaPersonalizada(){
 								}
 
 							});	}								
-}
+	}
 }
 
 });
@@ -611,3 +993,4 @@ async function contenidoPartidaPersonalizada(){
 
 botonPartidaPersonalizada.addEventListener('mouseover', () => buttonPlay.play());
 botonPartidaPersonalizada.addEventListener('click', contenidoPartidaPersonalizada);
+botonPartidaAutomatica.addEventListener('click', contenidoPartidaAutomatica );
